@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap');
+
+.container {
+    -fx-background-color: #030303;
+}
+.tile {
+    -fx-background-color: #1D1919;
+    -fx-background-radius: 10;
+}
+.tileMenu {
+    -fx-background-color: #302C2C;
+    -fx-background-radius: 10;
+    -fx-fill: #E4CFCF;
+}
+.tileMenu:hover {
+    -fx-background-color: #383434;
+    -fx-background-radius: 10;
+}
+.tileMenuText {
+    -fx-text-fill: #E4CFCF;
+    -fx-font-family: 'Jost', sans-serif;
+    -fx-font-weight: 400;
+    -fx-font-size: 16px;
+}
+.tileMenuCover {
+    -fx-fill: #553939;
+}

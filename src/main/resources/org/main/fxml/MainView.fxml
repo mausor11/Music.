@@ -1,6 +1,145 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 
-
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="815.0" minWidth="1320.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" />
+<VBox alignment="CENTER" minHeight="815.0" minWidth="1320.0" spacing="10.0" styleClass="container" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.main.controllers.MainViewController">
+   <children>
+      <GridPane alignment="CENTER" maxHeight="37.0" minHeight="37.0" prefHeight="37.0" VBox.vgrow="NEVER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+      </GridPane>
+      <GridPane hgap="10.0" maxHeight="35.0" prefHeight="35.0" VBox.vgrow="NEVER">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="130.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="130.0" minWidth="10.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="610.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="200.0" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <StackPane fx:id="homeTile" onMouseClicked="#setHomeTile" styleClass="tileMenu">
+               <children>
+                  <Rectangle fx:id="homeCover" arcHeight="16.0" arcWidth="16.0" fill="DODGERBLUE" height="35.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="tileMenuCover" width="130.0" StackPane.alignment="CENTER_RIGHT" />
+                  <HBox alignment="CENTER" minWidth="130.0" prefHeight="100.0" prefWidth="130.0" spacing="10.0">
+                     <children>
+                        <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/IconHome.png" />
+                           </image>
+                        </ImageView>
+                        <Label styleClass="tileMenuText" text="Home" />
+                     </children>
+                  </HBox>
+               </children>
+            </StackPane>
+            <StackPane onMouseClicked="#setPlaylistsTile" styleClass="tileMenu" GridPane.columnIndex="1">
+               <children>
+                  <HBox alignment="CENTER" minWidth="130.0" prefHeight="100.0" prefWidth="130.0" spacing="10.0">
+                     <children>
+                        <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/IconPlaylist.png" />
+                           </image>
+                        </ImageView>
+                        <Label styleClass="tileMenuText" text="Playlists" />
+                     </children>
+                  </HBox>
+               </children>
+            </StackPane>
+            <StackPane onMouseClicked="#setAlbumsTile" styleClass="tileMenu" GridPane.columnIndex="2">
+               <children>
+                  <HBox alignment="CENTER" minWidth="130.0" prefHeight="100.0" prefWidth="130.0" spacing="10.0">
+                     <children>
+                        <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/IconAlbum.png" />
+                           </image>
+                        </ImageView>
+                        <Label styleClass="tileMenuText" text="Albums" />
+                     </children>
+                  </HBox>
+               </children>
+            </StackPane>
+            <StackPane onMouseClicked="#setFavouriteTile" styleClass="tileMenu" GridPane.columnIndex="3">
+               <children>
+                  <HBox alignment="CENTER" minWidth="130.0" prefHeight="100.0" prefWidth="130.0" spacing="10.0">
+                     <children>
+                        <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/IconFavourite.png" />
+                           </image>
+                        </ImageView>
+                        <Label styleClass="tileMenuText" text="Favourite" />
+                     </children>
+                  </HBox>
+               </children>
+            </StackPane>
+            <GridPane styleClass="tileMenu" GridPane.columnIndex="5">
+              <columnConstraints>
+                <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" />
+                <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" maxWidth="87.0" minWidth="10.0" prefWidth="78.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <StackPane>
+                     <children>
+                        <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER_LEFT">
+                           <image>
+                              <Image url="@../icons/IconSearch.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </StackPane>
+                  <Label styleClass="tileMenuText" text="Search" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS">
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </GridPane>
+         </children>
+      </GridPane>
+      <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" VBox.vgrow="ALWAYS">
+         <children>
+            <VBox maxWidth="350.0" prefHeight="200.0" prefWidth="290.0" styleClass="tile" HBox.hgrow="ALWAYS" />
+            <VBox prefHeight="200.0" prefWidth="1000.0" styleClass="tile" HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
+      <GridPane minHeight="85.0" styleClass="tile" VBox.vgrow="NEVER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+      </GridPane>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" />
+   </padding>
+</VBox>
