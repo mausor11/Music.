@@ -39,7 +39,7 @@
             <StackPane fx:id="homeTile" onMouseClicked="#setHomeTile" styleClass="tileMenu">
                <children>
                   <Rectangle fx:id="homeCover" arcHeight="16.0" arcWidth="16.0" fill="DODGERBLUE" height="35.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="tileMenuCover" width="130.0" StackPane.alignment="CENTER_RIGHT" />
-                  <HBox alignment="CENTER" minWidth="130.0" prefHeight="100.0" prefWidth="130.0" spacing="10.0">
+                  <HBox alignment="CENTER" minWidth="130.0" prefHeight="100.0" prefWidth="130.0" spacing="10.0" StackPane.alignment="CENTER_RIGHT">
                      <children>
                         <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -51,9 +51,10 @@
                   </HBox>
                </children>
             </StackPane>
-            <StackPane onMouseClicked="#setPlaylistsTile" styleClass="tileMenu" GridPane.columnIndex="1">
+            <StackPane fx:id="playlistTile" onMouseClicked="#setPlaylistsTile" styleClass="tileMenu" GridPane.columnIndex="1">
                <children>
-                  <HBox alignment="CENTER" minWidth="130.0" prefHeight="100.0" prefWidth="130.0" spacing="10.0">
+                  <Rectangle fx:id="playlistCover" arcHeight="16.0" arcWidth="16.0" fill="DODGERBLUE" height="35.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="tileMenuCover" />
+                  <HBox alignment="CENTER" minWidth="130.0" prefHeight="100.0" prefWidth="130.0" spacing="10.0" StackPane.alignment="CENTER_LEFT">
                      <children>
                         <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -65,9 +66,10 @@
                   </HBox>
                </children>
             </StackPane>
-            <StackPane onMouseClicked="#setAlbumsTile" styleClass="tileMenu" GridPane.columnIndex="2">
+            <StackPane fx:id="albumTile" onMouseClicked="#setAlbumsTile" styleClass="tileMenu" GridPane.columnIndex="2">
                <children>
-                  <HBox alignment="CENTER" minWidth="130.0" prefHeight="100.0" prefWidth="130.0" spacing="10.0">
+                  <Rectangle fx:id="albumCover" arcHeight="16.0" arcWidth="16.0" fill="DODGERBLUE" height="35.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="tileMenuCover" />
+                  <HBox alignment="CENTER" minWidth="130.0" prefHeight="100.0" prefWidth="130.0" spacing="10.0" StackPane.alignment="CENTER_LEFT">
                      <children>
                         <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -79,8 +81,9 @@
                   </HBox>
                </children>
             </StackPane>
-            <StackPane onMouseClicked="#setFavouriteTile" styleClass="tileMenu" GridPane.columnIndex="3">
+            <StackPane fx:id="favouriteTile" onMouseClicked="#setFavouriteTile" styleClass="tileMenu" GridPane.columnIndex="3">
                <children>
+                  <Rectangle fx:id="favouriteCover" arcHeight="16.0" arcWidth="16.0" fill="DODGERBLUE" height="35.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="tileMenuCover" StackPane.alignment="CENTER_LEFT" />
                   <HBox alignment="CENTER" minWidth="130.0" prefHeight="100.0" prefWidth="130.0" spacing="10.0">
                      <children>
                         <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
