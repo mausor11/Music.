@@ -15,6 +15,7 @@
 .tileMenu:hover {
     -fx-background-color: #383434;
     -fx-background-radius: 10;
+    -fx-fill: #E4CFCF;
 }
 .tileMenuText {
     -fx-text-fill: #E4CFCF;
@@ -24,4 +25,14 @@
 }
 .tileMenuCover {
     -fx-fill: #553939;
+}
+.searchTileActive {
+    -fx-background-color: #553939;
+    -fx-background-radius: 10;
+    -fx-fill: #E4CFCF;
+}
+.searchTileActive:hover {
+    -fx-background-color: #624343;
+    -fx-background-radius: 10;
+    -fx-fill: #E4CFCF;
 }
