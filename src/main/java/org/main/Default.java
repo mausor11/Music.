@@ -11,7 +11,8 @@ import java.util.Objects;
 public class Default {
 /** Size **/
     public final static int MIN_WIDTH = 1320;
-    public enum Status {PLAY, PAUSE };
+    public enum StatusPlay {PLAY, PAUSE };
+    public enum StatusRepeat {NONE, REPEAT, REPEAT_HEAVY}
     public final static int MIN_HEIGHT = 815;
 /** Dark Theme Colors **/
     public final static Color BACKGROUND_COLOR = Color.web("#030303");

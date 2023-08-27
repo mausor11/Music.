@@ -155,13 +155,22 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <HBox fx:id="playColumn" alignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+            <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
                <children>
-                  <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/ShuffleIcon.png" />
-                     </image>
-                  </ImageView>
+                  <StackPane>
+                     <children>
+                        <ImageView fx:id="shuffleButtonEffect" fitHeight="17.0" fitWidth="23.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/ShuffleFocusIcon.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="shuffleButton" fitHeight="17.0" fitWidth="23.0" onMouseClicked="#setShuffle" onMouseEntered="#shuffleEffect" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/ShuffleIcon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
                   <StackPane>
                      <HBox.margin>
                         <Insets left="20.0" />
@@ -175,7 +184,7 @@
                               <GaussianBlur radius="7.77" />
                            </effect>
                         </ImageView>
-                        <ImageView fx:id="undoButton" fitHeight="17.0" fitWidth="26.0" onMouseEntered="#undoEffect" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="undoButton" fitHeight="17.0" fitWidth="26.0" onMouseClicked="#setUndo" onMouseEntered="#undoEffect" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../icons/UndoNextIcon.png" />
                            </image>
@@ -219,18 +228,27 @@
                               <GaussianBlur radius="7.77" />
                            </effect>
                         </ImageView>
-                        <ImageView fx:id="nextButton" fitHeight="17.0" fitWidth="26.0" onMouseEntered="#nextEffect" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                        <ImageView fx:id="nextButton" fitHeight="17.0" fitWidth="26.0" onMouseClicked="#setNext" onMouseEntered="#nextEffect" pickOnBounds="true" preserveRatio="true" rotate="180.0">
                            <image>
                               <Image url="@../icons/UndoNextIcon.png" />
                            </image>
                         </ImageView>
                      </children>
                   </StackPane>
-                  <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/RepeatIcon.png" />
-                     </image>
-                  </ImageView>
+                  <StackPane>
+                     <children>
+                        <ImageView fx:id="repeatButtonEffect" fitHeight="17.0" fitWidth="23.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/RepeatFocusIcon.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="repeatButton" fitHeight="17.0" fitWidth="23.0" onMouseClicked="#setRepeat" onMouseEntered="#repeatEffect" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/RepeatIcon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
                </children>
             </HBox>
          </children>

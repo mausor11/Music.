@@ -6,6 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
@@ -48,6 +49,14 @@ public class MainViewController {
     ImageView nextButton;
     @FXML
     ImageView nextButtonEffect;
+    @FXML
+    ImageView shuffleButtonEffect;
+    @FXML
+    ImageView shuffleButton;
+    @FXML
+    ImageView repeatButtonEffect;
+    @FXML
+    ImageView repeatButton;
 /**<p>0 - Home Tile</p>
  * <p>1 - Playlists Tile</p>
  * <p>2 - Albums Tile</p>
@@ -58,8 +67,9 @@ public class MainViewController {
     private final Rectangle searchCover = new Rectangle();
     private final ArrayList<Rectangle> tileCover = new ArrayList<>();
     private boolean isSearchOn = false;
-    private boolean isAnimated = false;
-    Default.Status buttonStatus = Default.Status.PAUSE;
+    private boolean isShuffle = false;
+    Default.StatusPlay buttonStatus = Default.StatusPlay.PAUSE;
+    Default.StatusRepeat repeatStatus = Default.StatusRepeat.NONE;
 
     @FXML
     public void initialize() {
@@ -163,19 +173,17 @@ public class MainViewController {
             switch(buttonStatus) {
                 case PLAY -> {
                     setOnPlay("PlayIcon");
-                    buttonStatus = Default.Status.PAUSE;
+                    buttonStatus = Default.StatusPlay.PAUSE;
                 }
                 case PAUSE -> {
                     setOnPlay("PauseIcon");
-                    buttonStatus = Default.Status.PLAY;
+                    buttonStatus = Default.StatusPlay.PLAY;
                 }
             }
     }
-
     public void nextEffect() {
         blurEffect(nextButton, nextButtonEffect);
     }
-
     public void undoEffect() {
         blurEffect(undoButton, undoButtonEffect);
     }
@@ -218,5 +226,110 @@ public class MainViewController {
                     timeline2.play();
                 }
         );
+    }
+    public void shuffleEffect() {
+        if(!isShuffle) {
+            Timeline timeline = new Timeline(
+                    new KeyFrame(Duration.ZERO, new KeyValue(shuffleButtonEffect.opacityProperty(), shuffleButtonEffect.getOpacity())),
+                    new KeyFrame(Duration.millis(100), new KeyValue(shuffleButtonEffect.opacityProperty(), 1))
+            );
+            timeline.play();
+                shuffleButton.setOnMouseExited(event -> {
+                    if(!isShuffle) {
+                        Timeline timeline1 = new Timeline(
+                                new KeyFrame(Duration.ZERO, new KeyValue(shuffleButtonEffect.opacityProperty(), shuffleButtonEffect.getOpacity())),
+                                new KeyFrame(Duration.millis(100), new KeyValue(shuffleButtonEffect.opacityProperty(), 0))
+                        );
+                        timeline1.play();
+                    }
+                });
+        }
+    }
+    public void repeatEffect() {
+        if(repeatStatus == Default.StatusRepeat.NONE) {
+            Timeline timeline = new Timeline(
+                    new KeyFrame(Duration.ZERO, new KeyValue(repeatButtonEffect.opacityProperty(), repeatButtonEffect.getOpacity())),
+                    new KeyFrame(Duration.millis(100), new KeyValue(repeatButtonEffect.opacityProperty(), 1))
+            );
+            timeline.play();
+            repeatButton.setOnMouseExited(event -> {
+                if(repeatStatus == Default.StatusRepeat.NONE) {
+                    Timeline timeline1 = new Timeline(
+                            new KeyFrame(Duration.ZERO, new KeyValue(repeatButtonEffect.opacityProperty(), repeatButtonEffect.getOpacity())),
+                            new KeyFrame(Duration.millis(100), new KeyValue(repeatButtonEffect.opacityProperty(), 0))
+                    );
+                    timeline1.play();
+                }
+            });
+        }
+    }
+    public void setShuffle() {
+        if(!isShuffle) {
+            makeFocused(shuffleButton, shuffleButtonEffect, "ShuffleFocusIcon");
+            isShuffle = true;
+        } else {
+            makeUnfocused(shuffleButton, shuffleButtonEffect, "ShuffleIcon");
+            isShuffle = false;
+
+        }
+
+    }
+    public void setRepeat() {
+        switch (repeatStatus) {
+            case NONE -> {
+                repeatStatus = Default.StatusRepeat.REPEAT;
+                makeFocused(repeatButton, repeatButtonEffect, "RepeatFocusIcon");
+            }
+            case REPEAT -> {
+                repeatStatus = Default.StatusRepeat.REPEAT_HEAVY;
+                makeFocused(repeatButton, repeatButtonEffect, "RepeatFocusOneIcon");
+            }
+            case REPEAT_HEAVY -> {
+                repeatStatus = Default.StatusRepeat.NONE;
+                makeUnfocused(repeatButton, repeatButtonEffect, "RepeatIcon");
+            }
+        }
+    }
+    private void makeFocused(ImageView button, ImageView buttonEffect, String icon) {
+        buttonEffect.setOpacity(1);
+        GaussianBlur gaussianBlur = new GaussianBlur(0);
+        buttonEffect.setEffect(gaussianBlur);
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.ZERO, new KeyValue(gaussianBlur.radiusProperty(), 0)),
+                new KeyFrame(Duration.millis(40), new KeyValue(gaussianBlur.radiusProperty(), 7.7))
+        );
+        timeline.play();
+        button.setImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("icons/" + icon + ".png"))));
+    }
+    private void makeUnfocused(ImageView button, ImageView buttonEffect, String icon) {
+        GaussianBlur gaussianBlur = new GaussianBlur(7.7);
+        buttonEffect.setEffect(gaussianBlur);
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.ZERO, new KeyValue(gaussianBlur.radiusProperty(), 7.7)),
+                new KeyFrame(Duration.millis(40), new KeyValue(gaussianBlur.radiusProperty(), 0))
+        );
+        timeline.play();
+        timeline.setOnFinished(e -> {
+            buttonEffect.setEffect(null);
+            buttonEffect.setOpacity(0);
+        });
+        button.setImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("icons/"+ icon + ".png"))));
+    }
+
+    public void setNext() {
+        undoNextAnimation(nextButtonEffect);
+    }
+    public void setUndo() {
+        undoNextAnimation(undoButtonEffect);
+    }
+    private void undoNextAnimation(ImageView buttonEffect) {
+        GaussianBlur gaussianBlur = new GaussianBlur(0);
+        buttonEffect.setEffect(gaussianBlur);
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.ZERO, new KeyValue(gaussianBlur.radiusProperty(), 0)),
+                new KeyFrame(Duration.millis(150), new KeyValue(gaussianBlur.radiusProperty(), 9)),
+                new KeyFrame(Duration.millis(200), new KeyValue(gaussianBlur.radiusProperty(), 7.7))
+        );
+        timeline.play();
     }
 }
