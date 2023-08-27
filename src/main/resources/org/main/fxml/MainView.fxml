@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.GaussianBlur?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -14,7 +15,7 @@
 
 <VBox alignment="CENTER" minHeight="815.0" minWidth="1320.0" spacing="10.0" styleClass="container" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.main.controllers.MainViewController">
    <children>
-      <GridPane alignment="CENTER" maxHeight="37.0" minHeight="37.0" prefHeight="37.0" VBox.vgrow="NEVER">
+      <GridPane alignment="BOTTOM_LEFT" maxHeight="37.0" minHeight="37.0" prefHeight="37.0" VBox.vgrow="NEVER">
         <columnConstraints>
           <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -22,6 +23,18 @@
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="BOTTOM" vgrow="SOMETIMES" />
         </rowConstraints>
+         <children>
+            <HBox alignment="BOTTOM_LEFT" maxWidth="100.0" prefWidth="200.0" spacing="3.0">
+               <children>
+                  <ImageView fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="NEVER">
+                     <image>
+                        <Image url="@../icons/IconDark.png" />
+                     </image>
+                  </ImageView>
+                  <Label styleClass="logoText" text="Music." />
+               </children>
+            </HBox>
+         </children>
       </GridPane>
       <GridPane fx:id="menu" hgap="10.0" maxHeight="35.0" prefHeight="35.0" VBox.vgrow="NEVER">
         <columnConstraints>
@@ -134,12 +147,93 @@
       </HBox>
       <GridPane minHeight="85.0" styleClass="tile" VBox.vgrow="NEVER">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" prefWidth="300.0" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
         </rowConstraints>
+         <children>
+            <HBox fx:id="playColumn" alignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+               <children>
+                  <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/ShuffleIcon.png" />
+                     </image>
+                  </ImageView>
+                  <StackPane>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                     <children>
+                        <ImageView fx:id="undoButtonEffect" fitHeight="17.0" fitWidth="26.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/UndoNextIcon.png" />
+                           </image>
+                           <effect>
+                              <GaussianBlur radius="7.77" />
+                           </effect>
+                        </ImageView>
+                        <ImageView fx:id="undoButton" fitHeight="17.0" fitWidth="26.0" onMouseEntered="#undoEffect" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/UndoNextIcon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+                  <StackPane>
+                     <HBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </HBox.margin>
+                     <children>
+                        <StackPane minWidth="36.0" StackPane.alignment="CENTER">
+                           <children>
+                              <ImageView fx:id="playButtonEffect" fitHeight="36.0" fitWidth="36.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
+                                 <image>
+                                    <Image url="@../icons/PlayIcon.png" />
+                                 </image>
+                                 <effect>
+                                    <GaussianBlur radius="7.77" />
+                                 </effect>
+                              </ImageView>
+                              <ImageView fx:id="playButton" fitHeight="36.0" fitWidth="36.0" onMouseClicked="#setPlay" onMouseEntered="#playEffect" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
+                                 <image>
+                                    <Image url="@../icons/PlayIcon.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                     </children>
+                  </StackPane>
+                  <StackPane>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                     <children>
+                        <ImageView fx:id="nextButtonEffect" fitHeight="17.0" fitWidth="26.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                           <image>
+                              <Image url="@../icons/UndoNextIcon.png" />
+                           </image>
+                           <effect>
+                              <GaussianBlur radius="7.77" />
+                           </effect>
+                        </ImageView>
+                        <ImageView fx:id="nextButton" fitHeight="17.0" fitWidth="26.0" onMouseEntered="#nextEffect" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                           <image>
+                              <Image url="@../icons/UndoNextIcon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+                  <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/RepeatIcon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
       </GridPane>
    </children>
    <padding>

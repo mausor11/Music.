@@ -1,17 +1,19 @@
 package org.main.controllers;
 
-import javafx.animation.Interpolator;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
+import javafx.animation.*;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.effect.GaussianBlur;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
-
+import org.main.Default;
+import org.main.Main;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class MainViewController {
     @FXML
@@ -34,6 +36,18 @@ public class MainViewController {
     Rectangle albumCover;
     @FXML
     Rectangle favouriteCover;
+    @FXML
+    ImageView playButton;
+    @FXML
+    ImageView playButtonEffect;
+    @FXML
+    ImageView undoButton;
+    @FXML
+    ImageView undoButtonEffect;
+    @FXML
+    ImageView nextButton;
+    @FXML
+    ImageView nextButtonEffect;
 /**<p>0 - Home Tile</p>
  * <p>1 - Playlists Tile</p>
  * <p>2 - Albums Tile</p>
@@ -41,13 +55,16 @@ public class MainViewController {
  * <p>4 - Settings Tile</p> **/
     private int actualTile = 0;
     private int prevTile = 0;
-    private Rectangle searchCover = new Rectangle();
+    private final Rectangle searchCover = new Rectangle();
     private final ArrayList<Rectangle> tileCover = new ArrayList<>();
     private boolean isSearchOn = false;
+    private boolean isAnimated = false;
+    Default.Status buttonStatus = Default.Status.PAUSE;
 
     @FXML
     public void initialize() {
         prepareCovers();
+
     }
     private void prepareCovers() {
         tileCover.add(homeCover);
@@ -78,7 +95,6 @@ public class MainViewController {
             prevTile = actualTile;
         }
     }
-
     public void setFavouriteTile() {
         if(actualTile != 3) {
             actualTile = 3;
@@ -140,5 +156,67 @@ public class MainViewController {
                 });
             });
     }
+    public void playEffect() {
+        blurEffect(playButton, playButtonEffect);
+    }
+    public void setPlay() {
+            switch(buttonStatus) {
+                case PLAY -> {
+                    setOnPlay("PlayIcon");
+                    buttonStatus = Default.Status.PAUSE;
+                }
+                case PAUSE -> {
+                    setOnPlay("PauseIcon");
+                    buttonStatus = Default.Status.PLAY;
+                }
+            }
+    }
 
+    public void nextEffect() {
+        blurEffect(nextButton, nextButtonEffect);
+    }
+
+    public void undoEffect() {
+        blurEffect(undoButton, undoButtonEffect);
+    }
+    private void blurEffect(ImageView button, ImageView buttonEffect) {
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.ZERO, new KeyValue(buttonEffect.opacityProperty(), buttonEffect.getOpacity())),
+                new KeyFrame(Duration.millis(100), new KeyValue(buttonEffect.opacityProperty(), 1))
+        );
+        timeline.play();
+
+        button.setOnMouseExited(event -> {
+            Timeline timeline1 = new Timeline(
+                    new KeyFrame(Duration.ZERO, new KeyValue(buttonEffect.opacityProperty(), buttonEffect.getOpacity())),
+                    new KeyFrame(Duration.millis(100), new KeyValue(buttonEffect.opacityProperty(), 0))
+            );
+            timeline1.play();
+        });
+    }
+    private void setOnPlay(String icon) {
+        playButton.setRotate(0);
+        RotateTransition rotateTransition = new RotateTransition(Duration.millis(150), playButton);
+        rotateTransition.setInterpolator(Interpolator.EASE_OUT);
+        rotateTransition.setByAngle(360);
+        rotateTransition.setAutoReverse(false);
+        rotateTransition.play();
+        GaussianBlur gaussianBlur = new GaussianBlur(0);
+        playButton.setEffect(gaussianBlur);
+        Timeline timeline1 = new Timeline(
+                new KeyFrame(Duration.ZERO, new KeyValue(gaussianBlur.radiusProperty(), 0)),
+                new KeyFrame(Duration.millis(75), new KeyValue(gaussianBlur.radiusProperty(), 20))
+        );
+        timeline1.play();
+        timeline1.setOnFinished(e -> {
+                    playButton.setImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("icons/" + icon + ".png"))));
+                    playButtonEffect.setImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("icons/" + icon + ".png"))));
+                    Timeline timeline2 = new Timeline(
+                            new KeyFrame(Duration.ZERO, new KeyValue(gaussianBlur.radiusProperty(), 20)),
+                            new KeyFrame(Duration.millis(75), new KeyValue(gaussianBlur.radiusProperty(), 0))
+                    );
+                    timeline2.play();
+                }
+        );
+    }
 }
