@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.effect.GaussianBlur?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -149,7 +150,7 @@
         <columnConstraints>
           <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" prefWidth="300.0" />
-            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
@@ -250,6 +251,50 @@
                      </children>
                   </StackPane>
                </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" maxWidth="300.0" spacing="20.0" GridPane.columnIndex="2" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
+               <children>
+                  <StackPane alignment="CENTER_RIGHT" HBox.hgrow="NEVER">
+                     <children>
+                        <Rectangle arcHeight="13.0" arcWidth="10.0" fill="DODGERBLUE" height="6.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="volumeBackground" width="160.0" StackPane.alignment="CENTER_LEFT">
+                           <StackPane.margin>
+                              <Insets left="5.0" />
+                           </StackPane.margin>
+                        </Rectangle>
+                        <Rectangle fx:id="volumeEffect" arcHeight="13.0" arcWidth="10.0" fill="DODGERBLUE" height="6.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="volumeBarBackground" width="80.0" StackPane.alignment="CENTER_LEFT">
+                           <StackPane.margin>
+                              <Insets left="5.0" />
+                           </StackPane.margin>
+                        </Rectangle>
+                        <Rectangle fx:id="volume" arcHeight="13.0" arcWidth="10.0" fill="DODGERBLUE" height="6.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="volumeBarBackground" width="80.0" StackPane.alignment="CENTER_LEFT">
+                           <StackPane.margin>
+                              <Insets left="5.0" />
+                           </StackPane.margin>
+                        </Rectangle>
+                        <Slider fx:id="volumeBar" maxHeight="8.0" maxWidth="160.0" minHeight="8.0" minWidth="170.0" onMouseEntered="#volumeEffect" opacity="0.17" prefHeight="5.0" styleClass="volumeBar" value="50.0" StackPane.alignment="CENTER_LEFT" />
+                     </children>
+                  </StackPane>
+                  <StackPane minWidth="25.0">
+                     <children>
+                        <ImageView fx:id="maxButtonEffect" fitHeight="21.0" fitWidth="21.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/MaxFocusIcon.png" />
+                           </image>
+                           <effect>
+                              <GaussianBlur radius="7.78" />
+                           </effect>
+                        </ImageView>
+                        <ImageView fx:id="maxButton" fitHeight="21.0" fitWidth="21.0" onMouseEntered="#maxEffect" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/MaxIcon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+               </children>
+               <padding>
+                  <Insets right="27.0" />
+               </padding>
             </HBox>
          </children>
       </GridPane>

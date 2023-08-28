@@ -3,10 +3,10 @@ package org.main.controllers;
 import javafx.animation.*;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.control.Slider;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class MainViewController {
+
     @FXML
     GridPane menu;
     @FXML
@@ -57,6 +58,16 @@ public class MainViewController {
     ImageView repeatButtonEffect;
     @FXML
     ImageView repeatButton;
+    @FXML
+    ImageView maxButtonEffect;
+    @FXML
+    ImageView maxButton;
+    @FXML
+    Slider volumeBar;
+    @FXML
+    Rectangle volume;
+    @FXML
+    Rectangle volumeEffect;
 /**<p>0 - Home Tile</p>
  * <p>1 - Playlists Tile</p>
  * <p>2 - Albums Tile</p>
@@ -74,6 +85,15 @@ public class MainViewController {
     @FXML
     public void initialize() {
         prepareCovers();
+        setUpVolumeBar();
+
+    }
+    private void setUpVolumeBar() {
+        volumeBar.valueProperty().addListener((observable, oldValue, newValue) -> {
+            volume.setWidth((newValue.doubleValue()/100) * 160);
+            volumeEffect.setWidth((newValue.doubleValue()/100) * 160);
+            volumeEffect.setEffect(new GaussianBlur((newValue.doubleValue()/100)*15.0));
+        });
 
     }
     private void prepareCovers() {
@@ -331,5 +351,51 @@ public class MainViewController {
                 new KeyFrame(Duration.millis(200), new KeyValue(gaussianBlur.radiusProperty(), 7.7))
         );
         timeline.play();
+    }
+
+    public void maxEffect() {
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.ZERO, new KeyValue(maxButtonEffect.opacityProperty(), maxButtonEffect.getOpacity())),
+                new KeyFrame(Duration.ZERO, new KeyValue(maxButton.scaleXProperty(), maxButton.getScaleX())),
+                new KeyFrame(Duration.ZERO, new KeyValue(maxButton.scaleYProperty(), maxButton.getScaleY())),
+
+                new KeyFrame(Duration.millis(100), new KeyValue(maxButtonEffect.opacityProperty(), 1)),
+                new KeyFrame(Duration.millis(100), new KeyValue(maxButton.scaleXProperty(), 1.1)),
+                new KeyFrame(Duration.millis(100), new KeyValue(maxButton.scaleYProperty(), 1.1))
+        );
+        timeline.play();
+        maxButton.setImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("icons/MaxFocusIcon.png"))));
+        maxButton.setOnMouseExited(event -> {
+            Timeline timeline1 = new Timeline(
+                    new KeyFrame(Duration.ZERO, new KeyValue(maxButtonEffect.opacityProperty(), maxButtonEffect.getOpacity())),
+                    new KeyFrame(Duration.ZERO, new KeyValue(maxButton.scaleXProperty(), maxButton.getScaleX())),
+                    new KeyFrame(Duration.ZERO, new KeyValue(maxButton.scaleYProperty(), maxButton.getScaleY())),
+
+                    new KeyFrame(Duration.millis(100), new KeyValue(maxButtonEffect.opacityProperty(), 0)),
+                    new KeyFrame(Duration.millis(100), new KeyValue(maxButton.scaleXProperty(), 1)),
+                    new KeyFrame(Duration.millis(100), new KeyValue(maxButton.scaleYProperty(), 1))
+            );
+            timeline1.play();
+            maxButton.setImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("icons/MaxIcon.png"))));
+        });
+    }
+
+    public void volumeEffect() {
+        double blurEffect = (volumeBar.getValue()/100) * 15.0;
+        GaussianBlur gaussianBlur = new GaussianBlur(blurEffect);
+        volumeEffect.setEffect(gaussianBlur);
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.ZERO, new KeyValue(volumeEffect.opacityProperty(), volumeEffect.getOpacity())),
+                new KeyFrame(Duration.millis(100), new KeyValue(volumeEffect.opacityProperty(), 1))
+        );
+        timeline.play();
+
+        volumeBar.setOnMouseExited(event -> {
+            Timeline timeline1 = new Timeline(
+                    new KeyFrame(Duration.ZERO, new KeyValue(volumeEffect.opacityProperty(), volumeEffect.getOpacity())),
+                    new KeyFrame(Duration.millis(100), new KeyValue(volumeEffect.opacityProperty(), 0))
+            );
+            timeline1.play();
+        });
     }
 }

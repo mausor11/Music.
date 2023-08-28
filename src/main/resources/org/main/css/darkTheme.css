@@ -42,3 +42,17 @@
     -fx-background-radius: 10;
     -fx-fill: #E4CFCF;
 }
+.volumeBackground {
+    -fx-fill: #553939;
+}
+.volumeBarBackground {
+    -fx-fill: #A77979;
+}
+.volumeBar .track {
+    -fx-background-color: transparent;
+}
+.volumeBar .thumb {
+    -fx-scale-x: 0;
+    -fx-scale-y: 0;
+    -fx-background-color: transparent;
+}
