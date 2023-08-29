@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="97349954-a434-4635-b7fb-6cf34beafa5e" name="Changes" comment="play controlls animations">
+    <list default="true" id="97349954-a434-4635-b7fb-6cf34beafa5e" name="Changes" comment="volume bar + maximize icon">
       <change beforePath="$PROJECT_DIR$/../Music/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/MainViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Music/src/main/resources/org/main/color_samples/DarkTheme.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Music/src/main/resources/org/main/css/darkTheme.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/css/darkTheme.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/MainView.fxml" afterDir="false" />
     </list>
@@ -94,7 +95,10 @@
       <workItem from="1693055774754" duration="204000" />
       <workItem from="1693139097060" duration="2133000" />
       <workItem from="1693141509721" duration="636000" />
-      <workItem from="1693159646197" duration="21032000" />
+      <workItem from="1693159646197" duration="21217000" />
+      <workItem from="1693227556027" duration="29000" />
+      <workItem from="1693255637729" duration="259000" />
+      <workItem from="1693313621329" duration="5934000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1692904219164</created>
@@ -166,7 +170,14 @@
       <option name="project" value="LOCAL" />
       <updated>1693175563858</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="volume bar + maximize icon">
+      <created>1693180912030</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1693180912030</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -193,6 +204,7 @@
     <MESSAGE value="tileMenu + searchTile works" />
     <MESSAGE value="play button animation" />
     <MESSAGE value="play controlls animations" />
-    <option name="LAST_COMMIT_MESSAGE" value="play controlls animations" />
+    <MESSAGE value="volume bar + maximize icon" />
+    <option name="LAST_COMMIT_MESSAGE" value="volume bar + maximize icon" />
   </component>
 </project>

@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
 <VBox alignment="CENTER" minHeight="815.0" minWidth="1320.0" spacing="10.0" styleClass="container" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.main.controllers.MainViewController">
    <children>
@@ -296,6 +297,37 @@
                   <Insets right="27.0" />
                </padding>
             </HBox>
+            <StackPane>
+               <children>
+                  <ImageView fx:id="backgroundImage" fitHeight="85.0" fitWidth="380.0" pickOnBounds="true" StackPane.alignment="CENTER_LEFT" />
+                  <Rectangle arcHeight="16.0" arcWidth="16.0" fill="#2197ff00" height="85.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="coverGradient" width="450.0" StackPane.alignment="CENTER_LEFT" />
+                  <ImageView fx:id="coverIcon" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER_LEFT">
+                     <StackPane.margin>
+                        <Insets left="10.0" />
+                     </StackPane.margin>
+                  </ImageView>
+                  <VBox alignment="CENTER_LEFT" fillWidth="false" prefHeight="85.0" StackPane.alignment="CENTER_LEFT">
+                     <StackPane.margin>
+                        <Insets left="107.0" />
+                     </StackPane.margin>
+                     <children>
+                        <Label fx:id="titleLabel" alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" styleClass="titleLabel" VBox.vgrow="NEVER">
+                           <font>
+                              <Font size="27.0" />
+                           </font></Label>
+                        <HBox fx:id="artistBox">
+                           <children>
+                              <Label fx:id="artistLabel" alignment="TOP_LEFT" styleClass="artistLabel">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </StackPane>
          </children>
       </GridPane>
    </children>

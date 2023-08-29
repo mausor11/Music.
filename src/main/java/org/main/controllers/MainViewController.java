@@ -3,11 +3,14 @@ package org.main.controllers;
 import javafx.animation.*;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
@@ -17,7 +20,10 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class MainViewController {
-
+    @FXML
+    Label titleLabel;
+    @FXML
+    Label artistLabel;
     @FXML
     GridPane menu;
     @FXML
@@ -68,6 +74,12 @@ public class MainViewController {
     Rectangle volume;
     @FXML
     Rectangle volumeEffect;
+    @FXML
+    ImageView backgroundImage;
+    @FXML
+    ImageView coverIcon;
+    @FXML
+    HBox artistBox;
 /**<p>0 - Home Tile</p>
  * <p>1 - Playlists Tile</p>
  * <p>2 - Albums Tile</p>
@@ -86,6 +98,7 @@ public class MainViewController {
     public void initialize() {
         prepareCovers();
         setUpVolumeBar();
+        newCoverImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("cover-images/albums/Starboy.jpg"))), "Starboy", "The Weeknd", templateFeatures());
 
     }
     private void setUpVolumeBar() {
@@ -95,6 +108,12 @@ public class MainViewController {
             volumeEffect.setEffect(new GaussianBlur((newValue.doubleValue()/100)*15.0));
         });
 
+    }
+    private ArrayList<String> templateFeatures() {
+        ArrayList<String> features = new ArrayList<>();
+        features.add("Travis Scott");
+        features.add("Young Thug");
+        return features;
     }
     private void prepareCovers() {
         tileCover.add(homeCover);
@@ -389,6 +408,8 @@ public class MainViewController {
                 new KeyFrame(Duration.millis(100), new KeyValue(volumeEffect.opacityProperty(), 1))
         );
         timeline.play();
+        volume.getStyleClass().remove("volumeBarBackground");
+        volume.getStyleClass().add("volumeBarBackgroundHover");
 
         volumeBar.setOnMouseExited(event -> {
             Timeline timeline1 = new Timeline(
@@ -396,6 +417,47 @@ public class MainViewController {
                     new KeyFrame(Duration.millis(100), new KeyValue(volumeEffect.opacityProperty(), 0))
             );
             timeline1.play();
+            volume.getStyleClass().remove("volumeBarBackgroundHover");
+            volume.getStyleClass().add("volumeBarBackground");
         });
+    }
+    private void createBackgroundCover(Image image) {
+        backgroundImage.setImage(image);
+        backgroundImage.setEffect(new GaussianBlur(20));
+        backgroundImage.setOpacity(0.7);
+        double VIEWPORT_WIDTH = image.getWidth();
+        double VIEWPORT_HEIGHT = (VIEWPORT_WIDTH / backgroundImage.getFitWidth()) * backgroundImage.getFitHeight();
+        double VIEWPORT_X = 0;
+        double VIEWPORT_Y = (image.getHeight() / 2) - (VIEWPORT_HEIGHT / 2);
+
+        Rectangle2D viewport = new Rectangle2D(VIEWPORT_X, VIEWPORT_Y, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
+        Rectangle clipShape = new Rectangle(0,0,backgroundImage.getFitWidth(), backgroundImage.getFitHeight());
+        clipShape.setArcWidth(16);
+        clipShape.setArcHeight(16);
+
+        backgroundImage.setViewport(viewport);
+        backgroundImage.setClip(clipShape);
+    }
+    private void createCoverIcon(Image image) {
+        coverIcon.setImage(image);
+        Rectangle clipShape = new Rectangle(0,0, coverIcon.getFitWidth(), coverIcon.getFitHeight());
+        clipShape.setArcWidth(16);
+        clipShape.setArcHeight(16);
+        coverIcon.setClip(clipShape);
+    }
+    private void newCoverImage(Image image, String title, String artist, ArrayList<String> features) {
+        createBackgroundCover(image);
+        createCoverIcon(image);
+        titleLabel.setText(title);
+        artistLabel.setText(artist);
+        if(features != null) {
+            for(String feat : features) {
+                Label dotLabel = new Label(" • ");
+                Label featLabel = new Label(feat);
+                featLabel.getStyleClass().add("artistLabel");
+                dotLabel.getStyleClass().add("dotLabel");
+                artistBox.getChildren().addAll(dotLabel, featLabel);
+            }
+        }
     }
 }
