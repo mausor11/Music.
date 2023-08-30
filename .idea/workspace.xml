@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="97349954-a434-4635-b7fb-6cf34beafa5e" name="Changes" comment="volume bar + maximize icon">
+    <list default="true" id="97349954-a434-4635-b7fb-6cf34beafa5e" name="Changes" comment="player section done + template album covers">
+      <change afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/LibraryController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/LibrarySection.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Music/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/MainViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/resources/org/main/color_samples/DarkTheme.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Music/src/main/resources/org/main/css/darkTheme.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/css/darkTheme.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/MainView.fxml" afterDir="false" />
     </list>
@@ -98,7 +99,8 @@
       <workItem from="1693159646197" duration="21217000" />
       <workItem from="1693227556027" duration="29000" />
       <workItem from="1693255637729" duration="259000" />
-      <workItem from="1693313621329" duration="5934000" />
+      <workItem from="1693313621329" duration="6652000" />
+      <workItem from="1693397425025" duration="4828000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1692904219164</created>
@@ -177,7 +179,14 @@
       <option name="project" value="LOCAL" />
       <updated>1693180912030</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="player section done + template album covers">
+      <created>1693333370278</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1693333370278</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -205,6 +214,7 @@
     <MESSAGE value="play button animation" />
     <MESSAGE value="play controlls animations" />
     <MESSAGE value="volume bar + maximize icon" />
-    <option name="LAST_COMMIT_MESSAGE" value="volume bar + maximize icon" />
+    <MESSAGE value="player section done + template album covers" />
+    <option name="LAST_COMMIT_MESSAGE" value="player section done + template album covers" />
   </component>
 </project>

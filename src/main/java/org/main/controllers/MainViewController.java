@@ -2,6 +2,7 @@ package org.main.controllers;
 
 import javafx.animation.*;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Label;
@@ -16,10 +17,14 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import org.main.Default;
 import org.main.Main;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class MainViewController {
+    @FXML
+    StackPane librarySpace;
     @FXML
     Label titleLabel;
     @FXML
@@ -95,10 +100,11 @@ public class MainViewController {
     Default.StatusRepeat repeatStatus = Default.StatusRepeat.NONE;
 
     @FXML
-    public void initialize() {
+    public void initialize() throws IOException {
+        librarySpace.getChildren().add(new FXMLLoader(Main.class.getResource("fxml/LibrarySection.fxml")).load());
         prepareCovers();
         setUpVolumeBar();
-        newCoverImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("cover-images/albums/Starboy.jpg"))), "Starboy", "The Weeknd", templateFeatures());
+        newCoverImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("cover-images/albums/Starboy.jpg"))), "Starboy", "The Weeknd", null);
 
     }
     private void setUpVolumeBar() {

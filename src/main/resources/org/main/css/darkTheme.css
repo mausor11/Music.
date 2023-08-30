@@ -88,3 +88,9 @@
     -fx-underline: true;
     -fx-font-weight: 500;
 }
+.libraryText {
+    -fx-text-fill: #E4CFCF;
+    -fx-font-family: 'Jost', sans-serif;
+    -fx-font-size: 25px;
+    -fx-font-weight: 500;
+}
