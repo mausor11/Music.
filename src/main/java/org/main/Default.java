@@ -1,9 +1,13 @@
 package org.main;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.GridPane;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -11,7 +15,7 @@ import java.util.Objects;
 public class Default {
 /** Size **/
     public final static int MIN_WIDTH = 1320;
-    public enum StatusPlay {PLAY, PAUSE };
+    public enum StatusPlay {PLAY, PAUSE }
     public enum StatusRepeat {NONE, REPEAT, REPEAT_HEAVY}
     public final static int MIN_HEIGHT = 815;
 /** Dark Theme Colors **/
@@ -38,5 +42,20 @@ public class Default {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+    public static void blurEffect(ImageView button, ImageView buttonEffect) {
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.ZERO, new KeyValue(buttonEffect.opacityProperty(), buttonEffect.getOpacity())),
+                new KeyFrame(Duration.millis(100), new KeyValue(buttonEffect.opacityProperty(), 1))
+        );
+        timeline.play();
+
+        button.setOnMouseExited(event -> {
+            Timeline timeline1 = new Timeline(
+                    new KeyFrame(Duration.ZERO, new KeyValue(buttonEffect.opacityProperty(), buttonEffect.getOpacity())),
+                    new KeyFrame(Duration.millis(100), new KeyValue(buttonEffect.opacityProperty(), 0))
+            );
+            timeline1.play();
+        });
     }
 }

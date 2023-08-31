@@ -104,7 +104,7 @@ public class MainViewController {
         librarySpace.getChildren().add(new FXMLLoader(Main.class.getResource("fxml/LibrarySection.fxml")).load());
         prepareCovers();
         setUpVolumeBar();
-        newCoverImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("cover-images/albums/Starboy.jpg"))), "Starboy", "The Weeknd", null);
+        newCoverImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("cover-images/albums/Starboy.jpg"))), "Starboy", "The Weeknd", templateFeatures());
 
     }
     private void setUpVolumeBar() {
@@ -212,7 +212,7 @@ public class MainViewController {
             });
     }
     public void playEffect() {
-        blurEffect(playButton, playButtonEffect);
+        Default.blurEffect(playButton, playButtonEffect);
     }
     public void setPlay() {
             switch(buttonStatus) {
@@ -227,25 +227,10 @@ public class MainViewController {
             }
     }
     public void nextEffect() {
-        blurEffect(nextButton, nextButtonEffect);
+        Default.blurEffect(nextButton, nextButtonEffect);
     }
     public void undoEffect() {
-        blurEffect(undoButton, undoButtonEffect);
-    }
-    private void blurEffect(ImageView button, ImageView buttonEffect) {
-        Timeline timeline = new Timeline(
-                new KeyFrame(Duration.ZERO, new KeyValue(buttonEffect.opacityProperty(), buttonEffect.getOpacity())),
-                new KeyFrame(Duration.millis(100), new KeyValue(buttonEffect.opacityProperty(), 1))
-        );
-        timeline.play();
-
-        button.setOnMouseExited(event -> {
-            Timeline timeline1 = new Timeline(
-                    new KeyFrame(Duration.ZERO, new KeyValue(buttonEffect.opacityProperty(), buttonEffect.getOpacity())),
-                    new KeyFrame(Duration.millis(100), new KeyValue(buttonEffect.opacityProperty(), 0))
-            );
-            timeline1.play();
-        });
+        Default.blurEffect(undoButton, undoButtonEffect);
     }
     private void setOnPlay(String icon) {
         playButton.setRotate(0);
@@ -360,7 +345,6 @@ public class MainViewController {
         });
         button.setImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("icons/"+ icon + ".png"))));
     }
-
     public void setNext() {
         undoNextAnimation(nextButtonEffect);
     }
@@ -377,7 +361,6 @@ public class MainViewController {
         );
         timeline.play();
     }
-
     public void maxEffect() {
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.ZERO, new KeyValue(maxButtonEffect.opacityProperty(), maxButtonEffect.getOpacity())),
@@ -404,7 +387,6 @@ public class MainViewController {
             maxButton.setImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("icons/MaxIcon.png"))));
         });
     }
-
     public void volumeEffect() {
         double blurEffect = (volumeBar.getValue()/100) * 15.0;
         GaussianBlur gaussianBlur = new GaussianBlur(blurEffect);

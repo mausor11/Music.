@@ -2,15 +2,17 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.effect.GaussianBlur?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox prefHeight="579.0" prefWidth="270.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="579.0" prefWidth="270.0" spacing="15.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.main.controllers.LibraryController">
    <children>
       <GridPane hgap="14.0" VBox.vgrow="NEVER">
          <columnConstraints>
@@ -27,16 +29,29 @@
                   <Image url="@../icons/LibraryIcon.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
-               <image>
-                  <Image url="@../icons/Plus.png" />
-               </image>
-            </ImageView>
+            <StackPane maxHeight="24.0" maxWidth="24.0" GridPane.columnIndex="2">
+               <children>
+                  <ImageView fx:id="plusEffect" fitHeight="24.0" fitWidth="24.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/Plus.png" />
+                     </image>
+                     <effect>
+                        <GaussianBlur radius="7.77" />
+                     </effect>
+                  </ImageView>
+                  <ImageView fx:id="plusButton" fitHeight="24.0" fitWidth="24.0" onMouseClicked="#setPlus" onMouseEntered="#plusEffect" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/Plus.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </StackPane>
             <Label styleClass="libraryText" text="Library" GridPane.columnIndex="1" />
          </children>
          <padding>
             <Insets left="24.0" right="24.0" top="15.0" />
          </padding>
       </GridPane>
+      <ListView fx:id="listView" prefHeight="200.0" prefWidth="200.0" styleClass="listView" VBox.vgrow="ALWAYS" />
    </children>
 </VBox>

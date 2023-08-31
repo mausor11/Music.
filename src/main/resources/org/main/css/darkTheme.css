@@ -94,3 +94,15 @@
     -fx-font-size: 25px;
     -fx-font-weight: 500;
 }
+.listView {
+    -fx-background-color: transparent;
+}
+.listView .list-view {
+    -fx-background-color: transparent;
+}
+.listView .list-cell {
+    -fx-background-color: transparent;
+}
+.listView .list-view .thumb {
+    -fx-opacity: 0;
+}
