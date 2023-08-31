@@ -103,6 +103,32 @@
 .listView .list-cell {
     -fx-background-color: transparent;
 }
-.listView .list-view .thumb {
-    -fx-opacity: 0;
+.list-view .scroll-bar {
+    -fx-background-color: transparent;
+    -fx-pref-width: 0px;
 }
+.listView .scroll-bar:vertical .thumb {
+    -fx-background-color: transparent;
+}
+.listView .scroll-bar:horizontal .thumb {
+    -fx-background-color: transparent;
+}
+.listView .scroll-bar .decrement-arrow {
+    -fx-background-color: transparent;
+}
+.listView .scroll-bar .increment-arrow {
+    -fx-background-color: transparent;
+}
+.listTitleInfo {
+    -fx-text-fill: #E4CFCF;
+    -fx-font-family: 'Jost', sans-serif;
+    -fx-font-size: 20px;
+    -fx-font-weight: 400;
+}
+.listArtistInfo {
+    -fx-text-fill: #A77979;
+    -fx-font-family: 'Jost', sans-serif;
+    -fx-font-size: 12px;
+    -fx-font-weight: 400;
+}
+

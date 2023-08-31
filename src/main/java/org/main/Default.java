@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class Default {
+    public final static String dot = " • ";
 /** Size **/
     public final static int MIN_WIDTH = 1320;
     public enum StatusPlay {PLAY, PAUSE }
