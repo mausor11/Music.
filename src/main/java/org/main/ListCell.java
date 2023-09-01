@@ -19,16 +19,14 @@ import javafx.util.Duration;
 import java.util.ArrayList;
 
 public class ListCell {
-    private double VIEWPORT_WIDTH;
-    private double VIEWPORT_HEIGHT;
-    private double VIEWPORT_X;
-    private double VIEWPORT_Y;
-    private double PREF_WIDTH = 250;
-    private double PREF_HEIGHT = 78;
-    private StackPane cellBox;
-    private ImageView coverImg;
-    private VBox contentBox;
-    private ListView<StackPane> listView;
+    private final double PREF_WIDTH = 250;
+    private final double PREF_HEIGHT = 78;
+    private final StackPane cellBox;
+    private final ImageView coverImg;
+    private ImageView backgroundImg;
+    private Rectangle coverCell;
+    private final ListView<StackPane> listView;
+    private boolean isFocused = false;
     public ListCell(ListView<StackPane> listView, Image coverArt, String title, String artist, ArrayList<String> features) {
         this.listView = listView;
         cellBox = new StackPane();
@@ -36,7 +34,7 @@ public class ListCell {
         cellBox.setPrefWidth(PREF_WIDTH);
         cellBox.setPrefHeight(PREF_HEIGHT);
         coverImg = setCoverImg(coverArt);
-        contentBox = setAlbumInfo(title, artist, features);
+        VBox contentBox = setAlbumInfo(title, artist, features);
 
         coverImg.setMouseTransparent(true);
         contentBox.setMouseTransparent(true);
@@ -46,9 +44,7 @@ public class ListCell {
 
         cellBox.getChildren().addAll(setBackground(coverArt), coverImg, contentBox);
 
-        listView.widthProperty().addListener((observable, oldValue, newValue) -> {
-            cellBox.setPrefWidth(newValue.doubleValue() - 20.0);
-        });
+        listView.widthProperty().addListener((observable, oldValue, newValue) -> cellBox.setPrefWidth(newValue.doubleValue() - 20.0));
 
     }
     public StackPane getCell() {
@@ -88,85 +84,132 @@ public class ListCell {
 
     }
     private Rectangle2D newViewport(Image backgroundArt, ImageView background) {
-        VIEWPORT_WIDTH = backgroundArt.getWidth();
-        VIEWPORT_HEIGHT = (VIEWPORT_WIDTH / background.getFitWidth()) * background.getFitHeight();
-        VIEWPORT_X = 0;
-        VIEWPORT_Y = (backgroundArt.getHeight() / 2) - (VIEWPORT_HEIGHT / 2);
+        double VIEWPORT_WIDTH = backgroundArt.getWidth();
+        double VIEWPORT_HEIGHT = (VIEWPORT_WIDTH / background.getFitWidth()) * background.getFitHeight();
+        double VIEWPORT_X = 0;
+        double VIEWPORT_Y = (backgroundArt.getHeight() / 2) - (VIEWPORT_HEIGHT / 2);
 
         return new Rectangle2D(VIEWPORT_X, VIEWPORT_Y, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
     }
     private StackPane setBackground(Image backgroundArt) {
-        ImageView background = new ImageView(backgroundArt);
-        background.setFitHeight(PREF_HEIGHT);
-        background.setFitWidth(PREF_WIDTH);
-        background.setEffect(new GaussianBlur(3.0));
-        background.setOpacity(0);
-        background.setViewport(newViewport(backgroundArt, background));
+        backgroundImg = new ImageView(backgroundArt);
+        backgroundImg.setFitHeight(PREF_HEIGHT);
+        backgroundImg.setFitWidth(PREF_WIDTH);
+        backgroundImg.setEffect(new GaussianBlur(3.0));
+        backgroundImg.setOpacity(0);
+        backgroundImg.setViewport(newViewport(backgroundArt, backgroundImg));
 
         Rectangle clipShape = new Rectangle();
         clipShape.setWidth(PREF_WIDTH);
         clipShape.setHeight(PREF_HEIGHT);
         clipShape.setArcHeight(16);
         clipShape.setArcWidth(16);
-        background.setClip(clipShape);
+        backgroundImg.setClip(clipShape);
 
-        Rectangle cover = new Rectangle();
-        cover.setFill(Default.BROWN_4);
-        cover.setWidth(PREF_WIDTH);
-        cover.setHeight(PREF_HEIGHT);
-        cover.setOpacity(0);
-        cover.setArcHeight(16);
-        cover.setArcWidth(16);
+        coverCell = new Rectangle();
+        coverCell.setFill(Default.BROWN_4);
+        coverCell.setWidth(PREF_WIDTH);
+        coverCell.setHeight(PREF_HEIGHT);
+        coverCell.setOpacity(0);
+        coverCell.setArcHeight(16);
+        coverCell.setArcWidth(16);
 
-        StackPane bg = new StackPane(background);
-        bg.getChildren().add(cover);
+        StackPane bg = new StackPane(backgroundImg);
+        bg.getChildren().add(coverCell);
 
 
         listView.widthProperty().addListener((observable, oldValue, newValue) -> {
-            background.setFitWidth(newValue.doubleValue() - 20.0);
+            backgroundImg.setFitWidth(newValue.doubleValue() - 20.0);
             clipShape.setWidth(newValue.doubleValue() - 20.0);
-            cover.setWidth(newValue.doubleValue() - 20.0);
-            background.setViewport(newViewport(backgroundArt, background));
+            coverCell.setWidth(newValue.doubleValue() - 20.0);
+            backgroundImg.setViewport(newViewport(backgroundArt, backgroundImg));
         });
 
+            coverCell.setOnMouseEntered(event -> {
+                if(!isFocused) {
+                    GaussianBlur gaussianBlur = new GaussianBlur(0.0);
+                    backgroundImg.setEffect(gaussianBlur);
+                    Timeline timeline = new Timeline(
+                            new KeyFrame(Duration.ZERO, new KeyValue(gaussianBlur.radiusProperty(), gaussianBlur.getRadius())),
+                            new KeyFrame(Duration.ZERO, new KeyValue(backgroundImg.opacityProperty(), backgroundImg.getOpacity())),
+                            new KeyFrame(Duration.ZERO, new KeyValue(coverCell.opacityProperty(), coverCell.getOpacity())),
+                            new KeyFrame(Duration.ZERO, new KeyValue(coverImg.scaleXProperty(), coverImg.getScaleX())),
+                            new KeyFrame(Duration.ZERO, new KeyValue(coverImg.scaleYProperty(), coverImg.getScaleY())),
 
-        cover.setOnMouseEntered(event -> {
+                            new KeyFrame(Duration.millis(200), new KeyValue(gaussianBlur.radiusProperty(), 7.7)),
+                            new KeyFrame(Duration.millis(200), new KeyValue(backgroundImg.opacityProperty(), 0.3)),
+                            new KeyFrame(Duration.millis(200), new KeyValue(coverCell.opacityProperty(), 0.2)),
+                            new KeyFrame(Duration.millis(100), new KeyValue(coverImg.scaleXProperty(), 1.1)),
+                            new KeyFrame(Duration.millis(100), new KeyValue(coverImg.scaleYProperty(), 1.1))
+                    );
+                    timeline.play();
+                    backgroundImg.setOpacity(0.7);
+
+
+                    coverCell.setOnMouseExited(event1 -> {
+                        Timeline timeline1 = new Timeline(
+                                new KeyFrame(Duration.ZERO, new KeyValue(gaussianBlur.radiusProperty(), gaussianBlur.getRadius())),
+                                new KeyFrame(Duration.ZERO, new KeyValue(backgroundImg.opacityProperty(), backgroundImg.getOpacity())),
+                                new KeyFrame(Duration.ZERO, new KeyValue(coverCell.opacityProperty(), coverCell.getOpacity())),
+                                new KeyFrame(Duration.ZERO, new KeyValue(coverImg.scaleXProperty(), coverImg.getScaleX())),
+                                new KeyFrame(Duration.ZERO, new KeyValue(coverImg.scaleYProperty(), coverImg.getScaleY())),
+
+                                new KeyFrame(Duration.millis(200), new KeyValue(gaussianBlur.radiusProperty(), 0.0)),
+                                new KeyFrame(Duration.millis(200), new KeyValue(backgroundImg.opacityProperty(), 0.0)),
+                                new KeyFrame(Duration.millis(200), new KeyValue(coverCell.opacityProperty(), 0)),
+                                new KeyFrame(Duration.millis(100), new KeyValue(coverImg.scaleXProperty(), 1)),
+                                new KeyFrame(Duration.millis(100), new KeyValue(coverImg.scaleYProperty(), 1))
+
+                        );
+                        if (!isFocused) {
+                            timeline1.play();
+                        }
+                    });
+                }
+            });
+        return bg;
+    }
+    public void setIsFocused(boolean isFocused) {
+        this.isFocused = isFocused;
+        setCellFocused(isFocused);
+    }
+    private void setCellFocused(boolean isFocused) {
+        if(isFocused) {
             GaussianBlur gaussianBlur = new GaussianBlur(0.0);
-            background.setEffect(gaussianBlur);
+            backgroundImg.setEffect(gaussianBlur);
             Timeline timeline = new Timeline(
                     new KeyFrame(Duration.ZERO, new KeyValue(gaussianBlur.radiusProperty(), gaussianBlur.getRadius())),
-                    new KeyFrame(Duration.ZERO, new KeyValue(background.opacityProperty(), background.getOpacity())),
-                    new KeyFrame(Duration.ZERO, new KeyValue(cover.opacityProperty(), cover.getOpacity())),
+                    new KeyFrame(Duration.ZERO, new KeyValue(backgroundImg.opacityProperty(), backgroundImg.getOpacity())),
+                    new KeyFrame(Duration.ZERO, new KeyValue(coverCell.opacityProperty(), coverCell.getOpacity())),
                     new KeyFrame(Duration.ZERO, new KeyValue(coverImg.scaleXProperty(), coverImg.getScaleX())),
                     new KeyFrame(Duration.ZERO, new KeyValue(coverImg.scaleYProperty(), coverImg.getScaleY())),
 
                     new KeyFrame(Duration.millis(200), new KeyValue(gaussianBlur.radiusProperty(), 7.7)),
-                    new KeyFrame(Duration.millis(200), new KeyValue(background.opacityProperty(), 0.3)),
-                    new KeyFrame(Duration.millis(200), new KeyValue(cover.opacityProperty(), 0.2)),
+                    new KeyFrame(Duration.millis(200), new KeyValue(backgroundImg.opacityProperty(), 0.4)),
+                    new KeyFrame(Duration.millis(200), new KeyValue(coverCell.opacityProperty(), 0.1)),
                     new KeyFrame(Duration.millis(100), new KeyValue(coverImg.scaleXProperty(), 1.1)),
                     new KeyFrame(Duration.millis(100), new KeyValue(coverImg.scaleYProperty(), 1.1))
             );
             timeline.play();
-            background.setOpacity(0.7);
-            cover.setOnMouseExited(event1 -> {
-                Timeline timeline1 = new Timeline(
-                        new KeyFrame(Duration.ZERO, new KeyValue(gaussianBlur.radiusProperty(), gaussianBlur.getRadius())),
-                        new KeyFrame(Duration.ZERO, new KeyValue(background.opacityProperty(), background.getOpacity())),
-                        new KeyFrame(Duration.ZERO, new KeyValue(cover.opacityProperty(), cover.getOpacity())),
-                        new KeyFrame(Duration.ZERO, new KeyValue(coverImg.scaleXProperty(), coverImg.getScaleX())),
-                        new KeyFrame(Duration.ZERO, new KeyValue(coverImg.scaleYProperty(), coverImg.getScaleY())),
+        } else {
+            GaussianBlur gaussianBlur = new GaussianBlur(0.0);
+            backgroundImg.setEffect(gaussianBlur);
+            Timeline timeline1 = new Timeline(
+                    new KeyFrame(Duration.ZERO, new KeyValue(gaussianBlur.radiusProperty(), gaussianBlur.getRadius())),
+                    new KeyFrame(Duration.ZERO, new KeyValue(backgroundImg.opacityProperty(), backgroundImg.getOpacity())),
+                    new KeyFrame(Duration.ZERO, new KeyValue(coverCell.opacityProperty(), coverCell.getOpacity())),
+                    new KeyFrame(Duration.ZERO, new KeyValue(coverImg.scaleXProperty(), coverImg.getScaleX())),
+                    new KeyFrame(Duration.ZERO, new KeyValue(coverImg.scaleYProperty(), coverImg.getScaleY())),
 
-                        new KeyFrame(Duration.millis(200), new KeyValue(gaussianBlur.radiusProperty(), 0.0)),
-                        new KeyFrame(Duration.millis(200), new KeyValue(background.opacityProperty(), 0.0)),
-                        new KeyFrame(Duration.millis(200), new KeyValue(cover.opacityProperty(), 0)),
-                        new KeyFrame(Duration.millis(100), new KeyValue(coverImg.scaleXProperty(), 1)),
-                        new KeyFrame(Duration.millis(100), new KeyValue(coverImg.scaleYProperty(), 1))
+                    new KeyFrame(Duration.millis(200), new KeyValue(gaussianBlur.radiusProperty(), 0.0)),
+                    new KeyFrame(Duration.millis(200), new KeyValue(backgroundImg.opacityProperty(), 0.0)),
+                    new KeyFrame(Duration.millis(200), new KeyValue(coverCell.opacityProperty(), 0)),
+                    new KeyFrame(Duration.millis(100), new KeyValue(coverImg.scaleXProperty(), 1)),
+                    new KeyFrame(Duration.millis(100), new KeyValue(coverImg.scaleYProperty(), 1))
 
-                );
-                timeline1.play();
-            });
-        });
-
-        return bg;
+            );
+            timeline1.play();
+            this.isFocused = false;
+        }
     }
 }

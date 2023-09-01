@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="97349954-a434-4635-b7fb-6cf34beafa5e" name="Changes" comment="listView; todo: scroll">
-      <change afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/ListCell.java" afterDir="false" />
+    <list default="true" id="97349954-a434-4635-b7fb-6cf34beafa5e" name="Changes" comment="listView done; todo: onMouseClicked">
       <change beforePath="$PROJECT_DIR$/../Music/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/Default.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/Default.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/ListCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/ListCell.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/LibraryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/LibraryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/resources/org/main/css/darkTheme.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/css/darkTheme.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +109,8 @@
       <workItem from="1693313621329" duration="6652000" />
       <workItem from="1693397425025" duration="4989000" />
       <workItem from="1693430822743" duration="1168000" />
-      <workItem from="1693506605477" duration="13319000" />
+      <workItem from="1693506605477" duration="13622000" />
+      <workItem from="1693558013737" duration="2320000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1692904219164</created>
@@ -211,7 +210,14 @@
       <option name="project" value="LOCAL" />
       <updated>1693512843542</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="listView done; todo: onMouseClicked">
+      <created>1693520381570</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1693520381570</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -242,6 +248,7 @@
     <MESSAGE value="player section done + template album covers" />
     <MESSAGE value="library top section + icons" />
     <MESSAGE value="listView; todo: scroll" />
-    <option name="LAST_COMMIT_MESSAGE" value="listView; todo: scroll" />
+    <MESSAGE value="listView done; todo: onMouseClicked" />
+    <option name="LAST_COMMIT_MESSAGE" value="listView done; todo: onMouseClicked" />
   </component>
 </project>

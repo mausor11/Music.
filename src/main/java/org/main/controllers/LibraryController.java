@@ -22,10 +22,19 @@ public class LibraryController {
     ImageView plusButton;
     @FXML
     ListView<StackPane> listView;
+    ArrayList<ListCell> listCells = new ArrayList<>();
+    private int prevCell = -1;
     public void initialize() {
         for(StackPane album : templateAlbums()) {
             listView.getItems().add(album);
         }
+        listView.setOnMouseClicked(event -> {
+            if(prevCell != -1) {
+                listCells.get(prevCell).setIsFocused(false);
+            }
+            listCells.get(listView.getSelectionModel().getSelectedIndex()).setIsFocused(true);
+            prevCell = listView.getSelectionModel().getSelectedIndex();
+        });
 
     }
     public void plusEffect() {
@@ -53,6 +62,17 @@ public class LibraryController {
         albums.add(listCell7.getCell());
         albums.add(listCell8.getCell());
         albums.add(listCell9.getCell());
+
+        listCells.add(listCell1);
+        listCells.add(listCell2);
+        listCells.add(listCell3);
+        listCells.add(listCell4);
+        listCells.add(listCell5);
+        listCells.add(listCell6);
+        listCells.add(listCell7);
+        listCells.add(listCell8);
+        listCells.add(listCell9);
+
         return albums;
     }
     public void setPlus() {
