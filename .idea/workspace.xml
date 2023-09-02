@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="97349954-a434-4635-b7fb-6cf34beafa5e" name="Changes" comment="listView done; todo: onMouseClicked">
+    <list default="true" id="97349954-a434-4635-b7fb-6cf34beafa5e" name="Changes" comment="listCell onMouseClicked">
       <change beforePath="$PROJECT_DIR$/../Music/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/ListCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/ListCell.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/LibraryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/LibraryController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -110,7 +109,8 @@
       <workItem from="1693397425025" duration="4989000" />
       <workItem from="1693430822743" duration="1168000" />
       <workItem from="1693506605477" duration="13622000" />
-      <workItem from="1693558013737" duration="2320000" />
+      <workItem from="1693558013737" duration="2630000" />
+      <workItem from="1693576320988" duration="516000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1692904219164</created>
@@ -217,7 +217,14 @@
       <option name="project" value="LOCAL" />
       <updated>1693520381570</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="listCell onMouseClicked">
+      <created>1693560638817</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1693560638817</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -249,6 +256,7 @@
     <MESSAGE value="library top section + icons" />
     <MESSAGE value="listView; todo: scroll" />
     <MESSAGE value="listView done; todo: onMouseClicked" />
-    <option name="LAST_COMMIT_MESSAGE" value="listView done; todo: onMouseClicked" />
+    <MESSAGE value="listCell onMouseClicked" />
+    <option name="LAST_COMMIT_MESSAGE" value="listCell onMouseClicked" />
   </component>
 </project>

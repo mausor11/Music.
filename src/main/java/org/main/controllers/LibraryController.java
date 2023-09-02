@@ -28,6 +28,10 @@ public class LibraryController {
         for(StackPane album : templateAlbums()) {
             listView.getItems().add(album);
         }
+        setListViewOnMouseClicked();
+
+    }
+    private void setListViewOnMouseClicked() {
         listView.setOnMouseClicked(event -> {
             if(prevCell != -1) {
                 listCells.get(prevCell).setIsFocused(false);
@@ -35,7 +39,6 @@ public class LibraryController {
             listCells.get(listView.getSelectionModel().getSelectedIndex()).setIsFocused(true);
             prevCell = listView.getSelectionModel().getSelectedIndex();
         });
-
     }
     public void plusEffect() {
         Default.blurEffect(plusButton,plusEffect);
