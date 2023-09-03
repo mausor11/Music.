@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@100;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@100;300;400;500;600;700&display=swap');
 
 .container {
     -fx-background-color: #030303;
@@ -130,5 +130,33 @@
     -fx-font-family: 'Jost', sans-serif;
     -fx-font-size: 12px;
     -fx-font-weight: 400;
+}
+.welcomeText {
+    -fx-text-fill: #E4CFCF;
+    -fx-font-family: 'Jost', sans-serif;
+    -fx-font-size: 30px;
+    -fx-font-weight: 500;
+}
+.homeTitleText {
+    -fx-text-fill: #A77979;
+    -fx-font-family: 'Jost', sans-serif;
+    -fx-font-size: 25px;
+    -fx-font-weight:400;
+}
+.showAllText {
+    -fx-text-fill: #A77979;
+    -fx-font-family: 'Jost', sans-serif;
+    -fx-font-size: 16px;
+    -fx-font-weight: 100;
+}
+.homeScrollPane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+.coverTiles .list-view {
+    -fx-background-color: transparent;
+}
+.coverTiles {
+    -fx-background-color: transparent;
 }
 

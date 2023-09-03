@@ -175,16 +175,12 @@ public class ListCell {
     }
     private void setCellFocused(boolean isFocused) {
         if(isFocused) {
-            GaussianBlur gaussianBlur = new GaussianBlur(0.0);
-            backgroundImg.setEffect(gaussianBlur);
             Timeline timeline = new Timeline(
-                    new KeyFrame(Duration.ZERO, new KeyValue(gaussianBlur.radiusProperty(), gaussianBlur.getRadius())),
                     new KeyFrame(Duration.ZERO, new KeyValue(backgroundImg.opacityProperty(), backgroundImg.getOpacity())),
                     new KeyFrame(Duration.ZERO, new KeyValue(coverCell.opacityProperty(), coverCell.getOpacity())),
                     new KeyFrame(Duration.ZERO, new KeyValue(coverImg.scaleXProperty(), coverImg.getScaleX())),
                     new KeyFrame(Duration.ZERO, new KeyValue(coverImg.scaleYProperty(), coverImg.getScaleY())),
 
-                    new KeyFrame(Duration.millis(200), new KeyValue(gaussianBlur.radiusProperty(), 7.7)),
                     new KeyFrame(Duration.millis(200), new KeyValue(backgroundImg.opacityProperty(), 0.4)),
                     new KeyFrame(Duration.millis(200), new KeyValue(coverCell.opacityProperty(), 0.1)),
                     new KeyFrame(Duration.millis(100), new KeyValue(coverImg.scaleXProperty(), 1.1)),

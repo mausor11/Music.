@@ -26,6 +26,8 @@ public class MainViewController {
     @FXML
     StackPane librarySpace;
     @FXML
+    StackPane mainSpace;
+    @FXML
     Label titleLabel;
     @FXML
     Label artistLabel;
@@ -102,6 +104,7 @@ public class MainViewController {
     @FXML
     public void initialize() throws IOException {
         librarySpace.getChildren().add(new FXMLLoader(Main.class.getResource("fxml/LibrarySection.fxml")).load());
+        mainSpace.getChildren().add(new FXMLLoader(Main.class.getResource("fxml/HomeSection.fxml")).load());
         prepareCovers();
         setUpVolumeBar();
         newCoverImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("cover-images/albums/Starboy.jpg"))), "Starboy", "The Weeknd", templateFeatures());
