@@ -35,17 +35,19 @@ public class HomeSectionController {
         makeListener();
     }
     private void makeTemplate() {
-        CoverTile coverTile1 = new CoverTile(Objects.requireNonNull(Main.class.getResource("cover-images/albums/ASTROWORLD.jpg")).toString());
-        CoverTile coverTile2 = new CoverTile(Objects.requireNonNull(Main.class.getResource("cover-images/albums/Lost Souls.jpg")).toString());
-        CoverTile coverTile3 = new CoverTile(Objects.requireNonNull(Main.class.getResource("cover-images/albums/Starboy.jpg")).toString());
-        CoverTile coverTile4 = new CoverTile(Objects.requireNonNull(Main.class.getResource("cover-images/albums/ye.jpg")).toString());
-        CoverTile coverTile5 = new CoverTile(Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
-        CoverTile coverTile6 = new CoverTile(Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
-        CoverTile coverTile7 = new CoverTile(Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
-        CoverTile coverTile8 = new CoverTile(Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
-        CoverTile coverTile9 = new CoverTile(Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
-        CoverTile coverTile10 = new CoverTile(Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
-        CoverTile coverTile11 = new CoverTile(Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
+        ArrayList<String> features = new ArrayList<>();
+        features.add("21 Savage");
+        CoverTile coverTile1 = new CoverTile("ASTROWORLD", "Travis Scott", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/ASTROWORLD.jpg")).toString());
+        CoverTile coverTile2 = new CoverTile("Lost Souls", "Vory", features, Objects.requireNonNull(Main.class.getResource("cover-images/albums/Lost Souls.jpg")).toString());
+        CoverTile coverTile3 = new CoverTile("Starboy", "The Weeknd", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/Starboy.jpg")).toString());
+        CoverTile coverTile4 = new CoverTile("ye", "Kanye West", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/ye.jpg")).toString());
+        CoverTile coverTile5 = new CoverTile("utopia", "Travis Scott", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
+        CoverTile coverTile6 = new CoverTile("utopia", "Travis Scott", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
+        CoverTile coverTile7 = new CoverTile("utopia", "Travis Scott", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
+        CoverTile coverTile8 = new CoverTile("utopia", "Travis Scott", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
+        CoverTile coverTile9 = new CoverTile("utopia", "Travis Scott", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
+        CoverTile coverTile10 = new CoverTile("utopia", "Travis Scott", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
+        CoverTile coverTile11 = new CoverTile("utopia", "Travis Scott", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
         tiles.add(coverTile1);
         tiles.add(coverTile2);
         tiles.add(coverTile3);
@@ -59,17 +61,17 @@ public class HomeSectionController {
         tiles.add(coverTile11);
     }
     private void makeTemplate2() {
-        CoverTile coverTile1 = new CoverTile(Objects.requireNonNull(Main.class.getResource("cover-images/albums/ASTROWORLD.jpg")).toString());
-        CoverTile coverTile2 = new CoverTile(Objects.requireNonNull(Main.class.getResource("cover-images/albums/Lost Souls.jpg")).toString());
-        CoverTile coverTile3 = new CoverTile(Objects.requireNonNull(Main.class.getResource("cover-images/albums/Starboy.jpg")).toString());
-        CoverTile coverTile4 = new CoverTile(Objects.requireNonNull(Main.class.getResource("cover-images/albums/ye.jpg")).toString());
-        CoverTile coverTile5 = new CoverTile(Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
-        CoverTile coverTile6 = new CoverTile(Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
-        CoverTile coverTile7 = new CoverTile(Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
-        CoverTile coverTile8 = new CoverTile(Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
-        CoverTile coverTile9 = new CoverTile(Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
-        CoverTile coverTile10 = new CoverTile(Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
-        CoverTile coverTile11 = new CoverTile(Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
+        CoverTile coverTile1 = new CoverTile("ASTROWORLD", "Travis Scott", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/ASTROWORLD.jpg")).toString());
+        CoverTile coverTile2 = new CoverTile("Lost Souls", "Vory", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/Lost Souls.jpg")).toString());
+        CoverTile coverTile3 = new CoverTile("Starboy", "The Weeknd", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/Starboy.jpg")).toString());
+        CoverTile coverTile4 = new CoverTile("ye", "Kanye West", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/ye.jpg")).toString());
+        CoverTile coverTile5 = new CoverTile("utopia", "Travis Scott", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
+        CoverTile coverTile6 = new CoverTile("utopia", "Travis Scott", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
+        CoverTile coverTile7 = new CoverTile("utopia", "Travis Scott", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
+        CoverTile coverTile8 = new CoverTile("utopia", "Travis Scott", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
+        CoverTile coverTile9 = new CoverTile("utopia", "Travis Scott", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
+        CoverTile coverTile10 = new CoverTile("utopia", "Travis Scott", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
+        CoverTile coverTile11 = new CoverTile("utopia", "Travis Scott", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
         tiles2.add(coverTile1);
         tiles2.add(coverTile2);
         tiles2.add(coverTile3);
@@ -83,28 +85,28 @@ public class HomeSectionController {
         tiles2.add(coverTile11);
     }
     private void makeTemplate3() {
-        CoverTile coverTile1 = new CoverTile(Objects.requireNonNull(Main.class.getResource("cover-images/albums/ASTROWORLD.jpg")).toString());
-        CoverTile coverTile2 = new CoverTile(Objects.requireNonNull(Main.class.getResource("cover-images/albums/Lost Souls.jpg")).toString());
-        CoverTile coverTile3 = new CoverTile(Objects.requireNonNull(Main.class.getResource("cover-images/albums/Starboy.jpg")).toString());
-        CoverTile coverTile4 = new CoverTile(Objects.requireNonNull(Main.class.getResource("cover-images/albums/ye.jpg")).toString());
-        CoverTile coverTile5 = new CoverTile(Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
-        CoverTile coverTile6 = new CoverTile(Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
-        CoverTile coverTile7 = new CoverTile(Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
-        CoverTile coverTile8 = new CoverTile(Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
-        CoverTile coverTile9 = new CoverTile(Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
-        CoverTile coverTile10 = new CoverTile(Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
-        CoverTile coverTile11 = new CoverTile(Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
-        tiles3.add(coverTile1);
-        tiles3.add(coverTile2);
-        tiles3.add(coverTile3);
-        tiles3.add(coverTile4);
-        tiles3.add(coverTile5);
-        tiles3.add(coverTile6);
-        tiles3.add(coverTile7);
-        tiles3.add(coverTile8);
-        tiles3.add(coverTile9);
-        tiles3.add(coverTile10);
+        CoverTile coverTile1 = new CoverTile("ASTROWORLD", "Travis Scott", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/ASTROWORLD.jpg")).toString());
+        CoverTile coverTile2 = new CoverTile("Lost Souls", "Vory", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/Lost Souls.jpg")).toString());
+        CoverTile coverTile3 = new CoverTile("Starboy", "The Weeknd", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/Starboy.jpg")).toString());
+        CoverTile coverTile4 = new CoverTile("ye", "Kanye West", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/ye.jpg")).toString());
+        CoverTile coverTile5 = new CoverTile("utopia", "Travis Scott", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
+        CoverTile coverTile6 = new CoverTile("utopia", "Travis Scott", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
+        CoverTile coverTile7 = new CoverTile("utopia", "Travis Scott", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
+        CoverTile coverTile8 = new CoverTile("utopia", "Travis Scott", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
+        CoverTile coverTile9 = new CoverTile("utopia", "Travis Scott", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
+        CoverTile coverTile10 = new CoverTile("utopia", "Travis Scott", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
+        CoverTile coverTile11 = new CoverTile("utopia", "Travis Scott", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
         tiles3.add(coverTile11);
+        tiles3.add(coverTile10);
+        tiles3.add(coverTile9);
+        tiles3.add(coverTile8);
+        tiles3.add(coverTile7);
+        tiles3.add(coverTile6);
+        tiles3.add(coverTile5);
+        tiles3.add(coverTile4);
+        tiles3.add(coverTile3);
+        tiles3.add(coverTile2);
+        tiles3.add(coverTile1);
     }
     private void math(double sectionWidth) {
         double tileWidth = 182;

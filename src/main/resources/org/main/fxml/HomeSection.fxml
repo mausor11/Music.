@@ -30,26 +30,61 @@
                   <RowConstraints minHeight="23.0" prefHeight="23.0" vgrow="NEVER" />
                </rowConstraints>
                <children>
-                  <Label styleClass="welcomeText" text="Good Morning" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
-                  <Label styleClass="homeTitleText" text="Favourites" GridPane.rowIndex="1" />
-                  <Label alignment="CENTER" styleClass="showAllText" text="Show all" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                  <Label styleClass="welcomeText" text="Good Morning" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                     <padding>
+                        <Insets left="24.0" />
+                     </padding></Label>
+                  <Label styleClass="homeTitleText" text="Favourites" GridPane.rowIndex="1">
+                     <padding>
+                        <Insets left="24.0" />
+                     </padding></Label>
+                  <StackPane alignment="TOP_CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
-                  </Label>
-                  <Label styleClass="homeTitleText" text="Albums" GridPane.rowIndex="4" />
-                  <Label styleClass="showAllText" text="Show all" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-                  <Label styleClass="homeTitleText" text="Playlists" GridPane.rowIndex="7" />
-                  <Label styleClass="showAllText" text="Show all" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="TOP" />
-                  <HBox fx:id="favouriteTiles" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" styleClass="coverTiles" GridPane.rowIndex="2" />
-                  <HBox fx:id="albumTiles" prefHeight="100.0" prefWidth="200.0" spacing="10.0" styleClass="coverTiles" GridPane.rowIndex="5" />
-                  <HBox fx:id="playlistTiles" prefHeight="100.0" prefWidth="200.0" spacing="10.0" styleClass="coverTiles" GridPane.rowIndex="8" />
+                     <children>
+                        <Label alignment="CENTER" styleClass="showAllText" text="Show all" />
+                        <Label alignment="CENTER" opacity="0.0" styleClass="showAllTextEffect" text="Show all" />
+                     </children>
+                  </StackPane>
+                  <Label styleClass="homeTitleText" text="Albums" GridPane.rowIndex="4">
+                     <padding>
+                        <Insets left="24.0" />
+                     </padding></Label>
+                  <StackPane alignment="TOP_CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+                     <children>
+                        <Label styleClass="showAllText" text="Show all" />
+                        <Label opacity="0.0" styleClass="showAllTextEffect" text="Show all" />
+                     </children>
+                  </StackPane>
+                  <Label styleClass="homeTitleText" text="Playlists" GridPane.rowIndex="7">
+                     <padding>
+                        <Insets left="24.0" />
+                     </padding></Label>
+                  <StackPane alignment="TOP_CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="TOP">
+                     <children>
+                        <Label styleClass="showAllText" text="Show all" />
+                        <Label opacity="0.0" styleClass="showAllTextEffect" text="Show all" />
+                     </children>
+                  </StackPane>
+                  <HBox fx:id="favouriteTiles" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" styleClass="coverTiles" GridPane.rowIndex="2">
+                     <padding>
+                        <Insets left="24.0" right="24.0" />
+                     </padding></HBox>
+                  <HBox fx:id="albumTiles" prefHeight="100.0" prefWidth="200.0" spacing="10.0" styleClass="coverTiles" GridPane.rowIndex="5">
+                     <padding>
+                        <Insets left="24.0" right="24.0" />
+                     </padding></HBox>
+                  <HBox fx:id="playlistTiles" prefHeight="100.0" prefWidth="200.0" spacing="10.0" styleClass="coverTiles" GridPane.rowIndex="8">
+                     <padding>
+                        <Insets left="24.0" right="24.0" />
+                     </padding></HBox>
                </children>
             </GridPane>
          </content>
       </ScrollPane>
    </children>
    <padding>
-      <Insets bottom="20.0" left="24.0" right="24.0" top="20.0" />
+      <Insets bottom="20.0" top="20.0" />
    </padding>
 </StackPane>

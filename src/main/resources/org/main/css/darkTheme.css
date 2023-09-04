@@ -10,7 +10,12 @@
     -fx-font-weight: 400;
 }
 .tile {
-    -fx-background-color: #1D1919;
+    -fx-background-color: linear-gradient(from 0.0% 0.0% to 0.0% 100.0%, #1d1919ff 0.0%, #1d1919ff 0.662%, #1c181880 100.0%);
+    -fx-background-radius: 10;
+
+}
+.tileBot {
+    -fx-background-color: #1a161680;
     -fx-background-radius: 10;
 }
 .tileMenu {
@@ -61,7 +66,8 @@
     -fx-background-color: transparent;
 }
 .coverGradient {
-    -fx-fill: linear-gradient(from 100.0% 0.0% to 0.0% 0.0%, #1d1919ff 14.58%, #1d191900 100.0%);
+    /*-fx-fill: linear-gradient(from 100.0% 0.0% to 0.0% 0.0%, #1d1919ff 14.58%, #1d191900 100.0%);*/
+    -fx-fill: linear-gradient(from 100.0% 0.0% to 0.0% 0.0%, #0e0c0cff 14.58%, #1a161600 100.0%);
 }
 
 .titleLabel {
@@ -149,6 +155,12 @@
     -fx-font-size: 16px;
     -fx-font-weight: 100;
 }
+.showAllTextEffect {
+    -fx-text-fill: #A77979;
+    -fx-font-family: 'Jost', sans-serif;
+    -fx-font-size: 16px;
+    -fx-font-weight: 100;
+}
 .homeScrollPane {
     -fx-background-color: transparent;
     -fx-background: transparent;
@@ -161,7 +173,19 @@
     -fx-background-radius: 10px;
 }
 .homeBackground {
-    -fx-background-color: linear-gradient(from 0.0% 0.0% to 0.0% 100.0%, #553939ff 0.0%, #553939ff 0.662%, #1D1919 97.0%);
+    -fx-background-color: linear-gradient(from 0.0% 0.0% to 0.0% 100.0%, #1d1919ff 0.0%, #1d1919ff 0.662%, #1c181880 100.0%);
     -fx-background-radius: 10px;
+}
+.tileHomeText {
+    -fx-text-fill: #E4CFCF;
+    -fx-font-family: 'Jost', sans-serif;
+    -fx-font-size: 20px;
+    -fx-font-weight: 600;
+}
+.tileHomeTextSmall {
+    -fx-text-fill: #E4CFCF;
+    -fx-font-family: 'Jost', sans-serif;
+    -fx-font-size: 12px;
+    -fx-font-weight: 100;
 }
 

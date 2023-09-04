@@ -147,7 +147,7 @@
             <StackPane fx:id="mainSpace" prefWidth="1000.0" styleClass="homeBackground" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
-      <GridPane minHeight="85.0" styleClass="tile" VBox.vgrow="NEVER">
+      <GridPane minHeight="85.0" styleClass="tileBot" VBox.vgrow="NEVER">
         <columnConstraints>
           <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" prefWidth="300.0" />
