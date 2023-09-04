@@ -4,9 +4,12 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -16,8 +19,9 @@ public class Default {
     public final static String dot = " • ";
 /** Size **/
     public final static int MIN_WIDTH = 1320;
-    public enum StatusPlay {PLAY, PAUSE }
+    public enum StatusPlay {PLAY, PAUSE}
     public enum StatusRepeat {NONE, REPEAT, REPEAT_HEAVY}
+    public enum StatusCover {ALBUM, PLAYLIST}
     public final static int MIN_HEIGHT = 815;
 /** Dark Theme Colors **/
     public final static Color BACKGROUND_COLOR = Color.web("#030303");
@@ -58,5 +62,29 @@ public class Default {
             );
             timeline1.play();
         });
+    }
+    public static Rectangle clipShape(double width, double height, double arcWidth, double arcHeight) {
+        Rectangle clipShape = new Rectangle();
+        clipShape.setWidth(width);
+        clipShape.setHeight(height);
+        clipShape.setArcWidth(arcWidth);
+        clipShape.setArcHeight(arcHeight);
+        return clipShape;
+    }
+    public static Rectangle2D setViewportSquare(Image backgroundArt, ImageView background) {
+        double VIEWPORT_WIDTH = backgroundArt.getWidth();
+        double VIEWPORT_HEIGHT = (VIEWPORT_WIDTH / background.getFitWidth()) * background.getFitHeight();
+        double VIEWPORT_X = 0;
+        double VIEWPORT_Y = (backgroundArt.getHeight() / 2) - (VIEWPORT_HEIGHT / 2);
+
+        return new Rectangle2D(VIEWPORT_X, VIEWPORT_Y, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
+    }
+    public static Rectangle2D setViewportRectangle(Image backgroundArt, ImageView background) {
+        double VIEWPORT_HEIGHT = backgroundArt.getHeight();
+        double VIEWPORT_WIDTH = (VIEWPORT_HEIGHT / background.getFitHeight()) * background.getFitWidth();
+        double VIEWPORT_Y = 0;
+        double VIEWPORT_X = (backgroundArt.getWidth() / 2) - (VIEWPORT_WIDTH / 2);
+
+        return new Rectangle2D(VIEWPORT_X, VIEWPORT_Y, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
     }
 }

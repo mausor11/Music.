@@ -144,7 +144,7 @@
       <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" VBox.vgrow="ALWAYS">
          <children>
             <StackPane fx:id="librarySpace" maxWidth="350.0" prefHeight="200.0" prefWidth="270.0" styleClass="tile" HBox.hgrow="ALWAYS" />
-            <StackPane fx:id="mainSpace" prefWidth="1000.0" styleClass="tile" HBox.hgrow="ALWAYS" />
+            <StackPane fx:id="mainSpace" prefWidth="1000.0" styleClass="homeBackground" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
       <GridPane minHeight="85.0" styleClass="tile" VBox.vgrow="NEVER">

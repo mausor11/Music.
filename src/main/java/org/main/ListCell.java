@@ -17,6 +17,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ListCell {
     private final double PREF_WIDTH = 250;
@@ -27,13 +28,14 @@ public class ListCell {
     private Rectangle coverCell;
     private final ListView<StackPane> listView;
     private boolean isFocused = false;
-    public ListCell(ListView<StackPane> listView, Image coverArt, String title, String artist, ArrayList<String> features) {
+    public ListCell(ListView<StackPane> listView, String coverURL, String title, String artist, ArrayList<String> features) {
+        Image coverImgRaw = new Image(Objects.requireNonNull(coverURL));
         this.listView = listView;
         cellBox = new StackPane();
         cellBox.setAlignment(Pos.CENTER_LEFT);
         cellBox.setPrefWidth(PREF_WIDTH);
         cellBox.setPrefHeight(PREF_HEIGHT);
-        coverImg = setCoverImg(coverArt);
+        coverImg = setCoverImg(coverImgRaw);
         VBox contentBox = setAlbumInfo(title, artist, features);
 
         coverImg.setMouseTransparent(true);
@@ -42,7 +44,7 @@ public class ListCell {
         StackPane.setMargin(coverImg, new Insets(0,0,0,14));
         StackPane.setMargin(contentBox, new Insets(0,0,0,83));
 
-        cellBox.getChildren().addAll(setBackground(coverArt), coverImg, contentBox);
+        cellBox.getChildren().addAll(setBackground(coverImgRaw), coverImg, contentBox);
 
         listView.widthProperty().addListener((observable, oldValue, newValue) -> cellBox.setPrefWidth(newValue.doubleValue() - 20.0));
 
@@ -54,11 +56,7 @@ public class ListCell {
         ImageView cover = new ImageView(coverArt);
         cover.setFitWidth(60);
         cover.setFitHeight(60);
-        Rectangle clipShape = new Rectangle();
-        clipShape.setWidth(60);
-        clipShape.setHeight(60);
-        clipShape.setArcWidth(16);
-        clipShape.setArcHeight(16);
+        Rectangle clipShape = Default.clipShape(60,60,16,16);
         cover.setClip(clipShape);
         return cover;
     }
@@ -83,27 +81,15 @@ public class ListCell {
         return contentbox;
 
     }
-    private Rectangle2D newViewport(Image backgroundArt, ImageView background) {
-        double VIEWPORT_WIDTH = backgroundArt.getWidth();
-        double VIEWPORT_HEIGHT = (VIEWPORT_WIDTH / background.getFitWidth()) * background.getFitHeight();
-        double VIEWPORT_X = 0;
-        double VIEWPORT_Y = (backgroundArt.getHeight() / 2) - (VIEWPORT_HEIGHT / 2);
-
-        return new Rectangle2D(VIEWPORT_X, VIEWPORT_Y, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
-    }
     private StackPane setBackground(Image backgroundArt) {
         backgroundImg = new ImageView(backgroundArt);
         backgroundImg.setFitHeight(PREF_HEIGHT);
         backgroundImg.setFitWidth(PREF_WIDTH);
         backgroundImg.setEffect(new GaussianBlur(3.0));
         backgroundImg.setOpacity(0);
-        backgroundImg.setViewport(newViewport(backgroundArt, backgroundImg));
+        backgroundImg.setViewport(Default.setViewportSquare(backgroundArt, backgroundImg));
 
-        Rectangle clipShape = new Rectangle();
-        clipShape.setWidth(PREF_WIDTH);
-        clipShape.setHeight(PREF_HEIGHT);
-        clipShape.setArcHeight(16);
-        clipShape.setArcWidth(16);
+        Rectangle clipShape = Default.clipShape(PREF_WIDTH, PREF_HEIGHT, 16, 16);
         backgroundImg.setClip(clipShape);
 
         coverCell = new Rectangle();
@@ -122,7 +108,7 @@ public class ListCell {
             backgroundImg.setFitWidth(newValue.doubleValue() - 20.0);
             clipShape.setWidth(newValue.doubleValue() - 20.0);
             coverCell.setWidth(newValue.doubleValue() - 20.0);
-            backgroundImg.setViewport(newViewport(backgroundArt, backgroundImg));
+            backgroundImg.setViewport(Default.setViewportSquare(backgroundArt, backgroundImg));
         });
 
             coverCell.setOnMouseEntered(event -> {

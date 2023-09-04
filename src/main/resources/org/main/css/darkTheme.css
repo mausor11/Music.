@@ -157,6 +157,11 @@
     -fx-background-color: transparent;
 }
 .coverTiles {
-    -fx-background-color: transparent;
+    /*-fx-background-color: rgba(29, 25, 25, 0.5);*/
+    -fx-background-radius: 10px;
+}
+.homeBackground {
+    -fx-background-color: linear-gradient(from 0.0% 0.0% to 0.0% 100.0%, #553939ff 0.0%, #553939ff 0.662%, #1D1919 97.0%);
+    -fx-background-radius: 10px;
 }
 
