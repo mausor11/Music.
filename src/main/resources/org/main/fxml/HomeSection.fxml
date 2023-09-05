@@ -3,11 +3,13 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.GaussianBlur?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
 <StackPane fx:id="homeSection" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.main.controllers.HomeSectionController">
    <children>
@@ -43,8 +45,26 @@
                         <Insets />
                      </GridPane.margin>
                      <children>
-                        <Label alignment="CENTER" styleClass="showAllText" text="Show all" />
-                        <Label alignment="CENTER" opacity="0.0" styleClass="showAllTextEffect" text="Show all" />
+                        <StackPane fx:id="showAllPane1" maxHeight="30.0" maxWidth="59.0" minHeight="30.0" minWidth="59.0" prefHeight="30.0" prefWidth="59.0">
+                           <children>
+                              <Label fx:id="showAllText1Effect" alignment="CENTER" mouseTransparent="true" opacity="0.0" styleClass="showAllTextEffect" text="Show all" StackPane.alignment="CENTER">
+                                 <effect>
+                                    <GaussianBlur radius="7.7" />
+                                 </effect>
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Label>
+                              <Label fx:id="showAllText1a" alignment="CENTER" mouseTransparent="true" opacity="0.0" styleClass="showAllTextEffect" text="Show all" StackPane.alignment="CENTER">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="showAllText1" alignment="CENTER" mouseTransparent="true" styleClass="showAllText" text="Show all" StackPane.alignment="CENTER">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Label>
+                           </children>
+                        </StackPane>
                      </children>
                   </StackPane>
                   <Label styleClass="homeTitleText" text="Albums" GridPane.rowIndex="4">
@@ -53,8 +73,28 @@
                      </padding></Label>
                   <StackPane alignment="TOP_CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="6">
                      <children>
-                        <Label styleClass="showAllText" text="Show all" />
-                        <Label opacity="0.0" styleClass="showAllTextEffect" text="Show all" />
+                        <StackPane fx:id="showAllPane2" maxHeight="30.0" maxWidth="59.0" minHeight="30.0" minWidth="59.0" prefHeight="30.0" prefWidth="59.0">
+                           <children>
+                              <Label fx:id="showAllText2Effect" alignment="CENTER" mouseTransparent="true" opacity="0.0" styleClass="showAllTextEffect" text="Show all" StackPane.alignment="CENTER">
+                                 <effect>
+                                    <GaussianBlur radius="7.7" />
+                                 </effect>
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="showAllText2a" alignment="CENTER" mouseTransparent="true" opacity="0.0" styleClass="showAllTextEffect" text="Show all" StackPane.alignment="CENTER">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="showAllText2" alignment="CENTER" mouseTransparent="true" styleClass="showAllText" text="Show all" StackPane.alignment="CENTER">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
                      </children>
                   </StackPane>
                   <Label styleClass="homeTitleText" text="Playlists" GridPane.rowIndex="7">
@@ -63,8 +103,28 @@
                      </padding></Label>
                   <StackPane alignment="TOP_CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="TOP">
                      <children>
-                        <Label styleClass="showAllText" text="Show all" />
-                        <Label opacity="0.0" styleClass="showAllTextEffect" text="Show all" />
+                        <StackPane fx:id="showAllPane3" maxHeight="30.0" maxWidth="59.0" minHeight="30.0" minWidth="59.0" prefHeight="30.0" prefWidth="59.0">
+                           <children>
+                              <Label fx:id="showAllText3Effect" alignment="CENTER" mouseTransparent="true" opacity="0.0" styleClass="showAllTextEffect" text="Show all" StackPane.alignment="CENTER">
+                                 <effect>
+                                    <GaussianBlur radius="7.7" />
+                                 </effect>
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="showAllText3a" alignment="CENTER" mouseTransparent="true" opacity="0.0" styleClass="showAllTextEffect" text="Show all" StackPane.alignment="CENTER">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="showAllText3" alignment="CENTER" mouseTransparent="true" styleClass="showAllText" text="Show all" StackPane.alignment="CENTER">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
                      </children>
                   </StackPane>
                   <HBox fx:id="favouriteTiles" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" styleClass="coverTiles" GridPane.rowIndex="2">

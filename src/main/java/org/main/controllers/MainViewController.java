@@ -104,7 +104,7 @@ public class MainViewController {
     @FXML
     public void initialize() throws IOException {
         librarySpace.getChildren().add(new FXMLLoader(Main.class.getResource("fxml/LibrarySection.fxml")).load());
-        mainSpace.getChildren().add(new FXMLLoader(Main.class.getResource("fxml/HomeSection.fxml")).load());
+        mainSpace.getChildren().add(Default.homeView);
         prepareCovers();
         setUpVolumeBar();
         newCoverImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("cover-images/albums/Starboy.jpg"))), "Starboy", "The Weeknd", templateFeatures());
@@ -131,10 +131,14 @@ public class MainViewController {
         tileCover.add(favouriteCover);
         tileCover.add(searchCover);
     }
-    public void setHomeTile() {
+    public void setHomeTile() throws IOException {
         if(actualTile != 0) {
             actualTile = 0;
             makeTileAnimation();
+            if(!mainSpace.getChildren().isEmpty()) {
+                mainSpace.getChildren().clear();
+            }
+            mainSpace.getChildren().add(Default.homeView);
             prevTile = actualTile;
         }
     }

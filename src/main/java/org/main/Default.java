@@ -8,6 +8,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
@@ -32,6 +33,14 @@ public class Default {
     public final static Color BROWN_2 = Color.web("#937272");
     public final static Color BROWN_1 = Color.web("#A77979");
     public final static Color FONT_COLOR = Color.web("#E4CFCF");
+    public static StackPane homeView;
+    static {
+        try {
+            homeView = new FXMLLoader(Main.class.getResource("fxml/HomeSection.fxml")).load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public static Scene mainViewScene;
     static {
         try {

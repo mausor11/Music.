@@ -1,9 +1,12 @@
 package org.main.controllers;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
+import javafx.scene.control.Label;
+import javafx.scene.layout.*;
+import javafx.util.Duration;
 import org.main.CoverTile;
 import org.main.Main;
 
@@ -11,6 +14,30 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class HomeSectionController {
+    @FXML
+    Label showAllText1;
+    @FXML
+    Label showAllText1a;
+    @FXML
+    Label showAllText1Effect;
+    @FXML
+    StackPane showAllPane1;
+    @FXML
+    Label showAllText2;
+    @FXML
+    Label showAllText2a;
+    @FXML
+    Label showAllText2Effect;
+    @FXML
+    StackPane showAllPane2;
+    @FXML
+    Label showAllText3;
+    @FXML
+    Label showAllText3a;
+    @FXML
+    Label showAllText3Effect;
+    @FXML
+    StackPane showAllPane3;
     @FXML
     HBox favouriteTiles;
     @FXML
@@ -33,6 +60,9 @@ public class HomeSectionController {
         makeTemplate2();
         makeTemplate3();
         makeListener();
+        makeEffect(showAllPane1, showAllText1, showAllText1a, showAllText1Effect);
+        makeEffect(showAllPane2, showAllText2, showAllText2a, showAllText2Effect);
+        makeEffect(showAllPane3, showAllText3, showAllText3a, showAllText3Effect);
     }
     private void makeTemplate() {
         ArrayList<String> features = new ArrayList<>();
@@ -111,7 +141,6 @@ public class HomeSectionController {
     private void math(double sectionWidth) {
         double tileWidth = 182;
         int x = (int) ((sectionWidth + (double) 10) / (tileWidth + (double) 10));
-        double y = (sectionWidth + (double) 10) / (tileWidth + (double) 10);
         double freePx = (sectionWidth - (x* tileWidth + (x-1)* (double) 10));
         double k = freePx / x;
         double scaleX = (tileWidth + k) / tileWidth;
@@ -154,5 +183,32 @@ public class HomeSectionController {
             }
         }));
     }
+    private void makeEffect(StackPane pane, Label text, Label textA, Label textEffect) {
+        pane.setOnMouseEntered(event1 -> {
+            Timeline enterTimeline = new Timeline(
+                    new KeyFrame(Duration.ZERO, new KeyValue(text.opacityProperty(), text.getOpacity())),
+                    new KeyFrame(Duration.ZERO, new KeyValue(textA.opacityProperty(), textA.getOpacity())),
+                    new KeyFrame(Duration.ZERO, new KeyValue(textEffect.opacityProperty(), textEffect.getOpacity())),
+
+                    new KeyFrame(Duration.millis(100), new KeyValue(text.opacityProperty(), 0)),
+                    new KeyFrame(Duration.millis(100), new KeyValue(textA.opacityProperty(), 1)),
+                    new KeyFrame(Duration.millis(100), new KeyValue(textEffect.opacityProperty(), 1))
+            );
+            enterTimeline.play();
+            pane.setOnMouseExited(event2 -> {
+                Timeline exitTimeline = new Timeline(
+                        new KeyFrame(Duration.ZERO, new KeyValue(text.opacityProperty(), text.getOpacity())),
+                        new KeyFrame(Duration.ZERO, new KeyValue(textA.opacityProperty(), textA.getOpacity())),
+                        new KeyFrame(Duration.ZERO, new KeyValue(textEffect.opacityProperty(), textEffect.getOpacity())),
+
+                        new KeyFrame(Duration.millis(100), new KeyValue(text.opacityProperty(), 1)),
+                        new KeyFrame(Duration.millis(100), new KeyValue(textA.opacityProperty(), 0)),
+                        new KeyFrame(Duration.millis(100), new KeyValue(textEffect.opacityProperty(), 0))
+                );
+                exitTimeline.play();
+            });
+        });
+    }
+
 
 }
