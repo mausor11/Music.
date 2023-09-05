@@ -1,14 +1,129 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.main.controllers.PlaylistSectionController"
-            prefHeight="400.0" prefWidth="600.0">
 
-</AnchorPane>
+<StackPane fx:id="playlistSection" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
+   <padding>
+      <Insets bottom="20.0" top="20.0" />
+   </padding>
+   <children>
+      <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefWidth="1000.0" styleClass="ScrollPane" vbarPolicy="NEVER">
+         <content>
+            <GridPane maxHeight="1.7976931348623157E308" vgap="10.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints fillHeight="false" minHeight="43.0" prefHeight="43.0" vgrow="NEVER" />
+                <RowConstraints fillHeight="false" minHeight="36.0" prefHeight="36.0" valignment="CENTER" vgrow="NEVER" />
+                <RowConstraints minHeight="211.0" prefHeight="211.0" vgrow="NEVER" />
+                  <RowConstraints minHeight="36.0" prefHeight="36.0" vgrow="NEVER" />
+                  <RowConstraints minHeight="200.0" prefHeight="211.0" vgrow="NEVER" />
+                  <RowConstraints minHeight="36.0" prefHeight="36.0" vgrow="NEVER" />
+                  <RowConstraints minHeight="211.0" prefHeight="211.0" vgrow="NEVER" />
+                  <RowConstraints minHeight="10.0" prefHeight="36.0" vgrow="NEVER" />
+                  <RowConstraints minHeight="211.0" prefHeight="211.0" vgrow="NEVER" />
+              </rowConstraints>
+               <children>
+                  <Label styleClass="welcomeText" text="Playlists">
+                     <padding>
+                        <Insets left="24.0" />
+                     </padding>
+                  </Label>
+                  <GridPane GridPane.rowIndex="1">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="36.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label styleClass="titleText" text="Recently added" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
+                           <padding>
+                              <Insets left="24.0" />
+                           </padding>
+                        </Label>
+                        <Label styleClass="showAllText" text="Show all" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+                           <padding>
+                              <Insets right="24.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </GridPane>
+                  <GridPane GridPane.rowIndex="3">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label styleClass="titleText" text="Based on recent plays">
+                           <padding>
+                              <Insets left="24.0" />
+                           </padding>
+                        </Label>
+                        <Label styleClass="showAllText" text="Show all" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+                           <padding>
+                              <Insets right="24.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </GridPane>
+                  <GridPane GridPane.rowIndex="5">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label styleClass="titleText" text="Based on genre">
+                           <padding>
+                              <Insets left="24.0" />
+                           </padding>
+                        </Label>
+                        <Label styleClass="showAllText" text="Show all" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+                           <padding>
+                              <Insets right="24.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </GridPane>
+                  <GridPane GridPane.rowIndex="7">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label styleClass="titleText" text="Artist radio">
+                           <padding>
+                              <Insets left="24.0" />
+                           </padding>
+                        </Label>
+                        <Label styleClass="showAllText" text="Show all" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+                           <padding>
+                              <Insets right="24.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </children>
+            </GridPane>
+         </content>
+      </ScrollPane>
+   </children>
+</StackPane>

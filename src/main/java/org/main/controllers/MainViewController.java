@@ -146,6 +146,10 @@ public class MainViewController {
         if(actualTile != 1) {
             actualTile = 1;
             makeTileAnimation();
+            if(!mainSpace.getChildren().isEmpty()) {
+                mainSpace.getChildren().clear();
+            }
+            mainSpace.getChildren().add(Default.playlistView);
             prevTile = actualTile;
         }
 

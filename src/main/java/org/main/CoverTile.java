@@ -19,16 +19,16 @@ import java.util.Objects;
 
 public class CoverTile {
     private final Image coverImage;
-    private String artist;
-    private String title;
-    private ArrayList<String> features;
+    private final String artist;
+    private final String title;
+    private final ArrayList<String> features;
     private ImageView coverArt;
     private ImageView coverBackground;
     private StackPane cover;
     private Rectangle coverRectangle;
     private VBox infoBox;
-    private double imgWidth = 181;
-    private double imgHeight = 211;
+    private final double imgWidth = 181;
+    private final double imgHeight = 211;
     public CoverTile(String title, String artist, ArrayList<String> features, String coverURL) {
         coverImage = new Image(Objects.requireNonNull(coverURL));
         this.title = title;

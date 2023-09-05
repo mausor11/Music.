@@ -41,6 +41,14 @@ public class Default {
             e.printStackTrace();
         }
     }
+    public static StackPane playlistView;
+    static {
+        try {
+            playlistView = new FXMLLoader(Main.class.getResource("fxml/PlaylistSection.fxml")).load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public static Scene mainViewScene;
     static {
         try {
