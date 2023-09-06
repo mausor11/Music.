@@ -22,7 +22,6 @@ public class Default {
     public final static int MIN_WIDTH = 1320;
     public enum StatusPlay {PLAY, PAUSE}
     public enum StatusRepeat {NONE, REPEAT, REPEAT_HEAVY}
-    public enum StatusCover {ALBUM, PLAYLIST}
     public final static int MIN_HEIGHT = 815;
 /** Dark Theme Colors **/
     public final static Color BACKGROUND_COLOR = Color.web("#030303");
