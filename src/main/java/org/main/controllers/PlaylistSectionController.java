@@ -5,19 +5,18 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
-import org.main.Default;
+import org.main.Main;
+import org.main.PlaylistTile;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class PlaylistSectionController {
@@ -34,8 +33,14 @@ public class PlaylistSectionController {
     @FXML
     GridPane gridFirst;
     @FXML
+    GridPane gridSecond;
+    @FXML
+    GridPane gridThird;
+    @FXML
+    GridPane gridFourth;
+    @FXML
     GridPane mainGrid;
-    private ArrayList<Rectangle> covers;
+    private ArrayList<PlaylistTile> covers;
     private double scaleX;
     private double scaleY;
     private BooleanProperty isShown = new SimpleBooleanProperty(false);
@@ -43,6 +48,7 @@ public class PlaylistSectionController {
     public void initialize() {
         makeTemplate(10);
         makeDefault();
+
         playlistSection.widthProperty().addListener((observableValue1, number, t2) -> {
             hiddenLookPlaylists(t2.doubleValue() - 50, gridFirst);
             lastValue = t2.doubleValue();
@@ -77,20 +83,33 @@ public class PlaylistSectionController {
 
     }
     private void makeTemplate(int many) {
+        ArrayList<String> artists = new ArrayList<>();
+        artists.add("Kanye West");
+        artists.add("Vory");
+        artists.add("Travis Scott");
+        artists.add("Joji");
+        artists.add("Tory Lanez");
+        ArrayList<String> artists1 = new ArrayList<>();
+        artists1.add("Kanye West");
+        artists1.add("Vory");
+
         covers = new ArrayList<>();
-        for(int i = 0;i< many;i++) {
-            Rectangle rectangle = new Rectangle();
-            rectangle.setWidth(180);
-            rectangle.setHeight(250);
-            rectangle.setArcHeight(16);
-            rectangle.setArcWidth(16);
-            rectangle.setFill(Color.web("#7EAA92"));
-            covers.add(rectangle);
-        }
+            PlaylistTile playlistTile1 = new PlaylistTile(180, 250,"Playlist 1", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/ASTROWORLD.jpg")).toString());
+            PlaylistTile playlistTile2 = new PlaylistTile(180, 250,"Playlist 2", artists, Objects.requireNonNull(Main.class.getResource("cover-images/albums/ASTROWORLD.jpg")).toString());
+            PlaylistTile playlistTile3 = new PlaylistTile(180, 250,"Playlist 3", artists1, Objects.requireNonNull(Main.class.getResource("cover-images/albums/ASTROWORLD.jpg")).toString());
+            PlaylistTile playlistTile4 = new PlaylistTile(180, 250,"Playlist 4", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/ASTROWORLD.jpg")).toString());
+            PlaylistTile playlistTile5 = new PlaylistTile(180, 250,"Playlist 5", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/ASTROWORLD.jpg")).toString());
+            PlaylistTile playlistTile6 = new PlaylistTile(180, 250,"Playlist 5", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/ASTROWORLD.jpg")).toString());
+            covers.add(playlistTile1);
+            covers.add(playlistTile2);
+            covers.add(playlistTile3);
+            covers.add(playlistTile4);
+            covers.add(playlistTile5);
+            covers.add(playlistTile6);
     }
     private void makeDefault() {
         for(int i=0;i<5 && i < covers.size();i++) {
-            gridFirst.addColumn(i, covers.get(i));
+            gridFirst.addColumn(i, covers.get(i).getCoverArt());
         }
     }
     private void hiddenLookPlaylists(double W, GridPane gridPane) {
@@ -119,9 +138,8 @@ public class PlaylistSectionController {
         gridPane.getRowConstraints().add(new RowConstraints());
         mainGrid.getRowConstraints().get(2).setMinHeight(250 * scaleY);
         for(int i = 0; i < columns && i < covers.size(); i++) {
-            covers.get(i).setWidth(180*scaleX);
-            covers.get(i).setHeight(250*scaleY);
-            gridPane.add(covers.get(i), i, 0);
+            covers.get(i).resizeCoverArt(scaleX, scaleY);
+            gridPane.add(covers.get(i).getCoverArt(), i, 0);
         }
     }
     private void shownLookPlaylists(double W, GridPane gridPane) {
@@ -164,14 +182,13 @@ public class PlaylistSectionController {
         int columnCount = gridPane.getColumnCount();
         int r = 0;
         int c = 0;
-        for(Rectangle cover : covers) {
+        for(PlaylistTile cover : covers) {
             if(c == columnCount) {
                 r++;
                 c = 0;
             }
-            cover.setWidth(180*scaleX);
-            cover.setHeight(250*scaleY);
-            gridPane.add(cover, c, r);
+            cover.resizeCoverArt(scaleX, scaleY);
+            gridPane.add(cover.getCoverArt(), c, r);
             c++;
         }
 

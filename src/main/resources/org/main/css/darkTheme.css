@@ -182,10 +182,28 @@
     -fx-font-size: 20px;
     -fx-font-weight: 600;
 }
+.tileText {
+    -fx-text-fill: #E4CFCF;
+    -fx-font-family: 'Jost', sans-serif;
+    -fx-font-size: 30px;
+    -fx-font-weight: 600;
+}
 .tileHomeTextSmall {
     -fx-text-fill: #E4CFCF;
     -fx-font-family: 'Jost', sans-serif;
     -fx-font-size: 12px;
     -fx-font-weight: 100;
+}
+.playlistInfoText {
+    -fx-text-fill: #E4CFCF;
+    -fx-font-family: 'Jost', sans-serif;
+    -fx-font-size: 16px;
+    -fx-font-weight: 600;
+}
+.moreInfoText {
+    -fx-text-fill: #A77979;
+    -fx-font-family: 'Jost', sans-serif;
+    -fx-font-size: 16px;
+    -fx-font-weight: 500;
 }
 

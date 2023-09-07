@@ -14,9 +14,14 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Default {
+/** ArrayList with tiles **/
+    public static ArrayList<AlbumTile> favourites;
+    public static ArrayList<AlbumTile> albums;
+    public static ArrayList<AlbumTile> playlists;
     public final static String dot = " • ";
 /** Size **/
     public final static int MIN_WIDTH = 1320;

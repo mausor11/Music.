@@ -3,6 +3,7 @@ package org.main;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.effect.GaussianBlur;
@@ -17,23 +18,23 @@ import javafx.util.Duration;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class CoverTile {
+public class PlaylistTile {
     private final Image coverImage;
-    private final String artist;
+    private final ArrayList<String> artists;
     private final String title;
-    private final ArrayList<String> features;
     private ImageView coverArt;
     private ImageView coverBackground;
     private StackPane cover;
     private Rectangle coverRectangle;
     private VBox infoBox;
-    private final double imgWidth = 181;
-    private final double imgHeight = 211;
-    public CoverTile(String title, String artist, ArrayList<String> features, String coverURL) {
+    private double imgWidth;
+    private double imgHeight;
+    public PlaylistTile(double width, double height, String title, ArrayList<String> artists, String coverURL) {
         coverImage = new Image(Objects.requireNonNull(coverURL));
         this.title = title;
-        this.artist = artist;
-        this.features = features;
+        this.artists = artists;
+        this.imgWidth = width;
+        this.imgHeight = height;
         makeCover();
     }
     private void makeTile() {
@@ -69,23 +70,37 @@ public class CoverTile {
         cover.getChildren().addAll(coverBackground,coverRectangle,coverArt);
 
         Label titleCover = new Label(title);
-        titleCover.getStyleClass().add("tileHomeText");
-
-        Label artistCover = new Label(artist);
-        artistCover.getStyleClass().add("tileHomeTextSmall");
-        if(features != null) {
-            for(String feat : features) {
-                artistCover.setText(artistCover.getText() + Default.dot + feat);
+        titleCover.getStyleClass().add("tileText");
+        VBox artistsBox = null;
+        if(artists != null) {
+            artistsBox = new VBox();
+            for(int i=0; i<artists.size() && i < 3; i++) {
+                Label artistsCover = new Label(artists.get(i));
+                artistsCover.getStyleClass().add("playlistInfoText");
+                artistsBox.getChildren().add(artistsCover);
             }
+            int more = artists.size() - 3;
+            if(more >= 0) {
+                Label moreCover = new Label(more + " more");
+                moreCover.getStyleClass().add("moreInfoText");
+                artistsBox.getChildren().add(moreCover);
+            }
+
+            artistsBox.setAlignment(Pos.CENTER_LEFT);
+            artistsBox.setPadding(new Insets(0, 0,0,33));
         }
 
-
         infoBox = new VBox();
-        infoBox.getChildren().addAll(titleCover, artistCover);
+        if(artistsBox != null) {
+            infoBox.getChildren().addAll(titleCover, artistsBox);
+        } else {
+            infoBox.getChildren().add(titleCover);
+        }
         infoBox.setMouseTransparent(true);
         infoBox.setOpacity(0);
-        infoBox.setAlignment(Pos.CENTER);
-
+        infoBox.setAlignment(Pos.TOP_CENTER);
+        infoBox.setPadding(new Insets(30, 0, 0, 0));
+        infoBox.setSpacing(54);
         cover.getChildren().add(infoBox);
 
     }
