@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="97349954-a434-4635-b7fb-6cf34beafa5e" name="Changes" comment="playlist tile done">
-      <change afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/PlaylistTile.java" afterDir="false" />
+    <list default="true" id="97349954-a434-4635-b7fb-6cf34beafa5e" name="Changes" comment="playlist effect done for gridFirst">
       <change beforePath="$PROJECT_DIR$/../Music/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/CoverTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/AlbumTile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/Default.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/Default.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/HomeSectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/HomeSectionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/PlaylistSectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/PlaylistSectionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/resources/org/main/css/darkTheme.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/css/darkTheme.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/PlaylistSection.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/PlaylistSection.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +124,9 @@
       <workItem from="1693948607884" duration="639000" />
       <workItem from="1694022071121" duration="7061000" />
       <workItem from="1694073300008" duration="2730000" />
-      <workItem from="1694087108113" duration="4865000" />
+      <workItem from="1694087108113" duration="5515000" />
+      <workItem from="1694107080615" duration="607000" />
+      <workItem from="1694178232253" duration="3937000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1692904219164</created>
@@ -291,7 +289,14 @@
       <option name="project" value="LOCAL" />
       <updated>1694029112622</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="playlist effect done for gridFirst">
+      <created>1694091998708</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1694091998708</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -330,6 +335,7 @@
     <MESSAGE value="homeView section done" />
     <MESSAGE value="small changes" />
     <MESSAGE value="playlist tile done" />
-    <option name="LAST_COMMIT_MESSAGE" value="playlist tile done" />
+    <MESSAGE value="playlist effect done for gridFirst" />
+    <option name="LAST_COMMIT_MESSAGE" value="playlist effect done for gridFirst" />
   </component>
 </project>

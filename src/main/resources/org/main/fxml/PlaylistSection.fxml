@@ -25,12 +25,12 @@
                 <RowConstraints fillHeight="false" minHeight="43.0" prefHeight="43.0" vgrow="NEVER" />
                 <RowConstraints fillHeight="false" minHeight="36.0" prefHeight="36.0" valignment="CENTER" vgrow="NEVER" />
                 <RowConstraints maxHeight="1.7976931348623157E308" minHeight="250.0" prefHeight="250.0" vgrow="NEVER" />
-                  <RowConstraints minHeight="36.0" prefHeight="36.0" vgrow="NEVER" />
-                  <RowConstraints minHeight="200.0" prefHeight="211.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="36.0" prefHeight="36.0" vgrow="NEVER" />
-                  <RowConstraints minHeight="211.0" prefHeight="211.0" vgrow="NEVER" />
-                  <RowConstraints minHeight="10.0" prefHeight="36.0" vgrow="NEVER" />
-                  <RowConstraints minHeight="211.0" prefHeight="211.0" vgrow="NEVER" />
+                  <RowConstraints minHeight="36.0" prefHeight="36.0" valignment="CENTER" vgrow="NEVER" />
+                  <RowConstraints maxHeight="1.7976931348623157E308" minHeight="250.0" prefHeight="250.0" vgrow="NEVER" />
+                  <RowConstraints minHeight="36.0" prefHeight="36.0" valignment="CENTER" vgrow="NEVER" />
+                  <RowConstraints maxHeight="1.7976931348623157E308" minHeight="250.0" prefHeight="250.0" vgrow="NEVER" />
+                  <RowConstraints minHeight="36.0" prefHeight="36.0" valignment="CENTER" vgrow="NEVER" />
+                  <RowConstraints maxHeight="1.7976931348623157E308" minHeight="250.0" prefHeight="250.0" vgrow="NEVER" />
               </rowConstraints>
                <children>
                   <Label styleClass="welcomeText" text="Playlists">
@@ -97,10 +97,10 @@
                   <GridPane GridPane.rowIndex="3">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                      </columnConstraints>
                      <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="36.0" prefHeight="36.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
                         <Label styleClass="titleText" text="Based on recent plays">
@@ -108,17 +108,52 @@
                               <Insets left="24.0" />
                            </padding>
                         </Label>
-                        <Label styleClass="showAllText" text="Show all" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
-                           <padding>
+                        <StackPane fx:id="showAllPane2" maxHeight="30.0" maxWidth="59.0" minHeight="30.0" minWidth="59.0" prefHeight="30.0" prefWidth="59.0" GridPane.columnIndex="1">
+                           <children>
+                              <Label fx:id="showAllText2Effect" alignment="CENTER" mouseTransparent="true" opacity="0.0" styleClass="showAllTextEffect" text="Show all" StackPane.alignment="CENTER">
+                                 <effect>
+                                    <GaussianBlur radius="7.7" />
+                                 </effect>
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="showAllText2a" alignment="CENTER" mouseTransparent="true" opacity="0.0" styleClass="showAllTextEffect" text="Show all" StackPane.alignment="CENTER">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="showAllText2" alignment="CENTER" mouseTransparent="true" styleClass="showAllText" text="Show all" StackPane.alignment="CENTER">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <GridPane.margin>
                               <Insets right="24.0" />
-                           </padding>
-                        </Label>
+                           </GridPane.margin>
+                        </StackPane>
                      </children>
+                  </GridPane>
+                  <GridPane fx:id="gridSecond" hgap="10.0" vgap="10.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="NEVER">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="250.0" prefHeight="250.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <GridPane.margin>
+                        <Insets left="24.0" right="24.0" />
+                     </GridPane.margin>
                   </GridPane>
                   <GridPane GridPane.rowIndex="5">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -129,17 +164,52 @@
                               <Insets left="24.0" />
                            </padding>
                         </Label>
-                        <Label styleClass="showAllText" text="Show all" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
-                           <padding>
+                        <StackPane fx:id="showAllPane3" maxHeight="30.0" maxWidth="59.0" minHeight="30.0" minWidth="59.0" prefHeight="30.0" prefWidth="59.0" GridPane.columnIndex="1">
+                           <children>
+                              <Label fx:id="showAllText3Effect" alignment="CENTER" mouseTransparent="true" opacity="0.0" styleClass="showAllTextEffect" text="Show all" StackPane.alignment="CENTER">
+                                 <effect>
+                                    <GaussianBlur radius="7.7" />
+                                 </effect>
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="showAllText3a" alignment="CENTER" mouseTransparent="true" opacity="0.0" styleClass="showAllTextEffect" text="Show all" StackPane.alignment="CENTER">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="showAllText3" alignment="CENTER" mouseTransparent="true" styleClass="showAllText" text="Show all" StackPane.alignment="CENTER">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <GridPane.margin>
                               <Insets right="24.0" />
-                           </padding>
-                        </Label>
+                           </GridPane.margin>
+                        </StackPane>
                      </children>
+                  </GridPane>
+                  <GridPane fx:id="gridThird" hgap="10.0" vgap="10.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" GridPane.vgrow="NEVER">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="250.0" prefHeight="250.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <GridPane.margin>
+                        <Insets left="24.0" right="24.0" />
+                     </GridPane.margin>
                   </GridPane>
                   <GridPane GridPane.rowIndex="7">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -150,12 +220,47 @@
                               <Insets left="24.0" />
                            </padding>
                         </Label>
-                        <Label styleClass="showAllText" text="Show all" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
-                           <padding>
+                        <StackPane fx:id="showAllPane4" maxHeight="30.0" maxWidth="59.0" minHeight="30.0" minWidth="59.0" prefHeight="30.0" prefWidth="59.0" GridPane.columnIndex="1">
+                           <children>
+                              <Label fx:id="showAllText4Effect" alignment="CENTER" mouseTransparent="true" opacity="0.0" styleClass="showAllTextEffect" text="Show all" StackPane.alignment="CENTER">
+                                 <effect>
+                                    <GaussianBlur radius="7.7" />
+                                 </effect>
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="showAllText4a" alignment="CENTER" mouseTransparent="true" opacity="0.0" styleClass="showAllTextEffect" text="Show all" StackPane.alignment="CENTER">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="showAllText4" alignment="CENTER" mouseTransparent="true" styleClass="showAllText" text="Show all" StackPane.alignment="CENTER">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <GridPane.margin>
                               <Insets right="24.0" />
-                           </padding>
-                        </Label>
+                           </GridPane.margin>
+                        </StackPane>
                      </children>
+                  </GridPane>
+                  <GridPane fx:id="gridFourth" hgap="10.0" vgap="10.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8" GridPane.vgrow="NEVER">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="250.0" prefHeight="250.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <GridPane.margin>
+                        <Insets left="24.0" right="24.0" />
+                     </GridPane.margin>
                   </GridPane>
                </children>
             </GridPane>
