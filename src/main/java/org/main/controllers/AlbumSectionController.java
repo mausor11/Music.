@@ -13,14 +13,14 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
+import org.main.AlbumTile;
 import org.main.Main;
 import org.main.PlaylistTile;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-
-public class PlaylistSectionController {
+public class AlbumSectionController {
     @FXML
     Label showAllText1;
     @FXML
@@ -54,7 +54,7 @@ public class PlaylistSectionController {
     @FXML
     StackPane showAllPane4;
     @FXML
-    StackPane playlistSection;
+    StackPane albumsSection;
     @FXML
     GridPane gridFirst;
     @FXML
@@ -66,11 +66,11 @@ public class PlaylistSectionController {
     @FXML
     GridPane mainGrid;
     @FXML
-    ScrollPane playlistScrollPane;
-    private ArrayList<PlaylistTile> covers1;
-    private ArrayList<PlaylistTile> covers2;
-    private ArrayList<PlaylistTile> covers3;
-    private ArrayList<PlaylistTile> covers4;
+    ScrollPane albumScrollPane;
+    private ArrayList<AlbumTile> covers1;
+    private ArrayList<AlbumTile> covers2;
+    private ArrayList<AlbumTile> covers3;
+    private ArrayList<AlbumTile> covers4;
     private double scaleX;
     private double scaleY;
     private BooleanProperty isShownFirst = new SimpleBooleanProperty(false);
@@ -82,10 +82,12 @@ public class PlaylistSectionController {
     public void initialize() {
         isBack.addListener(((observableValue, aBoolean, t1) -> {
             if(isBack.get()) {
-                playlistScrollPane.setVvalue(0);
+                albumScrollPane.setVvalue(0);
                 isBack.set(false);
             }
         }));
+
+
         covers1 = makeTemplate(10);
         makeDefault(gridFirst, isShownFirst, covers1);
         covers2 = makeTemplate(4);
@@ -101,7 +103,7 @@ public class PlaylistSectionController {
         makeEffect(showAllPane4, showAllText4, showAllText4a, showAllText4Effect, isShownFourth, gridFourth, covers4);
 
     }
-    private ArrayList<PlaylistTile> makeTemplate(int many) {
+    private ArrayList<AlbumTile> makeTemplate(int many) {
         ArrayList<String> artists = new ArrayList<>();
         artists.add("Kanye West");
         artists.add("Vory");
@@ -111,19 +113,19 @@ public class PlaylistSectionController {
         ArrayList<String> artists1 = new ArrayList<>();
         artists1.add("Kanye West");
         artists1.add("Vory");
-        ArrayList<PlaylistTile> c = new ArrayList<>();
+        ArrayList<AlbumTile> c = new ArrayList<>();
         for(int i=0;i<many; i++) {
-            PlaylistTile playlistTile2 = new PlaylistTile(180, 250,"Playlist 2", artists, Objects.requireNonNull(Main.class.getResource("cover-images/albums/ASTROWORLD.jpg")).toString());
-            c.add(playlistTile2);
+            AlbumTile albumTile = new AlbumTile(true,180, 250,"ye", "Kanye West", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/ye.jpg")).toString());
+            c.add(albumTile);
         }
         return c;
     }
-    private void makeDefault(GridPane gridPane, BooleanProperty isShown, ArrayList<PlaylistTile> covers) {
+    private void makeDefault(GridPane gridPane, BooleanProperty isShown, ArrayList<AlbumTile> covers) {
         for(int i=0;i<5 && i < covers.size();i++) {
             gridPane.addColumn(i, covers.get(i).getCoverArt());
         }
 
-        playlistSection.widthProperty().addListener((observableValue1, number, t2) -> {
+        albumsSection.widthProperty().addListener((observableValue1, number, t2) -> {
             hiddenLookPlaylists(t2.doubleValue() - 50, gridPane, covers);
             lastValue = t2.doubleValue();
         });
@@ -136,7 +138,7 @@ public class PlaylistSectionController {
                     gridPane.getRowConstraints().clear();
                 }
                 mainGrid.getRowConstraints().get(takeIndex(gridPane)).setMinHeight(520);
-                playlistSection.widthProperty().addListener((observableValue1, number, t2) -> {
+                albumsSection.widthProperty().addListener((observableValue1, number, t2) -> {
                     shownLookPlaylists(t2.doubleValue() - 50, gridPane, covers);
                     lastValue = t2.doubleValue();
                 });
@@ -147,7 +149,7 @@ public class PlaylistSectionController {
                     gridPane.getRowConstraints().clear();
                 }
                 mainGrid.getRowConstraints().get(takeIndex(gridPane)).setMinHeight(250);
-                playlistSection.widthProperty().addListener((observableValue1, number, t2) -> {
+                albumsSection.widthProperty().addListener((observableValue1, number, t2) -> {
                     hiddenLookPlaylists(t2.doubleValue() - 50, gridPane, covers);
                     lastValue = t2.doubleValue();
                 });
@@ -156,18 +158,25 @@ public class PlaylistSectionController {
     }
     private int takeIndex(GridPane gridPane) {
         if(gridPane.equals(gridFirst)) {
+            System.out.println("2");
             return 2;
         } else if(gridPane.equals(gridSecond)) {
+            System.out.println("4");
+
             return 4;
         } else if(gridPane.equals(gridThird)) {
+            System.out.println("6");
+
             return 6;
         } else if(gridPane.equals(gridFourth)) {
+            System.out.println("8");
+
             return 8;
         } else {
             return -1;
         }
     }
-    private void hiddenLookPlaylists(double W, GridPane gridPane, ArrayList<PlaylistTile> covers) {
+    private void hiddenLookPlaylists(double W, GridPane gridPane, ArrayList<AlbumTile> covers) {
         if(!gridPane.getChildren().isEmpty()) {
             gridPane.getChildren().clear();
             gridPane.getColumnConstraints().clear();
@@ -197,7 +206,7 @@ public class PlaylistSectionController {
             gridPane.add(covers.get(i).getCoverArt(), i, 0);
         }
     }
-    private void shownLookPlaylists(double W, GridPane gridPane, ArrayList<PlaylistTile> covers) {
+    private void shownLookPlaylists(double W, GridPane gridPane, ArrayList<AlbumTile> covers) {
         if(!gridPane.getChildren().isEmpty()) {
             gridPane.getChildren().clear();
             gridPane.getColumnConstraints().clear();
@@ -237,7 +246,7 @@ public class PlaylistSectionController {
         int columnCount = gridPane.getColumnCount();
         int r = 0;
         int c = 0;
-        for(PlaylistTile cover : covers) {
+        for(AlbumTile cover : covers) {
             if(c == columnCount) {
                 r++;
                 c = 0;
@@ -248,7 +257,7 @@ public class PlaylistSectionController {
         }
 
     }
-    private void makeEffect(StackPane pane, Label text, Label textA, Label textEffect, BooleanProperty isShown, GridPane gridPane, ArrayList<PlaylistTile> covers) {
+    private void makeEffect(StackPane pane, Label text, Label textA, Label textEffect, BooleanProperty isShown, GridPane gridPane, ArrayList<AlbumTile> covers) {
         pane.setOnMouseEntered(event1 -> {
             Timeline enterTimeline = new Timeline(
                     new KeyFrame(Duration.ZERO, new KeyValue(text.opacityProperty(), text.getOpacity())),
@@ -291,7 +300,7 @@ public class PlaylistSectionController {
             switchMode(gridPane, isShown, covers);
         });
     }
-    private void switchMode(GridPane gridPane, BooleanProperty isShown, ArrayList<PlaylistTile> covers) {
+    private void switchMode(GridPane gridPane, BooleanProperty isShown, ArrayList<AlbumTile> covers) {
         if(isShown.get()) {
             isShown.set(false);
             hiddenLookPlaylists(lastValue - 50, gridPane, covers);
@@ -301,4 +310,5 @@ public class PlaylistSectionController {
             shownLookPlaylists(lastValue - 50, gridPane, covers);
         }
     }
+
 }

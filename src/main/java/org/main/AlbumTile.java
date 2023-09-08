@@ -38,6 +38,15 @@ public class AlbumTile {
         this.imgHeight = height;
         makeCover();
     }
+    public AlbumTile(boolean isAlbumSection, double width, double height, String title, String artist, ArrayList<String> features, String coverURL) {
+        coverImage = new Image(Objects.requireNonNull(coverURL));
+        this.title = title;
+        this.artist = artist;
+        this.features = features;
+        this.imgWidth = width;
+        this.imgHeight = height;
+        makeCoverForSection();
+    }
     private void makeTile() {
         coverArt = new ImageView(coverImage);
         coverArt.setFitHeight(imgHeight);
@@ -91,7 +100,49 @@ public class AlbumTile {
         cover.getChildren().add(infoBox);
 
     }
+    private void makeCoverForSection() {
+        cover = new StackPane();
+        makeTile();
+        makeBackground();
 
+        coverRectangle = new Rectangle();
+        coverRectangle.setHeight(imgHeight);
+        coverRectangle.setWidth(imgWidth);
+        coverRectangle.setArcWidth(16);
+        coverRectangle.setArcHeight(16);
+        coverRectangle.setFill(Color.web("#1a1616"));
+
+        cover.getChildren().addAll(coverBackground,coverRectangle,coverArt);
+
+        Label titleCover = new Label(title);
+        titleCover.getStyleClass().add("tileHomeText");
+
+        Label artistCover = new Label(artist);
+        artistCover.getStyleClass().add("tileHomeTextSmall");
+        if(features != null) {
+            for(String feat : features) {
+                artistCover.setText(artistCover.getText() + Default.dot + feat);
+            }
+        }
+
+
+        infoBox = new VBox();
+        infoBox.getChildren().addAll(getSmallTile(), titleCover, artistCover);
+        infoBox.setMouseTransparent(true);
+        infoBox.setOpacity(0);
+        infoBox.setAlignment(Pos.CENTER);
+
+        cover.getChildren().add(infoBox);
+
+    }
+    private ImageView getSmallTile() {
+        ImageView tile = new ImageView(coverImage);
+        tile.setFitWidth(136);
+        tile.setFitHeight(136);
+        tile.setViewport(Default.setViewportSquare(coverImage, tile));
+        tile.setClip(Default.clipShape(136, 136, 35, 35));
+        return tile;
+    }
     public StackPane getCoverArt() {
         return cover;
     }

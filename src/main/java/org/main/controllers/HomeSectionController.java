@@ -3,8 +3,11 @@ package org.main.controllers;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.util.Duration;
 import org.main.AlbumTile;
@@ -48,13 +51,22 @@ public class HomeSectionController {
     GridPane gridPane;
     @FXML
     StackPane homeSection;
+    @FXML
+    ScrollPane homeScrollPane;
     private double scaleX = 1;
     private double scaleY = 1;
     private final ArrayList<AlbumTile> favourites = new ArrayList<>();
     private final ArrayList<AlbumTile> albums = new ArrayList<>();
     private final ArrayList<AlbumTile> playlists = new ArrayList<>();
+    public static BooleanProperty isBack = new SimpleBooleanProperty(false);
 
     public void initialize() {
+        isBack.addListener(((observableValue, aBoolean, t1) -> {
+            if(isBack.get()) {
+                homeScrollPane.setVvalue(0);
+                isBack.set(false);
+            }
+        }));
         makeTemplate(favourites);
         makeTemplate(albums);
         makeTemplate(playlists);

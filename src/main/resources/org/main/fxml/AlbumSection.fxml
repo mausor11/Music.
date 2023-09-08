@@ -10,44 +10,44 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="playlistSection" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.main.controllers.PlaylistSectionController">
+<StackPane fx:id="albumsSection" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.main.controllers.AlbumSectionController">
    <padding>
       <Insets bottom="20.0" top="20.0" />
    </padding>
    <children>
-      <ScrollPane fx:id="playlistScrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefWidth="1000.0" styleClass="ScrollPane" vbarPolicy="NEVER">
+      <ScrollPane fx:id="albumScrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefWidth="1000.0" styleClass="ScrollPane" vbarPolicy="NEVER">
          <content>
             <GridPane fx:id="mainGrid" maxHeight="1.7976931348623157E308" vgap="10.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints fillHeight="false" minHeight="43.0" prefHeight="43.0" vgrow="NEVER" />
-                <RowConstraints fillHeight="false" minHeight="36.0" prefHeight="36.0" valignment="CENTER" vgrow="NEVER" />
-                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="250.0" prefHeight="250.0" vgrow="NEVER" />
-                  <RowConstraints minHeight="36.0" prefHeight="36.0" valignment="CENTER" vgrow="NEVER" />
+               <columnConstraints>
+                  <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints fillHeight="false" minHeight="43.0" prefHeight="43.0" vgrow="NEVER" />
+                  <RowConstraints fillHeight="false" minHeight="36.0" prefHeight="36.0" valignment="CENTER" vgrow="NEVER" />
                   <RowConstraints maxHeight="1.7976931348623157E308" minHeight="250.0" prefHeight="250.0" vgrow="NEVER" />
                   <RowConstraints minHeight="36.0" prefHeight="36.0" valignment="CENTER" vgrow="NEVER" />
                   <RowConstraints maxHeight="1.7976931348623157E308" minHeight="250.0" prefHeight="250.0" vgrow="NEVER" />
                   <RowConstraints minHeight="36.0" prefHeight="36.0" valignment="CENTER" vgrow="NEVER" />
                   <RowConstraints maxHeight="1.7976931348623157E308" minHeight="250.0" prefHeight="250.0" vgrow="NEVER" />
-              </rowConstraints>
+                  <RowConstraints minHeight="36.0" prefHeight="36.0" valignment="CENTER" vgrow="NEVER" />
+                  <RowConstraints maxHeight="1.7976931348623157E308" minHeight="250.0" prefHeight="250.0" vgrow="NEVER" />
+               </rowConstraints>
                <children>
-                  <Label styleClass="welcomeText" text="Playlists">
+                  <Label styleClass="welcomeText" text="Albums">
                      <padding>
                         <Insets left="24.0" />
                      </padding>
                   </Label>
                   <GridPane GridPane.rowIndex="1">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="36.0" prefHeight="36.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="36.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
                      <children>
-                        <Label styleClass="titleText" text="Recently added" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
+                        <Label styleClass="titleText" text="Favourites albums" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
                            <padding>
                               <Insets left="24.0" />
                            </padding>
@@ -80,16 +80,16 @@
                      </children>
                   </GridPane>
                   <GridPane fx:id="gridFirst" hgap="10.0" vgap="10.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="NEVER">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="250.0" prefHeight="250.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="250.0" prefHeight="250.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
                      <GridPane.margin>
                         <Insets left="24.0" right="24.0" />
                      </GridPane.margin>
@@ -103,7 +103,7 @@
                         <RowConstraints minHeight="36.0" prefHeight="36.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label styleClass="titleText" text="Based on recent plays">
+                        <Label styleClass="titleText" text="Recently added">
                            <padding>
                               <Insets left="24.0" />
                            </padding>
@@ -159,7 +159,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label styleClass="titleText" text="Based on genre">
+                        <Label styleClass="titleText" text="Recently played">
                            <padding>
                               <Insets left="24.0" />
                            </padding>
@@ -215,7 +215,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label styleClass="titleText" text="Artist radio">
+                        <Label styleClass="titleText" text="Recommended for you">
                            <padding>
                               <Insets left="24.0" />
                            </padding>

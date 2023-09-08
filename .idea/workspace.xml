@@ -4,9 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="97349954-a434-4635-b7fb-6cf34beafa5e" name="Changes" comment="playlist effect done for gridFirst">
+    <list default="true" id="97349954-a434-4635-b7fb-6cf34beafa5e" name="Changes" comment="playlists section done">
+      <change afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/AlbumSectionController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/AlbumSection.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Music/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/AlbumTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/AlbumTile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/Default.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/Default.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/HomeSectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/HomeSectionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/MainViewController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/PlaylistSectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/PlaylistSectionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/HomeSection.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/HomeSection.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/PlaylistSection.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/PlaylistSection.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -126,7 +133,7 @@
       <workItem from="1694073300008" duration="2730000" />
       <workItem from="1694087108113" duration="5515000" />
       <workItem from="1694107080615" duration="607000" />
-      <workItem from="1694178232253" duration="3937000" />
+      <workItem from="1694178232253" duration="9122000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1692904219164</created>
@@ -296,7 +303,14 @@
       <option name="project" value="LOCAL" />
       <updated>1694091998708</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="playlists section done">
+      <created>1694185245747</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1694185245747</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -336,6 +350,7 @@
     <MESSAGE value="small changes" />
     <MESSAGE value="playlist tile done" />
     <MESSAGE value="playlist effect done for gridFirst" />
-    <option name="LAST_COMMIT_MESSAGE" value="playlist effect done for gridFirst" />
+    <MESSAGE value="playlists section done" />
+    <option name="LAST_COMMIT_MESSAGE" value="playlists section done" />
   </component>
 </project>

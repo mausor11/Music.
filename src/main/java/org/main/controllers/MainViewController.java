@@ -131,13 +131,14 @@ public class MainViewController {
         tileCover.add(favouriteCover);
         tileCover.add(searchCover);
     }
-    public void setHomeTile() throws IOException {
+    public void setHomeTile() {
         if(actualTile != 0) {
             actualTile = 0;
             makeTileAnimation();
             if(!mainSpace.getChildren().isEmpty()) {
                 mainSpace.getChildren().clear();
             }
+            HomeSectionController.isBack.set(true);
             mainSpace.getChildren().add(Default.homeView);
             prevTile = actualTile;
         }
@@ -149,6 +150,7 @@ public class MainViewController {
             if(!mainSpace.getChildren().isEmpty()) {
                 mainSpace.getChildren().clear();
             }
+            PlaylistSectionController.isBack.set(true);
             mainSpace.getChildren().add(Default.playlistView);
             prevTile = actualTile;
         }
@@ -158,6 +160,11 @@ public class MainViewController {
         if(actualTile != 2) {
             actualTile = 2;
             makeTileAnimation();
+            if(!mainSpace.getChildren().isEmpty()) {
+                mainSpace.getChildren().clear();
+            }
+            AlbumSectionController.isBack.set(true);
+            mainSpace.getChildren().add(Default.albumsView);
             prevTile = actualTile;
         }
     }
