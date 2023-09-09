@@ -15,7 +15,6 @@ import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import org.main.AlbumTile;
 import org.main.Main;
-import org.main.PlaylistTile;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -67,16 +66,12 @@ public class AlbumSectionController {
     GridPane mainGrid;
     @FXML
     ScrollPane albumScrollPane;
-    private ArrayList<AlbumTile> covers1;
-    private ArrayList<AlbumTile> covers2;
-    private ArrayList<AlbumTile> covers3;
-    private ArrayList<AlbumTile> covers4;
     private double scaleX;
     private double scaleY;
-    private BooleanProperty isShownFirst = new SimpleBooleanProperty(false);
-    private BooleanProperty isShownSecond = new SimpleBooleanProperty(false);
-    private BooleanProperty isShownThird = new SimpleBooleanProperty(false);
-    private BooleanProperty isShownFourth = new SimpleBooleanProperty(false);
+    private final BooleanProperty isShownFirst = new SimpleBooleanProperty(false);
+    private final BooleanProperty isShownSecond = new SimpleBooleanProperty(false);
+    private final BooleanProperty isShownThird = new SimpleBooleanProperty(false);
+    private final BooleanProperty isShownFourth = new SimpleBooleanProperty(false);
     public static BooleanProperty isBack = new SimpleBooleanProperty(false);
     private double lastValue = 1002;
     public void initialize() {
@@ -88,13 +83,13 @@ public class AlbumSectionController {
         }));
 
 
-        covers1 = makeTemplate(10);
+        ArrayList<AlbumTile> covers1 = makeTemplate(10);
         makeDefault(gridFirst, isShownFirst, covers1);
-        covers2 = makeTemplate(4);
+        ArrayList<AlbumTile> covers2 = makeTemplate(4);
         makeDefault(gridSecond, isShownSecond, covers2);
-        covers3 = makeTemplate(5);
+        ArrayList<AlbumTile> covers3 = makeTemplate(5);
         makeDefault(gridThird, isShownThird, covers3);
-        covers4 = makeTemplate(1);
+        ArrayList<AlbumTile> covers4 = makeTemplate(1);
         makeDefault(gridFourth, isShownFourth, covers4);
 
         makeEffect(showAllPane1, showAllText1, showAllText1a, showAllText1Effect, isShownFirst, gridFirst, covers1);
@@ -158,19 +153,12 @@ public class AlbumSectionController {
     }
     private int takeIndex(GridPane gridPane) {
         if(gridPane.equals(gridFirst)) {
-            System.out.println("2");
             return 2;
         } else if(gridPane.equals(gridSecond)) {
-            System.out.println("4");
-
             return 4;
         } else if(gridPane.equals(gridThird)) {
-            System.out.println("6");
-
             return 6;
         } else if(gridPane.equals(gridFourth)) {
-            System.out.println("8");
-
             return 8;
         } else {
             return -1;
@@ -232,11 +220,8 @@ public class AlbumSectionController {
             rows = covers.size() / columns + 1;
         }
 
-        if(rows == 1) {
-            mainGrid.getRowConstraints().get(takeIndex(gridPane)).setMinHeight(250 * scaleY);
-        } else {
-            mainGrid.getRowConstraints().get(takeIndex(gridPane)).setMinHeight(520 * scaleY);
-        }
+            mainGrid.getRowConstraints().get(takeIndex(gridPane)).setMinHeight(((rows * 250) * scaleY ) + (rows+1) * 10);
+
         for(int i=0;i<columns;i++) {
             gridPane.getColumnConstraints().add(new ColumnConstraints());
         }

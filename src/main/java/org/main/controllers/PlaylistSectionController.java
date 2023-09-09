@@ -73,10 +73,10 @@ public class PlaylistSectionController {
     private ArrayList<PlaylistTile> covers4;
     private double scaleX;
     private double scaleY;
-    private BooleanProperty isShownFirst = new SimpleBooleanProperty(false);
-    private BooleanProperty isShownSecond = new SimpleBooleanProperty(false);
-    private BooleanProperty isShownThird = new SimpleBooleanProperty(false);
-    private BooleanProperty isShownFourth = new SimpleBooleanProperty(false);
+    private final BooleanProperty isShownFirst = new SimpleBooleanProperty(false);
+    private final BooleanProperty isShownSecond = new SimpleBooleanProperty(false);
+    private final BooleanProperty isShownThird = new SimpleBooleanProperty(false);
+    private final BooleanProperty isShownFourth = new SimpleBooleanProperty(false);
     public static BooleanProperty isBack = new SimpleBooleanProperty(false);
     private double lastValue = 1002;
     public void initialize() {
@@ -86,7 +86,7 @@ public class PlaylistSectionController {
                 isBack.set(false);
             }
         }));
-        covers1 = makeTemplate(10);
+        covers1 = makeTemplate(20);
         makeDefault(gridFirst, isShownFirst, covers1);
         covers2 = makeTemplate(4);
         makeDefault(gridSecond, isShownSecond, covers2);
@@ -223,11 +223,8 @@ public class PlaylistSectionController {
             rows = covers.size() / columns + 1;
         }
 
-        if(rows == 1) {
-            mainGrid.getRowConstraints().get(takeIndex(gridPane)).setMinHeight(250 * scaleY);
-        } else {
-            mainGrid.getRowConstraints().get(takeIndex(gridPane)).setMinHeight(520 * scaleY);
-        }
+            mainGrid.getRowConstraints().get(takeIndex(gridPane)).setMinHeight(((rows * 250) * scaleY ) + (rows+1) * 10);
+
         for(int i=0;i<columns;i++) {
             gridPane.getColumnConstraints().add(new ColumnConstraints());
         }

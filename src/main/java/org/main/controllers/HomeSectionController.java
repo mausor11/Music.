@@ -12,11 +12,18 @@ import javafx.scene.layout.*;
 import javafx.util.Duration;
 import org.main.AlbumTile;
 import org.main.Main;
+import org.main.AlbumTile;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class HomeSectionController {
+    @FXML
+    GridPane gridFirst;
+    @FXML
+    GridPane gridSecond;
+    @FXML
+    GridPane gridThird;
     @FXML
     Label showAllText1;
     @FXML
@@ -42,12 +49,6 @@ public class HomeSectionController {
     @FXML
     StackPane showAllPane3;
     @FXML
-    HBox favouriteTiles;
-    @FXML
-    HBox albumTiles;
-    @FXML
-    HBox playlistTiles;
-    @FXML
     GridPane gridPane;
     @FXML
     StackPane homeSection;
@@ -59,7 +60,10 @@ public class HomeSectionController {
     private final ArrayList<AlbumTile> albums = new ArrayList<>();
     private final ArrayList<AlbumTile> playlists = new ArrayList<>();
     public static BooleanProperty isBack = new SimpleBooleanProperty(false);
-
+    private BooleanProperty isFavourites = new SimpleBooleanProperty(false);
+    private BooleanProperty isAlbums = new SimpleBooleanProperty(false);
+    private BooleanProperty isPlaylists = new SimpleBooleanProperty(false);
+    private double lastValue = 1002;
     public void initialize() {
         isBack.addListener(((observableValue, aBoolean, t1) -> {
             if(isBack.get()) {
@@ -70,14 +74,21 @@ public class HomeSectionController {
         makeTemplate(favourites);
         makeTemplate(albums);
         makeTemplate(playlists);
+        makeDefault(gridFirst, isFavourites, favourites);
+        makeDefault(gridSecond, isAlbums, albums);
+        makeDefault(gridThird, isPlaylists, playlists);
 
-        makeListener(favourites, favouriteTiles);
-        makeListener(albums, albumTiles);
-        makeListener(playlists, playlistTiles);
+        makeEffect(showAllPane1, showAllText1, showAllText1a, showAllText1Effect, isFavourites, gridFirst, favourites);
+        makeEffect(showAllPane2, showAllText2, showAllText2a, showAllText2Effect, isAlbums, gridSecond, albums);
+        makeEffect(showAllPane3, showAllText3, showAllText3a, showAllText3Effect, isPlaylists, gridThird, playlists);
 
-        makeEffect(showAllPane1, showAllText1, showAllText1a, showAllText1Effect);
-        makeEffect(showAllPane2, showAllText2, showAllText2a, showAllText2Effect);
-        makeEffect(showAllPane3, showAllText3, showAllText3a, showAllText3Effect);
+//        makeListener(favourites, favouriteTiles);
+//        makeListener(albums, albumTiles);
+//        makeListener(playlists, playlistTiles);
+//
+//        makeEffect(showAllPane1, showAllText1, showAllText1a, showAllText1Effect);
+//        makeEffect(showAllPane2, showAllText2, showAllText2a, showAllText2Effect);
+//        makeEffect(showAllPane3, showAllText3, showAllText3a, showAllText3Effect);
     }
     private void makeTemplate(ArrayList<AlbumTile> covers) {
         ArrayList<String> features = new ArrayList<>();
@@ -105,42 +116,132 @@ public class HomeSectionController {
         covers.add(albumTile10);
         covers.add(albumTile11);
     }
-    private int math(ArrayList<AlbumTile> covers, double sectionWidth) {
-        double tileWidth = 182;
-        int x = (int) ((sectionWidth + (double) 10) / (tileWidth + (double) 10));
-        double freePx = (sectionWidth - (x* tileWidth + (x-1)* (double) 10));
-        double k = freePx / x;
-        double scaleX = (tileWidth + k) / tileWidth;
-        double scaleY = (tileWidth + k) / tileWidth;
-        if(x <= covers.size()) {
-            this.scaleX = scaleX;
-            this.scaleY = scaleY;
+    private void makeDefault(GridPane gridPane, BooleanProperty isShown, ArrayList<AlbumTile> covers) {
+        for(int i=0;i<5 && i < covers.size();i++) {
+            gridPane.addColumn(i, covers.get(i).getCoverArt());
         }
-        if(x == covers.size()) {
-            this.scaleX = 1;
-            this.scaleY = 1;
-        }
-        return x;
 
-    }
-    private void makeListener(ArrayList<AlbumTile> covers, HBox box) {
-        homeSection.widthProperty().addListener(((observableValue, number, t1) -> {
-            int k = math(covers, t1.doubleValue() - 50);
-            gridPane.getRowConstraints().get(2).setMinHeight(211 * scaleY);
-            gridPane.getRowConstraints().get(5).setMinHeight(211 * scaleY);
-            gridPane.getRowConstraints().get(8).setMinHeight(211 * scaleY);
+        homeSection.widthProperty().addListener((observableValue1, number, t2) -> {
+            hiddenLookPlaylists(t2.doubleValue() - 50, gridPane, covers);
+            lastValue = t2.doubleValue();
+        });
 
-            if(!box.getChildren().isEmpty()) {
-                box.getChildren().clear();
-            }
-
-            for(int i=0;i < k && i < covers.size(); i++)  {
-                box.getChildren().add(covers.get(i).getCoverArt());
-                covers.get(i).resizeCoverArt(scaleX, scaleY);
+        isShown.addListener(((observableValue, aBoolean, t1) -> {
+            if(t1) {
+                if(!gridPane.getChildren().isEmpty()) {
+                    gridPane.getChildren().clear();
+                    gridPane.getColumnConstraints().clear();
+                    gridPane.getRowConstraints().clear();
+                }
+                this.gridPane.getRowConstraints().get(takeIndex(gridPane)).setMinHeight(520);
+                homeSection.widthProperty().addListener((observableValue1, number, t2) -> {
+                    shownLookPlaylists(t2.doubleValue() - 50, gridPane, covers);
+                    lastValue = t2.doubleValue();
+                });
+            } else {
+                if(!gridPane.getChildren().isEmpty()) {
+                    gridPane.getChildren().clear();
+                    gridPane.getColumnConstraints().clear();
+                    gridPane.getRowConstraints().clear();
+                }
+                this.gridPane.getRowConstraints().get(takeIndex(gridPane)).setMinHeight(250);
+                homeSection.widthProperty().addListener((observableValue1, number, t2) -> {
+                    hiddenLookPlaylists(t2.doubleValue() - 50, gridPane, covers);
+                    lastValue = t2.doubleValue();
+                });
             }
         }));
     }
-    private void makeEffect(StackPane pane, Label text, Label textA, Label textEffect) {
+    private int takeIndex(GridPane gridPane) {
+        if(gridPane.equals(gridFirst)) {
+            return 2;
+        } else if(gridPane.equals(gridSecond)) {
+            return 5;
+        } else if(gridPane.equals(gridThird)) {
+            return 8;
+        } else {
+            return -1;
+        }
+    }
+    private void hiddenLookPlaylists(double W, GridPane gridPane, ArrayList<AlbumTile> covers) {
+        if(!gridPane.getChildren().isEmpty()) {
+            gridPane.getChildren().clear();
+            gridPane.getColumnConstraints().clear();
+            gridPane.getRowConstraints().clear();
+        }
+        double recW = 180;
+        double b = 10;
+        int columns = (int) ((W + b) / (recW + b));
+        double freePx = (W - (columns * recW + (columns -1)* b));
+        double k = freePx /columns;
+        if(columns < covers.size()) {
+            this.scaleX = (recW + k) / recW;
+            this.scaleY = (recW + k) / recW;
+        }
+        if(columns >= covers.size()) {
+            this.scaleX = 1;
+            this.scaleY = 1;
+        }
+
+        for(int i=0;i<columns;i++) {
+            gridPane.getColumnConstraints().add(new ColumnConstraints());
+        }
+        gridPane.getRowConstraints().add(new RowConstraints());
+        this.gridPane.getRowConstraints().get(takeIndex(gridPane)).setMinHeight(211 * scaleY);
+        for(int i = 0; i < columns && i < covers.size(); i++) {
+            covers.get(i).resizeCoverArt(scaleX, scaleY);
+            gridPane.add(covers.get(i).getCoverArt(), i, 0);
+        }
+    }
+    private void shownLookPlaylists(double W, GridPane gridPane, ArrayList<AlbumTile> covers) {
+        if(!gridPane.getChildren().isEmpty()) {
+            gridPane.getChildren().clear();
+            gridPane.getColumnConstraints().clear();
+            gridPane.getRowConstraints().clear();
+        }
+        double recW = 180;
+        double b = 10;
+        int rows = 0;
+        int columns = (int) ((W + b) / (recW + b));
+        double freePx = (W - (columns * recW + (columns -1)* b));
+        double k = freePx /columns;
+        if(columns < covers.size()) {
+            this.scaleX = (recW + k) / recW;
+            this.scaleY = (recW + k) / recW;
+        }
+        if(columns >= covers.size()) {
+            this.scaleX = 1;
+            this.scaleY = 1;
+        }
+        if(covers.size() % columns == 0) {
+            rows = covers.size() / columns;
+        } else {
+            rows = covers.size() / columns + 1;
+        }
+
+        this.gridPane.getRowConstraints().get(takeIndex(gridPane)).setMinHeight(((rows * 211) * scaleY ) + (rows+1) * 10);
+
+        for(int i=0;i<columns;i++) {
+            gridPane.getColumnConstraints().add(new ColumnConstraints());
+        }
+        for(int y=0;y<rows;y++) {
+            gridPane.getRowConstraints().add(new RowConstraints());
+        }
+        int columnCount = gridPane.getColumnCount();
+        int r = 0;
+        int c = 0;
+        for(AlbumTile cover : covers) {
+            if(c == columnCount) {
+                r++;
+                c = 0;
+            }
+            cover.resizeCoverArt(scaleX, scaleY);
+            gridPane.add(cover.getCoverArt(), c, r);
+            c++;
+        }
+
+    }
+    private void makeEffect(StackPane pane, Label text, Label textA, Label textEffect, BooleanProperty isShown, GridPane gridPane, ArrayList<AlbumTile> covers) {
         pane.setOnMouseEntered(event1 -> {
             Timeline enterTimeline = new Timeline(
                     new KeyFrame(Duration.ZERO, new KeyValue(text.opacityProperty(), text.getOpacity())),
@@ -165,6 +266,29 @@ public class HomeSectionController {
                 exitTimeline.play();
             });
         });
+        pane.setOnMouseClicked(event3 -> {
+            Timeline clickedTimeline = new Timeline(
+                    new KeyFrame(Duration.ZERO, new KeyValue(text.opacityProperty(), text.getOpacity())),
+                    new KeyFrame(Duration.ZERO, new KeyValue(textA.opacityProperty(), textA.getOpacity())),
+                    new KeyFrame(Duration.ZERO, new KeyValue(textEffect.opacityProperty(), textEffect.getOpacity())),
+
+                    new KeyFrame(Duration.millis(100), new KeyValue(text.opacityProperty(), 1)),
+                    new KeyFrame(Duration.millis(100), new KeyValue(textA.opacityProperty(), 0)),
+                    new KeyFrame(Duration.millis(100), new KeyValue(textEffect.opacityProperty(), 0))
+            );
+            clickedTimeline.play();
+            switchMode(gridPane, isShown, covers);
+        });
+    }
+    private void switchMode(GridPane gridPane, BooleanProperty isShown, ArrayList<AlbumTile> covers) {
+        if(isShown.get()) {
+            isShown.set(false);
+            hiddenLookPlaylists(lastValue - 50, gridPane, covers);
+
+        } else {
+            isShown.set(true);
+            shownLookPlaylists(lastValue - 50, gridPane, covers);
+        }
     }
 
 
