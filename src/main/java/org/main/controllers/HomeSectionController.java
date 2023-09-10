@@ -11,6 +11,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.util.Duration;
 import org.main.AlbumTile;
+import org.main.DataBase;
 import org.main.Main;
 import org.main.AlbumTile;
 
@@ -91,30 +92,29 @@ public class HomeSectionController {
 //        makeEffect(showAllPane3, showAllText3, showAllText3a, showAllText3Effect);
     }
     private void makeTemplate(ArrayList<AlbumTile> covers) {
-        ArrayList<String> features = new ArrayList<>();
-        features.add("21 Savage");
-        AlbumTile albumTile1 = new AlbumTile(181, 211,"ASTROWORLD", "Travis Scott", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/ASTROWORLD.jpg")).toString());
-        AlbumTile albumTile2 = new AlbumTile(181, 211,"Lost Souls", "Vory", features, Objects.requireNonNull(Main.class.getResource("cover-images/albums/Lost Souls.jpg")).toString());
-        AlbumTile albumTile3 = new AlbumTile(181, 211,"Starboy", "The Weeknd", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/Starboy.jpg")).toString());
-        AlbumTile albumTile4 = new AlbumTile(181, 211,"ye", "Kanye West", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/ye.jpg")).toString());
-        AlbumTile albumTile5 = new AlbumTile(181, 211,"utopia", "Travis Scott", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
-        AlbumTile albumTile6 = new AlbumTile(181, 211,"utopia", "Travis Scott", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
-        AlbumTile albumTile7 = new AlbumTile(181, 211,"utopia", "Travis Scott", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
-        AlbumTile albumTile8 = new AlbumTile(181, 211,"utopia", "Travis Scott", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
-        AlbumTile albumTile9 = new AlbumTile(181, 211,"utopia", "Travis Scott", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
-        AlbumTile albumTile10 = new AlbumTile(181, 211,"utopia", "Travis Scott", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
-        AlbumTile albumTile11 = new AlbumTile(181, 211,"utopia", "Travis Scott", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString());
-        covers.add(albumTile1);
-        covers.add(albumTile2);
-        covers.add(albumTile3);
-        covers.add(albumTile4);
-        covers.add(albumTile5);
-        covers.add(albumTile6);
-        covers.add(albumTile7);
-        covers.add(albumTile8);
-        covers.add(albumTile9);
-        covers.add(albumTile10);
-        covers.add(albumTile11);
+        if(covers.equals(favourites)) {
+            ArrayList<Integer> ids = DataBase.getDataBase().getAllAlbumsFavourites();
+            for(Integer id : ids) {
+                AlbumTile albumTile = new AlbumTile(181, 211, DataBase.getDataBase().getAlbumName(id), DataBase.getDataBase().getAlbumArtistName(id), DataBase.getDataBase().getAlbumFeaturesName(id), DataBase.getDataBase().getAlbumCover(id));
+                covers.add(albumTile);
+            }
+        } else if(covers.equals(albums)){
+            ArrayList<Integer> ids = DataBase.getDataBase().getAllAlbumsID();
+            for(Integer id : ids) {
+                AlbumTile albumTile = new AlbumTile(181, 211, DataBase.getDataBase().getAlbumName(id), DataBase.getDataBase().getAlbumArtistName(id), DataBase.getDataBase().getAlbumFeaturesName(id), DataBase.getDataBase().getAlbumCover(id));
+                covers.add(albumTile);
+            }
+        } else {
+            ArrayList<Integer> ids = DataBase.getDataBase().getAllPlaylistsID();
+            for(Integer id : ids) {
+                AlbumTile albumTile = new AlbumTile(181, 211, DataBase.getDataBase().getPlaylistName(id), null, null, DataBase.getDataBase().getPlaylistCoverURL(id));
+                covers.add(albumTile);
+            }
+        }
+
+
+
+
     }
     private void makeDefault(GridPane gridPane, BooleanProperty isShown, ArrayList<AlbumTile> covers) {
         for(int i=0;i<5 && i < covers.size();i++) {
@@ -286,8 +286,11 @@ public class HomeSectionController {
             hiddenLookPlaylists(lastValue - 50, gridPane, covers);
 
         } else {
-            isShown.set(true);
-            shownLookPlaylists(lastValue - 50, gridPane, covers);
+            if(covers.size() > 5) {
+                isShown.set(true);
+                shownLookPlaylists(lastValue - 50, gridPane, covers);
+            }
+
         }
     }
 

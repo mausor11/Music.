@@ -2,11 +2,13 @@ package org.main.controllers;
 
 import javafx.animation.*;
 import javafx.fxml.FXML;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.ListView;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
+import org.main.DataBase;
 import org.main.Default;
 import org.main.ListCell;
 import org.main.Main;
@@ -43,37 +45,13 @@ public class LibraryController {
         Default.blurEffect(plusButton,plusEffect);
     }
     private ArrayList<StackPane> templateAlbums() {
-        ArrayList<String> features = new ArrayList<>();
-        features.add("21 Savage");
+        ArrayList<Integer> ids = DataBase.getDataBase().getAllAlbumsID();
         ArrayList<StackPane> albums = new ArrayList<>();
-        ListCell listCell1 = new ListCell(listView, Objects.requireNonNull(Main.class.getResource("cover-images/albums/ASTROWORLD.jpg")).toString(), "ASTROWORLD", "Travis Scott", null);
-        ListCell listCell2 = new ListCell(listView, Objects.requireNonNull(Main.class.getResource("cover-images/albums/Lost Souls.jpg")).toString(), "Lost Souls", "Vory", null);
-        ListCell listCell3 = new ListCell(listView, Objects.requireNonNull(Main.class.getResource("cover-images/albums/SMTHREENS.jpg")).toString(), "SMTHREENS", "Joji", null);
-        ListCell listCell4 = new ListCell(listView, Objects.requireNonNull(Main.class.getResource("cover-images/albums/Starboy.jpg")).toString(), "Starboy", "The Weeknd", null);
-        ListCell listCell5 = new ListCell(listView, Objects.requireNonNull(Main.class.getResource("cover-images/albums/The Off-Season.jpg")).toString(), "The Off-Season", "J.Cole", null);
-        ListCell listCell6 = new ListCell(listView, Objects.requireNonNull(Main.class.getResource("cover-images/albums/utopia.jpg")).toString(), "utopia", "Travis Scott", null);
-        ListCell listCell7 = new ListCell(listView, Objects.requireNonNull(Main.class.getResource("cover-images/albums/WholeLottaRed.jpg")).toString(), "WholeLottaRed", "Playboi Carti", null);
-        ListCell listCell8 = new ListCell(listView, Objects.requireNonNull(Main.class.getResource("cover-images/albums/ye.jpg")).toString(), "ye", "Travis Scott", null);
-        ListCell listCell9 = new ListCell(listView, Objects.requireNonNull(Main.class.getResource("cover-images/albums/NOT ALL HEROES WEAR CAPES.jpg")).toString(), "NOT ALL HEROES WEAR CAPES", "Metro Boomin", features);
-        albums.add(listCell1.getCell());
-        albums.add(listCell2.getCell());
-        albums.add(listCell3.getCell());
-        albums.add(listCell4.getCell());
-        albums.add(listCell5.getCell());
-        albums.add(listCell6.getCell());
-        albums.add(listCell7.getCell());
-        albums.add(listCell8.getCell());
-        albums.add(listCell9.getCell());
-
-        listCells.add(listCell1);
-        listCells.add(listCell2);
-        listCells.add(listCell3);
-        listCells.add(listCell4);
-        listCells.add(listCell5);
-        listCells.add(listCell6);
-        listCells.add(listCell7);
-        listCells.add(listCell8);
-        listCells.add(listCell9);
+        for(Integer id : ids) {
+            ListCell listCell = new ListCell(listView, DataBase.getDataBase().getAlbumCover(id), DataBase.getDataBase().getAlbumName(id), DataBase.getDataBase().getAlbumArtistName(id), DataBase.getDataBase().getAlbumFeaturesName(id));
+            albums.add(listCell.getCell());
+            listCells.add(listCell);
+        }
 
         return albums;
     }

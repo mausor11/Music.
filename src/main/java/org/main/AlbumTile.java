@@ -81,6 +81,9 @@ public class AlbumTile {
 
         Label titleCover = new Label(title);
         titleCover.getStyleClass().add("tileHomeText");
+        titleCover.setMaxWidth(150);
+        titleCover.setWrapText(true);
+        titleCover.setAlignment(Pos.CENTER);
 
         Label artistCover = new Label(artist);
         artistCover.getStyleClass().add("tileHomeTextSmall");

@@ -66,6 +66,44 @@ public class DataBase {
     }
 
     /* DATABASE Albums METHODS */
+    public ArrayList<Integer> getAllAlbumsID() {
+        ArrayList<Integer> allIDs = new ArrayList<>();
+
+        try {
+            if(connection.isClosed()) {
+                this.connection = DriverManager.getConnection(databaseURL);
+            }
+            String sql = "SELECT album_id FROM Albums";
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            while(resultSet.next()) {
+                allIDs.add(resultSet.getInt("album_id"));
+            }
+            connection.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return allIDs;
+    }
+    public ArrayList<Integer> getAllAlbumsFavourites() {
+        ArrayList<Integer> IDs = new ArrayList<>();
+        try {
+            if(connection.isClosed()) {
+                this.connection = DriverManager.getConnection(databaseURL);
+            }
+            String sql = "SELECT album_id FROM Albums WHERE album_favourite = true";
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            while(resultSet.next()) {
+                IDs.add(resultSet.getInt("album_id"));
+            }
+            connection.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return IDs;
+    }
+
     public int getAlbumID(String album_name) {
         int ID = 0;
         try {
@@ -630,6 +668,61 @@ public class DataBase {
         return true;
     }
 
+    public ArrayList<Integer> getAllPlaylistsID() {
+        ArrayList<Integer> IDs = new ArrayList<>();
+        try {
+            if(connection.isClosed()) {
+                this.connection = DriverManager.getConnection(databaseURL);
+            }
+            String sql = "SELECT playlist_id FROM Playlists";
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            while(resultSet.next()) {
+                IDs.add(resultSet.getInt("playlist_id"));
+            }
+            connection.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return IDs;
+    }
+    public String getPlaylistName(int ID) {
+        String playlistName = null;
+        try {
+            if(connection.isClosed()) {
+                this.connection = DriverManager.getConnection(databaseURL);
+            }
+            String sql = "SELECT playlist_name FROM Playlists WHERE playlist_id = " + ID;
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            while(resultSet.next()) {
+                playlistName = resultSet.getString("playlist_name");
+            }
+            connection.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return playlistName;
+    }
+    public String getPlaylistCoverURL(int ID) {
+        String playlistCover = null;
+        try {
+            if(connection.isClosed()) {
+                this.connection = DriverManager.getConnection(databaseURL);
+            }
+            String sql = "SELECT playlist_cover FROM Playlists WHERE playlist_id = " + ID;
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            while(resultSet.next()) {
+                playlistCover = resultSet.getString("playlist_cover");
+            }
+            connection.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return playlistCover;
+    }
 
     public static void main(String[] args) {
     }

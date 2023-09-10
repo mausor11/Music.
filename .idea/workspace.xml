@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="97349954-a434-4635-b7fb-6cf34beafa5e" name="Changes" comment="all section tiles done; todo: tracklist view" />
+    <list default="true" id="97349954-a434-4635-b7fb-6cf34beafa5e" name="Changes" comment="all section tiles done; todo: tracklist view">
+      <change afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/TracklistSectionController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/TracklistSection.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Music/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/AlbumTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/AlbumTile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/DataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/DataBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/HomeSectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/HomeSectionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/LibraryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/LibraryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Music/src/main/resources/org/main/MusicDataBase.accdb" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/MusicDataBase.accdb" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -126,6 +135,8 @@
       <workItem from="1694258507295" duration="198000" />
       <workItem from="1694258719635" duration="3204000" />
       <workItem from="1694262167171" duration="226000" />
+      <workItem from="1694278430968" duration="22000" />
+      <workItem from="1694375046836" duration="5767000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1692904219164</created>
@@ -316,7 +327,14 @@
       <option name="project" value="LOCAL" />
       <updated>1694262387720</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="all section tiles done; todo: tracklist view">
+      <created>1694278443235</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1694278443235</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
