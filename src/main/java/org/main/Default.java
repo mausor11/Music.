@@ -3,9 +3,12 @@ package org.main;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
@@ -37,6 +40,8 @@ public class Default {
     public final static Color BROWN_2 = Color.web("#937272");
     public final static Color BROWN_1 = Color.web("#A77979");
     public final static Color FONT_COLOR = Color.web("#E4CFCF");
+    public static BooleanProperty tileFocused = new SimpleBooleanProperty(true);
+    public static BooleanProperty libraryFocused = new SimpleBooleanProperty(false);
     public static StackPane homeView;
     static {
         try {

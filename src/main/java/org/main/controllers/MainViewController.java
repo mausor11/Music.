@@ -44,6 +44,8 @@ public class MainViewController {
     @FXML
     GridPane searchTile;
     @FXML
+    StackPane libraryTile;
+    @FXML
     Rectangle homeCover;
     @FXML
     Rectangle playlistCover;
@@ -51,6 +53,8 @@ public class MainViewController {
     Rectangle albumCover;
     @FXML
     Rectangle favouriteCover;
+    @FXML
+    Rectangle libraryCover;
     @FXML
     ImageView playButton;
     @FXML
@@ -91,7 +95,8 @@ public class MainViewController {
  * <p>1 - Playlists Tile</p>
  * <p>2 - Albums Tile</p>
  * <p>3 - Favourite Tile</p>
- * <p>4 - Settings Tile</p> **/
+ * <p>4 - Settings Tile</p>
+ * <p>5 - Library Tile</p> **/
     private int actualTile = 0;
     private int prevTile = 0;
     private final Rectangle searchCover = new Rectangle();
@@ -108,7 +113,14 @@ public class MainViewController {
         prepareCovers();
         setUpVolumeBar();
         newCoverImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("cover-images/albums/Starboy.jpg"))), "Starboy", "The Weeknd", templateFeatures());
-
+        setUpFocusedListener();
+    }
+    private void setUpFocusedListener() {
+        Default.tileFocused.addListener((observable, oldValue, newValue) -> {
+            if(!newValue) {
+                setLibraryTile();
+            }
+        });
     }
     private void setUpVolumeBar() {
         volumeBar.valueProperty().addListener((observable, oldValue, newValue) -> {
@@ -130,6 +142,19 @@ public class MainViewController {
         tileCover.add(albumCover);
         tileCover.add(favouriteCover);
         tileCover.add(searchCover);
+        tileCover.add(libraryCover);
+    }
+    public void setLibraryTile() {
+        if(actualTile != 5) {
+            actualTile = 5;
+            makeTileAnimation();
+            if(!mainSpace.getChildren().isEmpty()) {
+                mainSpace.getChildren().clear();
+            }
+            HomeSectionController.isBack.set(true);
+            mainSpace.getChildren().add(Default.homeView);
+            prevTile = actualTile;
+        }
     }
     public void setHomeTile() {
         if(actualTile != 0) {
@@ -141,6 +166,8 @@ public class MainViewController {
             HomeSectionController.isBack.set(true);
             mainSpace.getChildren().add(Default.homeView);
             prevTile = actualTile;
+            Default.libraryFocused.set(false);
+            Default.tileFocused.set(true);
         }
     }
     public void setPlaylistsTile() {
@@ -153,6 +180,8 @@ public class MainViewController {
             PlaylistSectionController.isBack.set(true);
             mainSpace.getChildren().add(Default.playlistView);
             prevTile = actualTile;
+            Default.libraryFocused.set(false);
+            Default.tileFocused.set(true);
         }
 
     }
@@ -166,6 +195,8 @@ public class MainViewController {
             AlbumSectionController.isBack.set(true);
             mainSpace.getChildren().add(Default.albumsView);
             prevTile = actualTile;
+            Default.libraryFocused.set(false);
+            Default.tileFocused.set(true);
         }
     }
     public void setFavouriteTile() {
@@ -173,16 +204,18 @@ public class MainViewController {
             actualTile = 3;
             makeTileAnimation();
             prevTile = actualTile;
+            Default.libraryFocused.set(false);
+            Default.tileFocused.set(true);
         }
     }
     public void setSearchTile() {
         if(!isSearchOn) {
-            double change = menu.getColumnConstraints().get(5).getMaxWidth() - menu.getColumnConstraints().get(5).getPrefWidth();
+            double change = menu.getColumnConstraints().get(6).getMaxWidth() - menu.getColumnConstraints().get(6).getPrefWidth();
             Timeline timeline = new Timeline(
+                    new KeyFrame(Duration.ZERO, new KeyValue(menu.getColumnConstraints().get(6).prefWidthProperty(), menu.getColumnConstraints().get(6).getPrefWidth())),
                     new KeyFrame(Duration.ZERO, new KeyValue(menu.getColumnConstraints().get(5).prefWidthProperty(), menu.getColumnConstraints().get(5).getPrefWidth())),
-                    new KeyFrame(Duration.ZERO, new KeyValue(menu.getColumnConstraints().get(4).prefWidthProperty(), menu.getColumnConstraints().get(4).getPrefWidth())),
-                    new KeyFrame(Duration.millis(100), new KeyValue(menu.getColumnConstraints().get(5).prefWidthProperty(), 200)),
-                    new KeyFrame(Duration.millis(100), new KeyValue(menu.getColumnConstraints().get(4).prefWidthProperty(), menu.getColumnConstraints().get(4).getPrefWidth() - change))
+                    new KeyFrame(Duration.millis(100), new KeyValue(menu.getColumnConstraints().get(6).prefWidthProperty(), 200)),
+                    new KeyFrame(Duration.millis(100), new KeyValue(menu.getColumnConstraints().get(5).prefWidthProperty(), menu.getColumnConstraints().get(5).getPrefWidth() - change))
             );
             timeline.play();
             searchTile.getStyleClass().remove("tileMenu");
@@ -191,9 +224,12 @@ public class MainViewController {
             actualTile = 4;
             makeTileAnimation();
             prevTile = actualTile;
+            Default.libraryFocused.set(false);
+            Default.tileFocused.set(true);
         }
 
     }
+
     private void makeTileAnimation() {
             if(prevTile < actualTile) {
                 StackPane.setAlignment(tileCover.get(prevTile), Pos.CENTER_RIGHT);
@@ -212,10 +248,10 @@ public class MainViewController {
                 searchTile.getStyleClass().add("tileMenu");
                 isSearchOn = false;
                 timeline.getKeyFrames().addAll(
+                        new KeyFrame(Duration.ZERO, new KeyValue(menu.getColumnConstraints().get(6).prefWidthProperty(), menu.getColumnConstraints().get(6).getPrefWidth())),
                         new KeyFrame(Duration.ZERO, new KeyValue(menu.getColumnConstraints().get(5).prefWidthProperty(), menu.getColumnConstraints().get(5).getPrefWidth())),
-                        new KeyFrame(Duration.ZERO, new KeyValue(menu.getColumnConstraints().get(4).prefWidthProperty(), menu.getColumnConstraints().get(4).getPrefWidth())),
-                        new KeyFrame(Duration.millis(100), new KeyValue(menu.getColumnConstraints().get(5).prefWidthProperty(), 100)),
-                        new KeyFrame(Duration.millis(100), new KeyValue(menu.getColumnConstraints().get(4).prefWidthProperty(), menu.getColumnConstraints().get(4).getPrefWidth() +100))
+                        new KeyFrame(Duration.millis(100), new KeyValue(menu.getColumnConstraints().get(6).prefWidthProperty(), 100)),
+                        new KeyFrame(Duration.millis(100), new KeyValue(menu.getColumnConstraints().get(5).prefWidthProperty(), menu.getColumnConstraints().get(5).getPrefWidth() +100))
                 );
             }
             timeline.play();

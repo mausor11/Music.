@@ -44,7 +44,8 @@
           <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" />
             <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" />
             <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="130.0" minWidth="10.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="610.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="130.0" minWidth="10.0" prefWidth="610.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="470.0" />
             <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="200.0" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
@@ -111,7 +112,22 @@
                   </HBox>
                </children>
             </StackPane>
-            <GridPane fx:id="searchTile" onMouseClicked="#setSearchTile" styleClass="tileMenu" GridPane.columnIndex="5">
+            <StackPane fx:id="libraryTile" onMouseClicked="#setFavouriteTile" opacity="0.0" styleClass="tileMenu" GridPane.columnIndex="4">
+               <children>
+                  <Rectangle fx:id="libraryCover" arcHeight="16.0" arcWidth="16.0" fill="DODGERBLUE" height="35.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="tileMenuCover" StackPane.alignment="CENTER_LEFT" />
+                  <HBox alignment="CENTER" minWidth="130.0" prefHeight="100.0" prefWidth="130.0" spacing="10.0">
+                     <children>
+                        <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/IconFavourite.png" />
+                           </image>
+                        </ImageView>
+                        <Label styleClass="tileMenuText" text="Favourite" />
+                     </children>
+                  </HBox>
+               </children>
+            </StackPane>
+            <GridPane fx:id="searchTile" onMouseClicked="#setSearchTile" styleClass="tileMenu" GridPane.columnIndex="6">
               <columnConstraints>
                 <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" />
                 <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" maxWidth="87.0" minWidth="10.0" prefWidth="78.0" />

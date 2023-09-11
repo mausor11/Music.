@@ -83,14 +83,8 @@ public class HomeSectionController {
         makeEffect(showAllPane2, showAllText2, showAllText2a, showAllText2Effect, isAlbums, gridSecond, albums);
         makeEffect(showAllPane3, showAllText3, showAllText3a, showAllText3Effect, isPlaylists, gridThird, playlists);
 
-//        makeListener(favourites, favouriteTiles);
-//        makeListener(albums, albumTiles);
-//        makeListener(playlists, playlistTiles);
-//
-//        makeEffect(showAllPane1, showAllText1, showAllText1a, showAllText1Effect);
-//        makeEffect(showAllPane2, showAllText2, showAllText2a, showAllText2Effect);
-//        makeEffect(showAllPane3, showAllText3, showAllText3a, showAllText3Effect);
     }
+
     private void makeTemplate(ArrayList<AlbumTile> covers) {
         if(covers.equals(favourites)) {
             ArrayList<Integer> ids = DataBase.getDataBase().getAllAlbumsFavourites();
