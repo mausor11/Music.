@@ -11,37 +11,39 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<StackPane fx:id="tracklistSection" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.main.controllers.TracklistSectionController">
+<StackPane fx:id="tracklistSection" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.main.controllers.TracklistSectionController">
    <children>
-      <ImageView fx:id="tracklistBackground" fitHeight="615.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true" />
-      <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0">
+      <ImageView fx:id="tracklistBackground" fitHeight="575.0" fitWidth="1000.0" pickOnBounds="true" />
+      <ScrollPane fx:id="sectionPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" styleClass="ScrollPane" vbarPolicy="NEVER">
          <StackPane.margin>
             <Insets bottom="20.0" top="20.0" />
          </StackPane.margin>
          <content>
-            <GridPane vgap="10.0">
+            <GridPane fx:id="mainGrid" vgap="10.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints maxHeight="200.0" minHeight="200.0" prefHeight="200.0" vgrow="NEVER" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
               </rowConstraints>
                <children>
                   <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                      <children>
                         <ImageView fx:id="coverImg" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                        <VBox alignment="BOTTOM_LEFT" maxHeight="105.0" prefHeight="200.0" prefWidth="100.0">
+                        <VBox alignment="BOTTOM_LEFT" maxHeight="105.0" prefHeight="200.0">
                            <children>
-                              <Label fx:id="titleLabel" text="Label" />
-                              <Label fx:id="infoLabel" text="Label" />
+                              <Label fx:id="titleLabel" styleClass="albumTitle" text="Label" />
+                              <Label fx:id="infoLabel" styleClass="albumInfo" text="Label" />
                            </children>
                         </VBox>
                      </children>
                   </HBox>
+                  <VBox fx:id="trackView" prefHeight="200.0" prefWidth="100.0" spacing="3.0" GridPane.rowIndex="1" />
                </children>
+               <padding>
+                  <Insets top="30.0" />
+               </padding>
             </GridPane>
          </content>
          <padding>

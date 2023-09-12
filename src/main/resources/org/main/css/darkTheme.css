@@ -206,4 +206,33 @@
     -fx-font-size: 16px;
     -fx-font-weight: 500;
 }
+.albumTitle {
+    -fx-text-fill: #E4CFCF;
+    -fx-font-family: 'Jost', sans-serif;
+    -fx-font-size: 45px;
+    -fx-font-weight: 600;
+}
+.albumInfo {
+    -fx-text-fill: #A77979;
+    -fx-font-family: 'Jost', sans-serif;
+    -fx-font-size: 16px;
+    -fx-font-weight: 400;
+}
+.trackCell {
+    -fx-background-color: #1c181866;
+    -fx-background-radius: 5;
+}
+.titleTrackCell {
+    -fx-text-fill: #E4CFCF;
+    -fx-font-family: 'Jost', sans-serif;
+    -fx-font-size: 14px;
+    -fx-font-weight: 400;
+}
+.indexTrackCell {
+    -fx-text-fill: #E4CFCF;
+    -fx-font-family: 'Jost', sans-serif;
+    -fx-font-size: 12px;
+    -fx-font-weight: 400;
+    -fx-opacity: 0.6;
+}
 

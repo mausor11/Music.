@@ -2,6 +2,7 @@ package org.main;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class DataBase {
     private Connection connection;
@@ -25,6 +26,24 @@ public class DataBase {
     }
     public Connection getConnection() {
         return this.connection;
+    }
+    public String getArtistName(int ID) {
+        String artistName = null;
+        try {
+            if(connection.isClosed()) {
+                this.connection = DriverManager.getConnection(databaseURL);
+            }
+            String sql = "SELECT artist_name FROM Artists WHERE artist_id = " + ID;
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            while(resultSet.next()) {
+                artistName = resultSet.getString("artist_name");
+            }
+            connection.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return artistName;
     }
     public void getAllString(String table, String column) {
         try {
@@ -346,6 +365,25 @@ public class DataBase {
         }
         return  isFavourite;
     }
+    public int getTrackAlbumIndex(int ID) {
+        int index = 0;
+        try {
+            if(connection.isClosed()) {
+                this.connection = DriverManager.getConnection(databaseURL);
+            }
+            String sql = "SELECT songAlbum_index FROM Songs WHERE song_id = " + ID;
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            while(resultSet.next()) {
+                index = resultSet.getInt("songAlbum_index");
+            }
+            connection.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return index;
+    }
     public ArrayList<String> getAlbumTracklistName(int ID) {
         ArrayList<String> tracklist = new ArrayList<>();
         try {
@@ -428,6 +466,7 @@ public class DataBase {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        Collections.sort(tracklist);
         return tracklist;
     }
     public ArrayList<Integer> getAlbumTracklistID(String album_name) {
@@ -590,7 +629,7 @@ public class DataBase {
         return features;
     }
     public Track getTrack(int ID) {
-        return new Track(ID,(Long) getTrackInfo(ID, "song_duration"), (Long) getTrackInfo(ID, "user_id"), (Long)getTrackInfo(ID, "artist_id"), (Long)getTrackInfo(ID, "genre_id"), (String)getTrackInfo(ID, "cover_link"), (String)getTrackInfo(ID, "song_name"), (Long)getTrackInfo(ID, "album_id"), (boolean)getTrackInfo(ID, "song_favourite"), (Long)getTrackInfo(ID, "playlist_id"), getTrackFeat(ID));
+        return new Track(getTrackAlbumIndex(ID), ID,(Long) getTrackInfo(ID, "song_duration"), (Long) getTrackInfo(ID, "user_id"), (Long)getTrackInfo(ID, "artist_id"), (Long)getTrackInfo(ID, "genre_id"), (String)getTrackInfo(ID, "cover_link"), (String)getTrackInfo(ID, "song_name"), (Long)getTrackInfo(ID, "album_id"), (boolean)getTrackInfo(ID, "song_favourite"), (Long)getTrackInfo(ID, "playlist_id"), getTrackFeat(ID));
     }
     public long getTrackID(String trackName, long trackArtist) {
         long trackID = 0;
@@ -723,6 +762,8 @@ public class DataBase {
         }
         return playlistCover;
     }
+
+
 
     public static void main(String[] args) {
     }

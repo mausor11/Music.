@@ -50,6 +50,7 @@ public class LibraryController {
             }
                 listCells.get(listView.getSelectionModel().getSelectedIndex()).setIsFocused(true);
                 prevCell = listView.getSelectionModel().getSelectedIndex();
+                Default.albumID.set(listCells.get(listView.getSelectionModel().getSelectedIndex()).getDataBaseID());
 
             }
 

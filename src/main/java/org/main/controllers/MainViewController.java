@@ -106,6 +106,7 @@ public class MainViewController {
     Default.StatusPlay buttonStatus = Default.StatusPlay.PAUSE;
     Default.StatusRepeat repeatStatus = Default.StatusRepeat.NONE;
 
+
     @FXML
     public void initialize() throws IOException {
         librarySpace.getChildren().add(new FXMLLoader(Main.class.getResource("fxml/LibrarySection.fxml")).load());
@@ -152,7 +153,7 @@ public class MainViewController {
                 mainSpace.getChildren().clear();
             }
             HomeSectionController.isBack.set(true);
-            mainSpace.getChildren().add(Default.homeView);
+            mainSpace.getChildren().add(Default.tracklistView);
             prevTile = actualTile;
         }
     }

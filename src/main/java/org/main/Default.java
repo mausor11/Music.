@@ -4,11 +4,14 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
@@ -42,6 +45,7 @@ public class Default {
     public final static Color FONT_COLOR = Color.web("#E4CFCF");
     public static BooleanProperty tileFocused = new SimpleBooleanProperty(true);
     public static BooleanProperty libraryFocused = new SimpleBooleanProperty(false);
+    public static IntegerProperty albumID = new SimpleIntegerProperty(0);
     public static StackPane homeView;
     static {
         try {
@@ -66,6 +70,14 @@ public class Default {
             e.printStackTrace();
         }
     }
+    public static StackPane tracklistView;
+    static {
+        try {
+            tracklistView = new FXMLLoader(Main.class.getResource("fxml/TracklistSection.fxml")).load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public static Scene mainViewScene;
     static {
         try {
@@ -75,6 +87,7 @@ public class Default {
             throw new RuntimeException(e);
         }
     }
+
     public static void resetMainViewScene() {
         try {
             mainViewScene = new Scene(new FXMLLoader(Default.class.getResource("fxml/MainView.fxml")).load());
@@ -118,7 +131,6 @@ public class Default {
         double VIEWPORT_WIDTH = (VIEWPORT_HEIGHT / background.getFitHeight()) * background.getFitWidth();
         double VIEWPORT_Y = 0;
         double VIEWPORT_X = (backgroundArt.getWidth() / 2) - (VIEWPORT_WIDTH / 2);
-
         return new Rectangle2D(VIEWPORT_X, VIEWPORT_Y, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
     }
 }

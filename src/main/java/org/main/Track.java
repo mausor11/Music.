@@ -1,8 +1,9 @@
 package org.main;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
-public class Track {
+public class Track implements Comparable<Track> {
     private long trackID;
     private long userID;
     private long artistID;
@@ -12,6 +13,7 @@ public class Track {
     private long albumID;
     private boolean isFavourite;
     private long playlistID;
+    private int trackIndex;
     private ArrayList<Integer> features;
 
     public long getTrackDuration() {
@@ -84,8 +86,11 @@ public class Track {
     public void setFeatures(ArrayList<Integer> features) {
         this.features = features;
     }
-
-    public Track(long trackID, long trackDuration, long userID, long artistID, long genreID, String coverLink, String trackName, long albumID, boolean isFavourite, long playlistID, ArrayList<Integer> features) {
+    public int getTrackIndex() {
+        return trackIndex;
+    }
+    public Track(int trackIndex, long trackID, long trackDuration, long userID, long artistID, long genreID, String coverLink, String trackName, long albumID, boolean isFavourite, long playlistID, ArrayList<Integer> features) {
+        this.trackIndex = trackIndex;
         this.trackID = trackID;
         this.userID = userID;
         this.artistID = artistID;
@@ -114,5 +119,10 @@ public class Track {
                 ", playlistID=" + playlistID +
                 ", features=" + features +
                 '}' + "\n";
+    }
+
+    @Override
+    public int compareTo(Track o) {
+        return trackIndex - o.getTrackIndex();
     }
 }
