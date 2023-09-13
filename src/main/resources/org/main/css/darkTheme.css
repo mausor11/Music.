@@ -102,12 +102,14 @@
 }
 .listView {
     -fx-background-color: transparent;
+    -fx-background: transparent;
 }
 .listView .list-view {
     -fx-background-color: transparent;
 }
 .listView .list-cell {
     -fx-background-color: transparent;
+    -fx-padding: 0 0 3 0;
 }
 .list-view .scroll-bar {
     -fx-background-color: transparent;
@@ -219,7 +221,7 @@
     -fx-font-weight: 400;
 }
 .trackCell {
-    -fx-background-color: #1c181866;
+    -fx-background-color: #1D1919;
     -fx-background-radius: 5;
 }
 .titleTrackCell {
@@ -233,6 +235,5 @@
     -fx-font-family: 'Jost', sans-serif;
     -fx-font-size: 12px;
     -fx-font-weight: 400;
-    -fx-opacity: 0.6;
 }
 

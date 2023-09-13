@@ -1,6 +1,7 @@
 package org.main.controllers;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
@@ -29,12 +30,13 @@ public class TracklistSectionController {
     @FXML
     ScrollPane sectionPane;
     @FXML
-    VBox trackView;
+    ListView<StackPane> trackView;
     @FXML
     GridPane mainGrid;
     private ScrollPane section;
     private ImageView background;
     private Image cover;
+    private ArrayList<TrackCell> trackCells = new ArrayList<>();
     public void initialize() {
         Default.albumID.addListener((observable, oldValue, newValue) -> {
             if(newValue.intValue() != 0) {
@@ -95,14 +97,16 @@ public class TracklistSectionController {
         background.setViewport(Default.setViewportSquare(cover, background));
     }
     private void prepareTracklist(ArrayList<Track> tracklist) throws IOException {
-        if(!trackView.getChildren().isEmpty()) {
-            trackView.getChildren().clear();
+        if(!trackView.getItems().isEmpty()) {
+            trackView.getItems().clear();
+            trackCells.clear();
         }
         for(Track track : tracklist) {
             TrackCell trackCell = new TrackCell(track);
-            trackView.getChildren().add(trackCell.getCell());
+            trackView.getItems().add(trackCell.getCell());
+            trackCells.add(trackCell);
         }
-        mainGrid.getRowConstraints().get(1).setMinHeight(30*tracklist.size() + 3*(tracklist.size()-1));
+        mainGrid.getRowConstraints().get(1).setMinHeight(30*tracklist.size() + 3*(tracklist.size()+1));
     }
 
 }

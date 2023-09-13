@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -16,7 +17,7 @@
       <ImageView fx:id="tracklistBackground" fitHeight="575.0" fitWidth="1000.0" pickOnBounds="true" />
       <ScrollPane fx:id="sectionPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" styleClass="ScrollPane" vbarPolicy="NEVER">
          <StackPane.margin>
-            <Insets bottom="20.0" top="20.0" />
+            <Insets top="20.0" />
          </StackPane.margin>
          <content>
             <GridPane fx:id="mainGrid" vgap="10.0">
@@ -38,17 +39,17 @@
                            </children>
                         </VBox>
                      </children>
+                     <GridPane.margin>
+                        <Insets left="8.0" />
+                     </GridPane.margin>
                   </HBox>
-                  <VBox fx:id="trackView" prefHeight="200.0" prefWidth="100.0" spacing="3.0" GridPane.rowIndex="1" />
+                  <ListView fx:id="trackView" centerShape="false" scaleShape="false" styleClass="listView" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
                </children>
                <padding>
-                  <Insets top="30.0" />
+                  <Insets left="42.0" right="42.0" top="30.0" />
                </padding>
             </GridPane>
          </content>
-         <padding>
-            <Insets left="50.0" right="50.0" />
-         </padding>
       </ScrollPane>
    </children>
 </StackPane>
