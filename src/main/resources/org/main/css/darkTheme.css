@@ -230,6 +230,12 @@
     -fx-font-size: 14px;
     -fx-font-weight: 400;
 }
+.titleTrackCellFocused {
+    -fx-text-fill: #A77979;
+    -fx-font-family: 'Jost', sans-serif;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+}
 .indexTrackCell {
     -fx-text-fill: #E4CFCF;
     -fx-font-family: 'Jost', sans-serif;

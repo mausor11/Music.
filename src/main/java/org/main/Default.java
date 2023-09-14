@@ -87,7 +87,8 @@ public class Default {
             throw new RuntimeException(e);
         }
     }
-
+    public static long actualTrackID = -1;
+    public static long prevTrackID = -1;
     public static void resetMainViewScene() {
         try {
             mainViewScene = new Scene(new FXMLLoader(Default.class.getResource("fxml/MainView.fxml")).load());

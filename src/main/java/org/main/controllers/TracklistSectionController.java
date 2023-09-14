@@ -37,6 +37,9 @@ public class TracklistSectionController {
     private ImageView background;
     private Image cover;
     private ArrayList<TrackCell> trackCells = new ArrayList<>();
+    private TrackCell prevTrackCell = null;
+    private long trackID = -1;
+    private ArrayList<TrackCell> prevTrackCells = null;
     public void initialize() {
         Default.albumID.addListener((observable, oldValue, newValue) -> {
             if(newValue.intValue() != 0) {
@@ -103,10 +106,26 @@ public class TracklistSectionController {
         }
         for(Track track : tracklist) {
             TrackCell trackCell = new TrackCell(track);
+            if(trackCell.getTrack().getTrackID() == Default.actualTrackID) {
+                prevTrackCell = trackCell;
+            }
             trackView.getItems().add(trackCell.getCell());
             trackCells.add(trackCell);
         }
+
+
         mainGrid.getRowConstraints().get(1).setMinHeight(30*tracklist.size() + 3*(tracklist.size()+1));
+        trackView.setOnMouseClicked(event -> {
+            if(event.getClickCount() == 2) {
+                if(prevTrackCell != null) {
+                    prevTrackCell.setOnStopPlay();
+                }
+                Default.actualTrackID = trackCells.get(trackView.getSelectionModel().getSelectedIndex()).getTrack().getTrackID();
+                trackCells.get(trackView.getSelectionModel().getSelectedIndex()).setOnPlay();
+                prevTrackCell = trackCells.get(trackView.getSelectionModel().getSelectedIndex());
+            }
+
+        });
     }
 
 }
