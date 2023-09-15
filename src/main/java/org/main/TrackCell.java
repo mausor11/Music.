@@ -7,7 +7,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -21,13 +20,14 @@ import java.util.Objects;
 public class TrackCell {
     private int PREF_WIDTH = 903;
     private int PREF_HEIGHT = 30;
-    private double animationTime = 150;
+    private final double animationTime = 150;
     private StackPane cell;
     private GridPane info;
     private StackPane background;
+    private StackPane indexPane;
     private Track track;
     private Label title;
-    private boolean isFocus = false;
+    private boolean isPlay = false;
     private Label index;
     private ImageView playIcon;
     private boolean isFirst = false;
@@ -48,7 +48,7 @@ public class TrackCell {
         background.getStyleClass().add("trackCell");
         if(Default.actualTrackID == track.getTrackID()) {
             background.setOpacity(0.8);
-            isFocus = true;
+            isPlay = true;
         } else {
             background.setOpacity(0.4);
         }
@@ -73,7 +73,7 @@ public class TrackCell {
         playIcon.setFitWidth(10);
         StackPane.setAlignment(playIcon, Pos.CENTER_RIGHT);
 
-        StackPane indexPane = new StackPane();
+        indexPane = new StackPane();
         indexPane.getChildren().addAll(index, playIcon);
 
         title = new Label(track.getTrackName());
@@ -124,7 +124,7 @@ public class TrackCell {
     }
     private void addListener() {
         cell.setOnMouseEntered(enterEvent -> {
-            if(!isFocus) {
+            if(!isPlay) {
                 Timeline enterAnimation = new Timeline(
                         new KeyFrame(Duration.ZERO, new KeyValue(background.opacityProperty(), background.getOpacity())),
                         new KeyFrame(Duration.ZERO, new KeyValue(playIcon.opacityProperty(), playIcon.getOpacity())),
@@ -153,7 +153,7 @@ public class TrackCell {
 
         });
         cell.setOnMouseExited(exitEvent -> {
-            if(!isFocus) {
+            if(!isPlay) {
                 Timeline exitAnimation = new Timeline(
                         new KeyFrame(Duration.ZERO, new KeyValue(background.opacityProperty(), background.getOpacity())),
                         new KeyFrame(Duration.ZERO, new KeyValue(playIcon.opacityProperty(), playIcon.getOpacity())),
@@ -185,11 +185,24 @@ public class TrackCell {
 
             }
         });
+        indexPane.setOnMouseEntered(event -> {
+            if(isPlay) {
+                playIcon.setImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("icons/PauseIcon.png"))));
+            }
+        });
+        indexPane.setOnMouseExited(event2 -> {
+            if(isPlay) {
+                playIcon.setImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("icons/PlayFocusGif.gif"))));
+            }
+        });
+        indexPane.setOnMouseClicked(event3 -> {
+            setOnPause();
+        });
 
     }
     public void setOnPlay() {
-        if(!isFocus) {
-            isFocus = true;
+        if(!isPlay) {
+            isPlay = true;
             isFirst = true;
             title.getStyleClass().clear();
             title.getStyleClass().add("titleTrackCellFocused");
@@ -219,8 +232,8 @@ public class TrackCell {
 
     }
     public void setOnStopPlay() {
-            if(isFocus) {
-                isFocus = false;
+            if(isPlay) {
+                isPlay = false;
                 playIcon.setImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("icons/PlayIcon.png"))));
                 title.getStyleClass().clear();
                 title.getStyleClass().add("titleTrackCell");
@@ -236,8 +249,13 @@ public class TrackCell {
                 );
                 endFocusAnimation.play();
             }
-
-
+    }
+    public void setOnPause() {
+        if(isPlay) {
+            playIcon.setImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("icons/PlayIcon.png"))));
+            title.getStyleClass().clear();
+            title.getStyleClass().add("titleTrackCell");
+        }
     }
 
 }
