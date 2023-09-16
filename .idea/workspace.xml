@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="97349954-a434-4635-b7fb-6cf34beafa5e" name="Changes" comment="tracklist click animation">
+    <list default="true" id="97349954-a434-4635-b7fb-6cf34beafa5e" name="Changes" comment="double click + click on icon">
       <change beforePath="$PROJECT_DIR$/../Music/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/TrackCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/TrackCell.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,6 +137,10 @@
       <workItem from="1694631058050" duration="11337000" />
       <workItem from="1694697441576" duration="1959000" />
       <workItem from="1694722131901" duration="192000" />
+      <workItem from="1694787170894" duration="640000" />
+      <workItem from="1694884768260" duration="5000" />
+      <workItem from="1694884872610" duration="91000" />
+      <workItem from="1694884980363" duration="8000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1692904219164</created>
@@ -370,7 +373,14 @@
       <option name="project" value="LOCAL" />
       <updated>1694650031781</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="double click + click on icon">
+      <created>1694787206764</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1694787206764</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -388,7 +398,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="tileMenu + searchTile works" />
     <MESSAGE value="play button animation" />
     <MESSAGE value="play controlls animations" />
     <MESSAGE value="volume bar + maximize icon" />
@@ -413,6 +422,7 @@
     <MESSAGE value="tracklist view" />
     <MESSAGE value="tracklist hover animation" />
     <MESSAGE value="tracklist click animation" />
-    <option name="LAST_COMMIT_MESSAGE" value="tracklist click animation" />
+    <MESSAGE value="double click + click on icon" />
+    <option name="LAST_COMMIT_MESSAGE" value="double click + click on icon" />
   </component>
 </project>

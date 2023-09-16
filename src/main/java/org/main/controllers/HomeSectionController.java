@@ -12,11 +12,8 @@ import javafx.scene.layout.*;
 import javafx.util.Duration;
 import org.main.AlbumTile;
 import org.main.DataBase;
-import org.main.Main;
-import org.main.AlbumTile;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class HomeSectionController {
     @FXML
