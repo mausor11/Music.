@@ -28,6 +28,7 @@ public class TrackCell {
     private Track track;
     private Label title;
     private boolean isPlay = false;
+    private boolean isPause = false;
     private Label index;
     private ImageView playIcon;
     private boolean isFirst = false;
@@ -142,6 +143,7 @@ public class TrackCell {
                 );
                 setPlayAnimation.play();
                 setPlayAnimation.setOnFinished(changeIcon -> {
+
                     playIcon.setImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("icons/PauseIcon.png"))));
                     Timeline setPlayAnimation2 = new Timeline(
                             new KeyFrame(Duration.ZERO, new KeyValue(playIcon.opacityProperty(), playIcon.getOpacity())),
@@ -255,6 +257,7 @@ public class TrackCell {
             playIcon.setImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("icons/PlayIcon.png"))));
             title.getStyleClass().clear();
             title.getStyleClass().add("titleTrackCell");
+            isPause = true;
         }
     }
 
