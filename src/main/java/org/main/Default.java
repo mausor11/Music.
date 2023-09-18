@@ -86,6 +86,7 @@ public class Default {
         }
     }
     public static long actualTrackID = -1;
+    public static long actualPauseTrackID = -1;
     public static long prevTrackID = -1;
     public static void resetMainViewScene() {
         try {

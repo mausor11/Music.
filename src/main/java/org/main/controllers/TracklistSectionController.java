@@ -115,12 +115,23 @@ public class TracklistSectionController {
         mainGrid.getRowConstraints().get(1).setMinHeight(30*tracklist.size() + 3*(tracklist.size()+1));
         trackView.setOnMouseClicked(event -> {
             if(event.getClickCount() == 2) {
-                if(prevTrackCell != null) {
-                    prevTrackCell.setOnStopPlay();
+                if(!trackCells.get(trackView.getSelectionModel().getSelectedIndex()).isPlay()) {
+                    if(prevTrackCell != null) {
+                        if(prevTrackCell == trackCells.get(trackView.getSelectionModel().getSelectedIndex())) {
+                            prevTrackCell.setOnStopPause();
+                        } else {
+                            prevTrackCell.setOnStopPlay();
+                        }
+                    }
+                    Default.actualTrackID = trackCells.get(trackView.getSelectionModel().getSelectedIndex()).getTrack().getTrackID();
+                    trackCells.get(trackView.getSelectionModel().getSelectedIndex()).setOnPlay();
+                    prevTrackCell = trackCells.get(trackView.getSelectionModel().getSelectedIndex());
+                    Default.actualPauseTrackID = -1;
+                } else {
+                    Default.actualPauseTrackID = trackCells.get(trackView.getSelectionModel().getSelectedIndex()).getTrack().getTrackID();
+                    trackCells.get(trackView.getSelectionModel().getSelectedIndex()).setOnPause();
                 }
-                Default.actualTrackID = trackCells.get(trackView.getSelectionModel().getSelectedIndex()).getTrack().getTrackID();
-                trackCells.get(trackView.getSelectionModel().getSelectedIndex()).setOnPlay();
-                prevTrackCell = trackCells.get(trackView.getSelectionModel().getSelectedIndex());
+
             }
 
         });
