@@ -15,6 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
+import org.main.DataBase;
 import org.main.Default;
 import org.main.Main;
 
@@ -105,16 +106,29 @@ public class MainViewController {
     private boolean isShuffle = false;
     Default.StatusPlay buttonStatus = Default.StatusPlay.PAUSE;
     Default.StatusRepeat repeatStatus = Default.StatusRepeat.NONE;
-
+    @FXML
+    public Label featLabel;
 
     @FXML
     public void initialize() throws IOException {
         librarySpace.getChildren().add(new FXMLLoader(Main.class.getResource("fxml/LibrarySection.fxml")).load());
         mainSpace.getChildren().add(Default.homeView);
+        Default.mainSpace = mainSpace;
         prepareCovers();
         setUpVolumeBar();
-        newCoverImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("cover-images/albums/Starboy.jpg"))), "Starboy", "The Weeknd", templateFeatures());
+        setNewCoverArt();
         setUpFocusedListener();
+    }
+    private void setNewCoverArt() {
+        Default.isNewTrackCover.addListener(((observableValue, aBoolean, t1) -> {
+            if(t1) {
+                if(Default.actualTrack != null) {
+                    newCoverImage(new Image(Default.actualTrack.getCoverLink()), Default.actualTrack.getTrackName(), DataBase.getDataBase().getArtistName((int)Default.actualTrack.getArtistID()), DataBase.getDataBase().getTrackFeatNames((int)Default.actualTrackID));
+                    Default.isNewTrackCover.set(false);
+                }
+
+            }
+        }));
     }
     private void setUpFocusedListener() {
         Default.tileFocused.addListener((observable, oldValue, newValue) -> {
@@ -491,15 +505,20 @@ public class MainViewController {
     private void newCoverImage(Image image, String title, String artist, ArrayList<String> features) {
         createBackgroundCover(image);
         createCoverIcon(image);
+        if(!titleLabel.getText().isEmpty()) {
+            titleLabel.setText("");
+        }
+        if(!artistLabel.getText().isEmpty()) {
+            artistLabel.setText("");
+        }
+        if(!featLabel.getText().isEmpty()) {
+            featLabel.setText("");
+        }
         titleLabel.setText(title);
         artistLabel.setText(artist);
         if(features != null) {
             for(String feat : features) {
-                Label dotLabel = new Label(" • ");
-                Label featLabel = new Label(feat);
-                featLabel.getStyleClass().add("artistLabel");
-                dotLabel.getStyleClass().add("dotLabel");
-                artistBox.getChildren().addAll(dotLabel, featLabel);
+                featLabel.setText(featLabel.getText() + Default.dot + feat);
             }
         }
     }

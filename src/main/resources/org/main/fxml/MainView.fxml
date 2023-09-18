@@ -338,6 +338,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
+                              <Label fx:id="featLabel" styleClass="artistLabel" />
                            </children>
                         </HBox>
                      </children>

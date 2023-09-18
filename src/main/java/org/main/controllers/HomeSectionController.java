@@ -86,19 +86,19 @@ public class HomeSectionController {
         if(covers.equals(favourites)) {
             ArrayList<Integer> ids = DataBase.getDataBase().getAllAlbumsFavourites();
             for(Integer id : ids) {
-                AlbumTile albumTile = new AlbumTile(181, 211, DataBase.getDataBase().getAlbumName(id), DataBase.getDataBase().getAlbumArtistName(id), DataBase.getDataBase().getAlbumFeaturesName(id), DataBase.getDataBase().getAlbumCover(id));
+                AlbumTile albumTile = new AlbumTile(true, id, 181, 211, DataBase.getDataBase().getAlbumName(id), DataBase.getDataBase().getAlbumArtistName(id), DataBase.getDataBase().getAlbumFeaturesName(id), DataBase.getDataBase().getAlbumCover(id));
                 covers.add(albumTile);
             }
         } else if(covers.equals(albums)){
             ArrayList<Integer> ids = DataBase.getDataBase().getAllAlbumsID();
             for(Integer id : ids) {
-                AlbumTile albumTile = new AlbumTile(181, 211, DataBase.getDataBase().getAlbumName(id), DataBase.getDataBase().getAlbumArtistName(id), DataBase.getDataBase().getAlbumFeaturesName(id), DataBase.getDataBase().getAlbumCover(id));
+                AlbumTile albumTile = new AlbumTile(true, id, 181, 211, DataBase.getDataBase().getAlbumName(id), DataBase.getDataBase().getAlbumArtistName(id), DataBase.getDataBase().getAlbumFeaturesName(id), DataBase.getDataBase().getAlbumCover(id));
                 covers.add(albumTile);
             }
         } else {
             ArrayList<Integer> ids = DataBase.getDataBase().getAllPlaylistsID();
             for(Integer id : ids) {
-                AlbumTile albumTile = new AlbumTile(181, 211, DataBase.getDataBase().getPlaylistName(id), null, null, DataBase.getDataBase().getPlaylistCoverURL(id));
+                AlbumTile albumTile = new AlbumTile(false, id, 181, 211, DataBase.getDataBase().getPlaylistName(id), null, null, DataBase.getDataBase().getPlaylistCoverURL(id));
                 covers.add(albumTile);
             }
         }

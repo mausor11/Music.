@@ -141,6 +141,42 @@ public class DataBase {
         }
         return ID;
     }
+    public int getAlbumCell(int ID) {
+        int cellID = 0;
+        try {
+            if(connection.isClosed()) {
+                this.connection = DriverManager.getConnection(databaseURL);
+            }
+            String sql = "SELECT cell_id FROM Albums WHERE album_id = " + ID;
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            while(resultSet.next()) {
+                cellID = resultSet.getInt("cell_id");
+            }
+            connection.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return cellID;
+    }
+    public int getPlaylistCell(int ID) {
+        int cellID = 0;
+        try {
+            if(connection.isClosed()) {
+                this.connection = DriverManager.getConnection(databaseURL);
+            }
+            String sql = "SELECT cell_id FROM Playlists WHERE playlist_id = " + ID;
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            while(resultSet.next()) {
+                cellID = resultSet.getInt("cell_id");
+            }
+            connection.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return cellID;
+    }
     public int getAlbumID(String album_name, long artist_id) {
         int ID = 0;
         try {
@@ -447,6 +483,25 @@ public class DataBase {
         }
         return tracklist;
     }
+    public String getAlbumType(int ID) {
+        String type = null;
+        try {
+            if(connection.isClosed()) {
+                this.connection = DriverManager.getConnection(databaseURL);
+            }
+            String sql = "SELECT type FROM Albums WHERE album_id = " + ID;
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            while(resultSet.next()) {
+                type = resultSet.getString("type");
+            }
+            connection.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return type;
+    }
     public ArrayList<Track> getAlbumTracklist(int ID) {
         ArrayList<Track> tracklist = new ArrayList<>();
         try {
@@ -454,6 +509,28 @@ public class DataBase {
                 this.connection = DriverManager.getConnection(databaseURL);
             }
             String sql = "SELECT song_id FROM Songs WHERE album_id = " + ID;
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            while(resultSet.next()) {
+                tracklist.add(getTrack(resultSet.getInt("song_id")));
+            }
+
+
+            connection.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        Collections.sort(tracklist);
+        return tracklist;
+    }
+    public ArrayList<Track> getPlaylistTracklist(int ID) {
+        ArrayList<Track> tracklist = new ArrayList<>();
+        try {
+            if(connection.isClosed()) {
+                this.connection = DriverManager.getConnection(databaseURL);
+            }
+            String sql = "SELECT song_id FROM Songs WHERE playlist_id = " + ID;
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
             while(resultSet.next()) {
@@ -627,6 +704,20 @@ public class DataBase {
             throw new RuntimeException(e);
         }
         return features;
+    }
+    public ArrayList<String> getTrackFeatNames(int ID) {
+        ArrayList<Integer> features = getTrackFeat(ID);
+        ArrayList<String> featNames = new ArrayList<>();
+        try {
+            for(Integer feat : features) {
+                featNames.add(getArtistName(feat));
+            }
+            connection.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return featNames;
     }
     public Track getTrack(int ID) {
         return new Track(getTrackAlbumIndex(ID), ID,(Long) getTrackInfo(ID, "song_duration"), (Long) getTrackInfo(ID, "user_id"), (Long)getTrackInfo(ID, "artist_id"), (Long)getTrackInfo(ID, "genre_id"), (String)getTrackInfo(ID, "cover_link"), (String)getTrackInfo(ID, "song_name"), (Long)getTrackInfo(ID, "album_id"), (boolean)getTrackInfo(ID, "song_favourite"), (Long)getTrackInfo(ID, "playlist_id"), getTrackFeat(ID));

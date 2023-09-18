@@ -28,7 +28,9 @@ public class ListCell {
     private int dataBaseID;
     private final ListView<StackPane> listView;
     private boolean isFocused = false;
-    public ListCell(ListView<StackPane> listView, int dataBaseID, String coverURL, String title, String artist, ArrayList<String> features) {
+    private int type = -1;
+    public ListCell(int type, ListView<StackPane> listView, int dataBaseID, String coverURL, String title, String artist, ArrayList<String> features) {
+        this.type = type;
         Image coverImgRaw = new Image(Objects.requireNonNull(coverURL));
         this.listView = listView;
         this.dataBaseID = dataBaseID;
@@ -50,8 +52,8 @@ public class ListCell {
         listView.widthProperty().addListener((observable, oldValue, newValue) -> cellBox.setPrefWidth(newValue.doubleValue() - 20.0));
 
     }
-    public boolean isFocused(){
-        return isFocused;
+    public int type(){
+        return type;
     }
     public int getDataBaseID() {
         return dataBaseID;

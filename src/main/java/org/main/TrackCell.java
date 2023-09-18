@@ -33,15 +33,18 @@ public class TrackCell {
     private ImageView playIcon;
     private boolean isFirst = false;
 
-    public TrackCell(Track track) throws IOException {
+    public TrackCell(Track track, int index) throws IOException {
         this.track = track;
-        prepareCell();
+        prepareCell(index);
     }
 
     public boolean isPlay() {
         return isPlay;
     }
-    private void prepareCell() throws IOException {
+    public String getCoverURL() {
+        return track.getCoverLink();
+    }
+    private void prepareCell(int indexNum) throws IOException {
         cell = new StackPane();
         cell.setPrefWidth(PREF_WIDTH);
         cell.setPrefHeight(PREF_HEIGHT);
@@ -65,7 +68,7 @@ public class TrackCell {
         }
         info = new FXMLLoader(Main.class.getResource("fxml/TrackCell.fxml")).load();
 
-        index = new Label(track.getTrackIndex() + " ");
+        index = new Label(indexNum + " ");
         index.setMinWidth(30);
         index.setAlignment(Pos.CENTER_RIGHT);
         index.getStyleClass().add("indexTrackCell");

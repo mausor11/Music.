@@ -17,6 +17,9 @@ import javafx.util.Duration;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import static org.main.Default.mainSpace;
+import static org.main.controllers.LibraryController.*;
+
 public class AlbumTile {
     private final Image coverImage;
     private final String artist;
@@ -29,13 +32,18 @@ public class AlbumTile {
     private VBox infoBox;
     private double imgWidth;
     private double imgHeight;
-    public AlbumTile(double width, double height, String title, String artist, ArrayList<String> features, String coverURL) {
+    private long albumID;
+    private boolean isAlbum = false;
+
+    public AlbumTile(boolean isAlbum, long albumID, double width, double height, String title, String artist, ArrayList<String> features, String coverURL) {
+        this.albumID = albumID;
         coverImage = new Image(Objects.requireNonNull(coverURL));
         this.title = title;
         this.artist = artist;
         this.features = features;
         this.imgWidth = width;
         this.imgHeight = height;
+        this.isAlbum = isAlbum;
         makeCover();
     }
     public AlbumTile(boolean isAlbumSection, double width, double height, String title, String artist, ArrayList<String> features, String coverURL) {
@@ -192,6 +200,23 @@ public class AlbumTile {
                         new KeyFrame(Duration.millis(200), new KeyValue(gaussianBlur.radiusProperty(), 0))
                 );
                 timeline2.play();
+            });
+            coverArt.setOnMouseClicked(event3 -> {
+                if(isAlbum) {
+                    Default.Type = 0;
+                } else {
+                    Default.Type = 1;
+                }
+                Default.albumID.set((int)albumID);
+                if(!mainSpace.getChildren().isEmpty()) {
+                    mainSpace.getChildren().clear();
+                }
+                mainSpace.getChildren().add(Default.tracklistView);
+                if(isAlbum) {
+                    setListView(DataBase.getDataBase().getAlbumCell((int)albumID));
+                } else {
+                    setListView(DataBase.getDataBase().getPlaylistCell((int)albumID));
+                }
             });
         });
     }

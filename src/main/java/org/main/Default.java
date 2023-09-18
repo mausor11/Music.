@@ -31,6 +31,13 @@ public class Default {
     public final static int MIN_WIDTH = 1320;
     public enum StatusPlay {PLAY, PAUSE}
     public enum StatusRepeat {NONE, REPEAT, REPEAT_HEAVY}
+
+    /**
+     * -1 - none
+     * 0 - album
+     * 1 - playlis
+     */
+    public static int Type = -1;
     public final static int MIN_HEIGHT = 815;
 /** Dark Theme Colors **/
     public final static Color BACKGROUND_COLOR = Color.web("#030303");
@@ -41,6 +48,8 @@ public class Default {
     public final static Color BROWN_2 = Color.web("#937272");
     public final static Color BROWN_1 = Color.web("#A77979");
     public final static Color FONT_COLOR = Color.web("#E4CFCF");
+    public static BooleanProperty isNewTrackCover = new SimpleBooleanProperty(false);
+
     public static BooleanProperty tileFocused = new SimpleBooleanProperty(true);
     public static BooleanProperty libraryFocused = new SimpleBooleanProperty(false);
     public static IntegerProperty albumID = new SimpleIntegerProperty(0);
@@ -85,8 +94,10 @@ public class Default {
             throw new RuntimeException(e);
         }
     }
+    public static StackPane mainSpace;
     public static long actualTrackID = -1;
     public static long actualPauseTrackID = -1;
+    public static Track actualTrack = null;
     public static long prevTrackID = -1;
     public static void resetMainViewScene() {
         try {

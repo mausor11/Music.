@@ -1,5 +1,7 @@
 package org.main.controllers;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -38,16 +40,27 @@ public class TracklistSectionController {
     private TrackCell prevTrackCell = null;
     private long trackID = -1;
     private ArrayList<TrackCell> prevTrackCells = null;
+    public static BooleanProperty isChange = new SimpleBooleanProperty(false);
     public void initialize() {
-        Default.albumID.addListener((observable, oldValue, newValue) -> {
-            if(newValue.intValue() != 0) {
-                //todo: add database album type
-                try {
-                    initializeSection("Album", DataBase.getDataBase().getAlbumName(newValue.intValue()), DataBase.getDataBase().getAlbumArtistName(newValue.intValue()), DataBase.getDataBase().getAlbumFeaturesName(newValue.intValue()), DataBase.getDataBase().getAlbumCover(newValue.intValue()), DataBase.getDataBase().getAlbumTracklist(newValue.intValue()));
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
+        isChange.addListener((observable, oldValue, newValue) -> {
+            if(newValue) {
+                if(Default.albumID.get() != 0) {
+                    //todo: add database album type
+                    try {
+                        if(Default.Type == 0) {
+                            initializeSection(DataBase.getDataBase().getAlbumType(Default.albumID.get()), DataBase.getDataBase().getAlbumName(Default.albumID.get()), DataBase.getDataBase().getAlbumArtistName(Default.albumID.get()), DataBase.getDataBase().getAlbumFeaturesName(Default.albumID.get()), DataBase.getDataBase().getAlbumCover(Default.albumID.get()), DataBase.getDataBase().getAlbumTracklist(Default.albumID.get()));
+                            Default.Type = -1;
+                        } else if (Default.Type == 1) {
+                            initializeSection("Playlist", DataBase.getDataBase().getPlaylistName(Default.albumID.get()), DataBase.getDataBase().getAlbumUserName(Default.albumID.get()), null, DataBase.getDataBase().getPlaylistCoverURL(Default.albumID.get()), DataBase.getDataBase().getPlaylistTracklist(Default.albumID.get()));
+                            Default.Type = -1;
+                        }
+                        isChange.set(false);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             }
+
         });
         StageHolder.getPrimaryStage().widthProperty().addListener(((observableValue, number, t1) -> {
             resizeBackground(t1.doubleValue() - 317, StageHolder.getPrimaryStage().getHeight() - 240);
@@ -59,11 +72,22 @@ public class TracklistSectionController {
     }
     private void initializeSection(String type, String title, String artist, ArrayList<String> features, String imgURL, ArrayList<Track> tracklist) throws IOException {
         titleLabel.setText(title);
-        infoLabel.setText(type + Default.dot + artist);
+        if(type != null) {
+            infoLabel.setText(type);
+        } else {
+            infoLabel.setText("");
+        }
+        if(artist != null) {
+            infoLabel.setText(infoLabel.getText() + Default.dot + artist);
+        } else {
+            infoLabel.setText(infoLabel.getText() + "");
+        }
         if(features != null) {
             for(String feat : features) {
                 infoLabel.setText(infoLabel.getText() + Default.dot + feat);
             }
+        }else {
+            infoLabel.setText(infoLabel.getText() + "");
         }
         prepareCover(imgURL);
         section = sectionPane;
@@ -102,13 +126,15 @@ public class TracklistSectionController {
             trackView.getItems().clear();
             trackCells.clear();
         }
+        int index = 1;
         for(Track track : tracklist) {
-            TrackCell trackCell = new TrackCell(track);
+            TrackCell trackCell = new TrackCell(track, index);
             if(trackCell.getTrack().getTrackID() == Default.actualTrackID) {
                 prevTrackCell = trackCell;
             }
             trackView.getItems().add(trackCell.getCell());
             trackCells.add(trackCell);
+            index++;
         }
 
 
@@ -124,6 +150,8 @@ public class TracklistSectionController {
                         }
                     }
                     Default.actualTrackID = trackCells.get(trackView.getSelectionModel().getSelectedIndex()).getTrack().getTrackID();
+                    Default.actualTrack = trackCells.get(trackView.getSelectionModel().getSelectedIndex()).getTrack();
+                    Default.isNewTrackCover.set(true);
                     trackCells.get(trackView.getSelectionModel().getSelectedIndex()).setOnPlay();
                     prevTrackCell = trackCells.get(trackView.getSelectionModel().getSelectedIndex());
                     Default.actualPauseTrackID = -1;

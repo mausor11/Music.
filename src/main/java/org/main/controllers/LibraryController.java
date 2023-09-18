@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import org.main.DataBase;
@@ -20,12 +21,15 @@ public class LibraryController {
     ImageView plusButton;
     @FXML
     ListView<StackPane> listView;
-    ArrayList<ListCell> listCells = new ArrayList<>();
+    public static ArrayList<ListCell> listCells = new ArrayList<>();
 
-    private int prevCell = -1;
+    public static int prevCell = -1;
     public void initialize() {
         for(StackPane album : templateAlbums()) {
             listView.getItems().add(album);
+        }
+        for(StackPane playlist : templatePlaylists()) {
+            listView.getItems().add(playlist);
         }
         setListViewOnMouseClicked();
         setFocusedListener();
@@ -42,19 +46,23 @@ public class LibraryController {
     }
     private void setListViewOnMouseClicked() {
         listView.setOnMouseClicked(event -> {
-            Default.tileFocused.set(false);
-            Default.libraryFocused.set(true);
-            if(prevCell != listView.getSelectionModel().getSelectedIndex()) {
+            setListView(listView.getSelectionModel().getSelectedIndex());
+        });
+    }
+    public static void setListView(int cellID) {
+        Default.tileFocused.set(false);
+        Default.libraryFocused.set(true);
+        if(prevCell != cellID) {
             if(prevCell != -1) {
                 listCells.get(prevCell).setIsFocused(false);
             }
-                listCells.get(listView.getSelectionModel().getSelectedIndex()).setIsFocused(true);
-                prevCell = listView.getSelectionModel().getSelectedIndex();
-                Default.albumID.set(listCells.get(listView.getSelectionModel().getSelectedIndex()).getDataBaseID());
+            listCells.get(cellID).setIsFocused(true);
+            prevCell = cellID;
+            Default.Type = listCells.get(cellID).type();
+            Default.albumID.set(listCells.get(cellID).getDataBaseID());
+            TracklistSectionController.isChange.set(true);
 
-            }
-
-        });
+        }
     }
     public void plusEffect() {
         Default.blurEffect(plusButton,plusEffect);
@@ -63,12 +71,22 @@ public class LibraryController {
         ArrayList<Integer> ids = DataBase.getDataBase().getAllAlbumsID();
         ArrayList<StackPane> albums = new ArrayList<>();
         for(Integer id : ids) {
-            ListCell listCell = new ListCell(listView, id, DataBase.getDataBase().getAlbumCover(id), DataBase.getDataBase().getAlbumName(id), DataBase.getDataBase().getAlbumArtistName(id), DataBase.getDataBase().getAlbumFeaturesName(id));
+            ListCell listCell = new ListCell(0, listView, id, DataBase.getDataBase().getAlbumCover(id), DataBase.getDataBase().getAlbumName(id), DataBase.getDataBase().getAlbumArtistName(id), DataBase.getDataBase().getAlbumFeaturesName(id));
             albums.add(listCell.getCell());
             listCells.add(listCell);
         }
 
         return albums;
+    }
+    private ArrayList<StackPane> templatePlaylists() {
+        ArrayList<Integer> ids = DataBase.getDataBase().getAllPlaylistsID();
+        ArrayList<StackPane> playlists = new ArrayList<>();
+        for(Integer id : ids) {
+            ListCell listCell = new ListCell(1, listView, id, DataBase.getDataBase().getPlaylistCoverURL(id), DataBase.getDataBase().getPlaylistName(id), DataBase.getDataBase().getAlbumUserName(id), null);
+            playlists.add(listCell.getCell());
+            listCells.add(listCell);
+        }
+        return playlists;
     }
     public void setPlus() {
         plusButton.setRotate(0);
