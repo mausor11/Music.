@@ -3,6 +3,8 @@ package org.main;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -29,22 +31,27 @@ public class TrackCell {
     private Label title;
     private boolean isPlay = false;
     private boolean isPause = false;
+    private boolean isOff = true;
     private Label index;
     private ImageView playIcon;
     private boolean isFirst = false;
+    public enum Mode {OFF, PAUSE, PLAY}
+    private double backgroundOpacity = 0;
+    private double playIconOpacity = 0;
+    private double indexOpacity = 0;
+    private IntegerProperty actualModeIndex = new SimpleIntegerProperty(0);
+    private int indexNum = -1;
+    Mode actualMode = Mode.OFF;
 
     public TrackCell(Track track, int index) throws IOException {
         this.track = track;
-        prepareCell(index);
+        this.indexNum = index;
+        prepareCell();
     }
-
-    public boolean isPlay() {
-        return isPlay;
+    public Mode getMode() {
+        return actualMode;
     }
-    public String getCoverURL() {
-        return track.getCoverLink();
-    }
-    private void prepareCell(int indexNum) throws IOException {
+    public void prepareCell() throws IOException {
         cell = new StackPane();
         cell.setPrefWidth(PREF_WIDTH);
         cell.setPrefHeight(PREF_HEIGHT);
@@ -54,17 +61,17 @@ public class TrackCell {
         background.setPrefWidth(PREF_WIDTH);
         background.setPrefHeight(PREF_HEIGHT);
         background.getStyleClass().add("trackCell");
-        if(Default.actualTrackID == track.getTrackID()) {
-            background.setOpacity(0.8);
-            if(Default.actualTrackID == Default.actualPauseTrackID) {
-                isPlay = false;
-                isPause = true;
-            } else {
-                isPlay = true;
+        if(CurrentData.getDataInfo().actualTrackID() == track.getTrackID()) {                                           // when track is played or is paused
+            if(CurrentData.getDataInfo().actualPauseTrackID() == track.getTrackID()) {                                  //when track is paused
+                setMode(Mode.PAUSE);
+
+            } else {                                                                                                    //when track is played
+                setMode(Mode.PLAY);
 
             }
-        } else {
-            background.setOpacity(0.4);
+        } else {                                                                                                        //when track is off
+            setMode(Mode.OFF);
+
         }
         info = new FXMLLoader(Main.class.getResource("fxml/TrackCell.fxml")).load();
 
@@ -73,19 +80,14 @@ public class TrackCell {
         index.setAlignment(Pos.CENTER_RIGHT);
         index.getStyleClass().add("indexTrackCell");
 
-        if(Default.actualTrackID == track.getTrackID()) {
-            if(Default.actualTrackID == Default.actualPauseTrackID) {
+        if(actualMode != Mode.OFF) {
+            if(actualMode == Mode.PAUSE) {
                 playIcon = new ImageView(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("icons/PlayIcon.png"))));
             } else {
                 playIcon = new ImageView(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("icons/PlayFocusGif.gif"))));
             }
-
-            playIcon.setOpacity(0.6);
-            index.setOpacity(0);
         } else {
             playIcon = new ImageView(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("icons/PlayIcon.png"))));
-            playIcon.setOpacity(0);
-            index.setOpacity(0.6);
         }
         playIcon.setFitHeight(10);
         playIcon.setFitWidth(10);
@@ -102,15 +104,12 @@ public class TrackCell {
         artist.getStyleClass().add("listArtistInfo");
 
 
-        if(Default.actualTrackID == track.getTrackID()) {
-            if(Default.actualTrackID == Default.actualPauseTrackID) {
-                title.getStyleClass().add("titleTrackCell");
-            } else {
+        if(actualMode == Mode.PLAY) {
                 title.getStyleClass().add("titleTrackCellFocused");
-            }
         } else {
             title.getStyleClass().add("titleTrackCell");
         }
+
         if(track.getFeatures() != null) {
             for(Integer feat : track.getFeatures()) {
                 artist.setText(artist.getText() + Default.dot + DataBase.getDataBase().getArtistName(feat));
@@ -119,7 +118,12 @@ public class TrackCell {
         Label duration = new Label(getDurationLook((int)track.getTrackDuration()));
         duration.getStyleClass().add("titleTrackCell");
         duration.setPadding(new Insets(0,14,0,0));
+
         duration.setOpacity(0.6);
+        background.setOpacity(backgroundOpacity);
+        playIcon.setOpacity(playIconOpacity);
+        index.setOpacity(indexOpacity);
+
         info.addColumn(0, indexPane);
         info.addColumn(1, title);
         info.addColumn(2, artist);
@@ -146,181 +150,138 @@ public class TrackCell {
     }
     private void addListener() {
         cell.setOnMouseEntered(enterEvent -> {
-            if(!isPlay && !isPause) {
+            if(actualMode == Mode.OFF) {                                                                                //animation for off trackCell
                 Timeline enterAnimation = new Timeline(
                         new KeyFrame(Duration.ZERO, new KeyValue(background.opacityProperty(), background.getOpacity())),
                         new KeyFrame(Duration.ZERO, new KeyValue(playIcon.opacityProperty(), playIcon.getOpacity())),
                         new KeyFrame(Duration.ZERO, new KeyValue(index.opacityProperty(), index.getOpacity())),
 
-                        new KeyFrame(Duration.millis(animationTime), new KeyValue(background.opacityProperty(), 0.6)),
+                        new KeyFrame(Duration.millis(animationTime), new KeyValue(background.opacityProperty(), backgroundOpacity + 0.2)),
                         new KeyFrame(Duration.millis(animationTime), new KeyValue(playIcon.opacityProperty(), 0.6)),
                         new KeyFrame(Duration.millis(animationTime), new KeyValue(index.opacityProperty(), 0))
                 );
                 enterAnimation.play();
-            } else {
+            }
+            if(actualMode == Mode.PLAY){
                 Timeline setPlayAnimation = new Timeline(
                         new KeyFrame(Duration.ZERO, new KeyValue(playIcon.opacityProperty(), playIcon.getOpacity())),
-                        new KeyFrame(Duration.millis(animationTime/4), new KeyValue(playIcon.opacityProperty(), 0))
+                        new KeyFrame(Duration.ZERO, new KeyValue(background.opacityProperty(), background.getOpacity())),
+
+                        new KeyFrame(Duration.millis(animationTime/2), new KeyValue(background.opacityProperty(), backgroundOpacity + 0.1)),
+                        new KeyFrame(Duration.millis(animationTime/2), new KeyValue(playIcon.opacityProperty(), 0))
                 );
                 setPlayAnimation.play();
                 setPlayAnimation.setOnFinished(changeIcon -> {
-                    if(isPause) {
-                        playIcon.setImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("icons/PlayIcon.png"))));
-                    } else {
                         playIcon.setImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("icons/PauseIcon.png"))));
-                    }
                     Timeline setPlayAnimation2 = new Timeline(
                             new KeyFrame(Duration.ZERO, new KeyValue(playIcon.opacityProperty(), playIcon.getOpacity())),
-                            new KeyFrame(Duration.millis(animationTime/4), new KeyValue(playIcon.opacityProperty(), 0.6))
+                            new KeyFrame(Duration.ZERO, new KeyValue(background.opacityProperty(), background.getOpacity())),
+
+                            new KeyFrame(Duration.millis(animationTime/2), new KeyValue(background.opacityProperty(), backgroundOpacity + 0.2)),
+                            new KeyFrame(Duration.millis(animationTime/2), new KeyValue(playIcon.opacityProperty(), 0.6))
                     );
                     setPlayAnimation2.play();
                 });
             }
+            if(actualMode == Mode.PAUSE) {
+                Timeline setPauseAnimation = new Timeline(
+                        new KeyFrame(Duration.ZERO, new KeyValue(background.opacityProperty(), background.getOpacity())),
 
+                        new KeyFrame(Duration.millis(animationTime), new KeyValue(background.opacityProperty(), backgroundOpacity + 0.2))
+                );
+                setPauseAnimation.play();
+            }
         });
+
         cell.setOnMouseExited(exitEvent -> {
-            if(!isPlay) {
-                if(!isPause) {
-                    Timeline exitAnimation = new Timeline(
-                            new KeyFrame(Duration.ZERO, new KeyValue(background.opacityProperty(), background.getOpacity())),
-                            new KeyFrame(Duration.ZERO, new KeyValue(playIcon.opacityProperty(), playIcon.getOpacity())),
-                            new KeyFrame(Duration.ZERO, new KeyValue(index.opacityProperty(), index.getOpacity())),
+            if(actualMode == Mode.OFF) {
+                Timeline exitAnimation = new Timeline(
+                        new KeyFrame(Duration.ZERO, new KeyValue(background.opacityProperty(), background.getOpacity())),
+                        new KeyFrame(Duration.ZERO, new KeyValue(playIcon.opacityProperty(), playIcon.getOpacity())),
+                        new KeyFrame(Duration.ZERO, new KeyValue(index.opacityProperty(), index.getOpacity())),
 
-                            new KeyFrame(Duration.millis(animationTime), new KeyValue(background.opacityProperty(), 0.4)),
-                            new KeyFrame(Duration.millis(animationTime), new KeyValue(playIcon.opacityProperty(), 0)),
-                            new KeyFrame(Duration.millis(animationTime), new KeyValue(index.opacityProperty(), 0.6))
-                    );
-                    exitAnimation.play();
-                } else {
-                    Timeline exitAnimation = new Timeline(
-                            new KeyFrame(Duration.ZERO, new KeyValue(background.opacityProperty(), background.getOpacity())),
-                            new KeyFrame(Duration.ZERO, new KeyValue(playIcon.opacityProperty(), playIcon.getOpacity())),
-                            new KeyFrame(Duration.ZERO, new KeyValue(index.opacityProperty(), index.getOpacity())),
+                        new KeyFrame(Duration.millis(animationTime), new KeyValue(background.opacityProperty(), 0.4)),
+                        new KeyFrame(Duration.millis(animationTime), new KeyValue(playIcon.opacityProperty(), 0)),
+                        new KeyFrame(Duration.millis(animationTime), new KeyValue(index.opacityProperty(), 0.6))
+                );
+                exitAnimation.play();
+            }
+            if(actualMode == Mode.PAUSE) {
+                Timeline setPauseAnimation = new Timeline(
+                        new KeyFrame(Duration.ZERO, new KeyValue(background.opacityProperty(), background.getOpacity())),
 
-                            new KeyFrame(Duration.millis(animationTime), new KeyValue(background.opacityProperty(), 0.8)),
-                            new KeyFrame(Duration.millis(animationTime), new KeyValue(playIcon.opacityProperty(), 0.6)),
-                            new KeyFrame(Duration.millis(animationTime), new KeyValue(index.opacityProperty(), 0))
-                    );
-                    exitAnimation.play();
-                }
-
-            } else {
+                        new KeyFrame(Duration.millis(animationTime), new KeyValue(background.opacityProperty(), backgroundOpacity))
+                );
+                setPauseAnimation.play();
+            }
+            if(actualMode == Mode.PLAY) {
                 if(!isFirst) {
                     Timeline setPlayAnimation = new Timeline(
+                            new KeyFrame(Duration.ZERO, new KeyValue(background.opacityProperty(), background.getOpacity())),
                             new KeyFrame(Duration.ZERO, new KeyValue(playIcon.opacityProperty(), playIcon.getOpacity())),
-                            new KeyFrame(Duration.millis(animationTime/4), new KeyValue(playIcon.opacityProperty(), 0))
+
+                            new KeyFrame(Duration.millis(animationTime/2), new KeyValue(background.opacityProperty(), backgroundOpacity + 0.1)),
+                            new KeyFrame(Duration.millis(animationTime/2), new KeyValue(playIcon.opacityProperty(), 0))
                     );
                     setPlayAnimation.play();
                     setPlayAnimation.setOnFinished(changeIcon -> {
-                        if(isPause) {
-                            playIcon.setImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("icons/PlayIcon.png"))));
-
-                        } else {
-                            playIcon.setImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("icons/PlayFocusGif.gif"))));
-
-                        }
+                        playIcon.setImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("icons/PlayFocusGif.gif"))));
                         Timeline setPlayAnimation2 = new Timeline(
+                                new KeyFrame(Duration.ZERO, new KeyValue(background.opacityProperty(), background.getOpacity())),
                                 new KeyFrame(Duration.ZERO, new KeyValue(playIcon.opacityProperty(), playIcon.getOpacity())),
-                                new KeyFrame(Duration.millis(animationTime/4), new KeyValue(playIcon.opacityProperty(), 0.6))
+
+                                new KeyFrame(Duration.millis(animationTime/2), new KeyValue(background.opacityProperty(), backgroundOpacity)),
+                                new KeyFrame(Duration.millis(animationTime/2), new KeyValue(playIcon.opacityProperty(), 0.6))
                         );
                         setPlayAnimation2.play();
                     });
                 } else {
                     isFirst = false;
                 }
-
             }
         });
     }
-    public void setOnPlay() {
-        if(!isPlay) {
-            isPlay = true;
-            isFirst = true;
-            isPause = false;
-            title.getStyleClass().clear();
-            title.getStyleClass().add("titleTrackCellFocused");
-            Timeline setPlayAnimation = new Timeline(
-                    new KeyFrame(Duration.ZERO, new KeyValue(playIcon.opacityProperty(), playIcon.getOpacity())),
-                    new KeyFrame(Duration.ZERO, new KeyValue(background.opacityProperty(), background.getOpacity())),
-
-                    new KeyFrame(Duration.millis(animationTime/2), new KeyValue(playIcon.opacityProperty(), 0)),
-                    new KeyFrame(Duration.millis(animationTime/2), new KeyValue(background.opacityProperty(), 0.75))
-
-            );
-            setPlayAnimation.play();
-            setPlayAnimation.setOnFinished(changeIcon -> {
-                playIcon.setImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("icons/PlayFocusGif.gif"))));
-                Timeline setPlayAnimation2 = new Timeline(
-                        new KeyFrame(Duration.ZERO, new KeyValue(playIcon.opacityProperty(), playIcon.getOpacity())),
-                        new KeyFrame(Duration.ZERO, new KeyValue(background.opacityProperty(), background.getOpacity())),
-
-                        new KeyFrame(Duration.millis(animationTime/2), new KeyValue(playIcon.opacityProperty(), 0.6)),
-                        new KeyFrame(Duration.millis(animationTime/2), new KeyValue(background.opacityProperty(), 0.8))
-
-                );
-                setPlayAnimation2.play();
-            });
+    private void setMode(Mode mode) {
+        switch(mode) {
+            case OFF -> {isOff = true; isPause = false; isPlay = false; actualMode = Mode.OFF; backgroundOpacity = 0.4; playIconOpacity = 0; indexOpacity = 0.6;}
+            case PAUSE -> {isOff = false; isPause = true; isPlay = false; actualMode = Mode.PAUSE; backgroundOpacity = 0.8; playIconOpacity = 0.6; indexOpacity = 0;}
+            case PLAY -> {isOff = false; isPause = false; isPlay = true; actualMode = Mode.PLAY; backgroundOpacity = 0.8; playIconOpacity = 0.6; indexOpacity = 0;}
         }
-
-
     }
-    public void setOnStopPause() {
+    public void setPlay() {
+        setMode(Mode.PLAY);
+        playIcon.setImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("icons/PauseIcon.png"))));
+        title.getStyleClass().clear();
+        title.getStyleClass().add("titleTrackCellFocused");
+        background.setOpacity(backgroundOpacity + 0.2);
+        playIcon.setOpacity(playIconOpacity);
+        index.setOpacity(indexOpacity);
+    }
+    public void setPause() {
+        setMode(Mode.PAUSE);
+        playIcon.setImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("icons/PlayIcon.png"))));
+        title.getStyleClass().clear();
         title.getStyleClass().add("titleTrackCell");
-        Timeline endFocusAnimation = new Timeline(
-                new KeyFrame(Duration.ZERO, new KeyValue(background.opacityProperty(), background.getOpacity())),
-                new KeyFrame(Duration.ZERO, new KeyValue(playIcon.opacityProperty(), playIcon.getOpacity())),
-                new KeyFrame(Duration.ZERO, new KeyValue(index.opacityProperty(), index.getOpacity())),
-
-                new KeyFrame(Duration.millis(animationTime), new KeyValue(background.opacityProperty(), 0.4)),
-                new KeyFrame(Duration.millis(animationTime), new KeyValue(playIcon.opacityProperty(), 0.6)),
-                new KeyFrame(Duration.millis(animationTime), new KeyValue(index.opacityProperty(), 0))
-        );
-        endFocusAnimation.play();
+        background.setOpacity(backgroundOpacity + 0.2);
+        playIcon.setOpacity(playIconOpacity);
+        index.setOpacity(indexOpacity);
     }
-    public void setOnStopPlay() {
-            if(isPlay) {
-                isPlay = false;
-                isPause = false;
-                playIcon.setImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("icons/PlayIcon.png"))));
-                title.getStyleClass().clear();
-                title.getStyleClass().add("titleTrackCell");
-                    Timeline endFocusAnimation = new Timeline(
-                            new KeyFrame(Duration.ZERO, new KeyValue(background.opacityProperty(), background.getOpacity())),
-                            new KeyFrame(Duration.ZERO, new KeyValue(playIcon.opacityProperty(), playIcon.getOpacity())),
-                            new KeyFrame(Duration.ZERO, new KeyValue(index.opacityProperty(), index.getOpacity())),
-
-                            new KeyFrame(Duration.millis(animationTime), new KeyValue(background.opacityProperty(), 0.4)),
-                            new KeyFrame(Duration.millis(animationTime), new KeyValue(playIcon.opacityProperty(), 0)),
-                            new KeyFrame(Duration.millis(animationTime), new KeyValue(index.opacityProperty(), 0.6))
-                    );
-                    endFocusAnimation.play();
-            } else if(isPause) {
-                    isPause = false;
-                    playIcon.setImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("icons/PlayIcon.png"))));
-                    title.getStyleClass().clear();
-                    title.getStyleClass().add("titleTrackCell");
-                    Timeline endFocusAnimation = new Timeline(
-                            new KeyFrame(Duration.ZERO, new KeyValue(background.opacityProperty(), background.getOpacity())),
-                            new KeyFrame(Duration.ZERO, new KeyValue(playIcon.opacityProperty(), playIcon.getOpacity())),
-                            new KeyFrame(Duration.ZERO, new KeyValue(index.opacityProperty(), index.getOpacity())),
-
-                            new KeyFrame(Duration.millis(animationTime), new KeyValue(background.opacityProperty(), 0.4)),
-                            new KeyFrame(Duration.millis(animationTime), new KeyValue(playIcon.opacityProperty(), 0)),
-                            new KeyFrame(Duration.millis(animationTime), new KeyValue(index.opacityProperty(), 0.6))
-                    );
-                    endFocusAnimation.play();
-
-
-            }
+    public void setOff() {
+        setMode(Mode.OFF);
+        playIcon.setImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("icons/PlayIcon.png"))));
+        title.getStyleClass().clear();
+        title.getStyleClass().add("titleTrackCell");
+        background.setOpacity(backgroundOpacity);
+        playIcon.setOpacity(playIconOpacity);
+        index.setOpacity(indexOpacity);
     }
-    public void setOnPause() {
-        if(isPlay) {
-            playIcon.setImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("icons/PlayIcon.png"))));
-            title.getStyleClass().clear();
-            title.getStyleClass().add("titleTrackCell");
-            isPause = true;
-            isPlay = false;
-        }
+
+
+
+    private String getInfo() {
+        StringBuilder stringBuilder = new StringBuilder(isOff + " " + isPause + " " + isPlay + " " + backgroundOpacity + " " + playIconOpacity + " " + indexOpacity + " " + actualMode);
+        return stringBuilder.toString();
     }
+
 
 }

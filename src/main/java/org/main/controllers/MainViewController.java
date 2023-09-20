@@ -15,6 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
+import org.main.CurrentData;
 import org.main.DataBase;
 import org.main.Default;
 import org.main.Main;
@@ -24,6 +25,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class MainViewController {
+    @FXML
+    StackPane mainPlayerInfo;
     @FXML
     StackPane librarySpace;
     @FXML
@@ -106,6 +109,7 @@ public class MainViewController {
     private boolean isShuffle = false;
     Default.StatusPlay buttonStatus = Default.StatusPlay.PAUSE;
     Default.StatusRepeat repeatStatus = Default.StatusRepeat.NONE;
+    private int playPause = 0;
     @FXML
     public Label featLabel;
 
@@ -117,14 +121,46 @@ public class MainViewController {
         prepareCovers();
         setUpVolumeBar();
         setNewCoverArt();
+        setPlay();
         setUpFocusedListener();
     }
     private void setNewCoverArt() {
-        Default.isNewTrackCover.addListener(((observableValue, aBoolean, t1) -> {
+        CurrentData.getDataInfo().isNewTrackCover().addListener(((observableValue, aBoolean, t1) -> {
             if(t1) {
-                if(Default.actualTrack != null) {
-                    newCoverImage(new Image(Default.actualTrack.getCoverLink()), Default.actualTrack.getTrackName(), DataBase.getDataBase().getArtistName((int)Default.actualTrack.getArtistID()), DataBase.getDataBase().getTrackFeatNames((int)Default.actualTrackID));
-                    Default.isNewTrackCover.set(false);
+                if(CurrentData.getDataInfo().actualTrack() != null) {
+                    Timeline changeCover1 = new Timeline(
+                            new KeyFrame(Duration.ZERO, new KeyValue(backgroundImage.opacityProperty(), backgroundImage.getOpacity())),
+                            new KeyFrame(Duration.ZERO, new KeyValue(coverIcon.opacityProperty(), coverIcon.getOpacity())),
+                            new KeyFrame(Duration.ZERO, new KeyValue(titleLabel.opacityProperty(), titleLabel.getOpacity())),
+                            new KeyFrame(Duration.ZERO, new KeyValue(artistLabel.opacityProperty(), artistLabel.getOpacity())),
+                            new KeyFrame(Duration.ZERO, new KeyValue(featLabel.opacityProperty(), featLabel.getOpacity())),
+
+                            new KeyFrame(Duration.millis(200), new KeyValue(backgroundImage.opacityProperty(), 0)),
+                            new KeyFrame(Duration.millis(200), new KeyValue(coverIcon.opacityProperty(), 0)),
+                            new KeyFrame(Duration.millis(200), new KeyValue(titleLabel.opacityProperty(), 0)),
+                            new KeyFrame(Duration.millis(200), new KeyValue(artistLabel.opacityProperty(), 0)),
+                            new KeyFrame(Duration.millis(200), new KeyValue(featLabel.opacityProperty(), 0))
+                    );
+                    changeCover1.play();
+                    changeCover1.setOnFinished(e -> {
+                        newCoverImage(new Image(CurrentData.getDataInfo().actualTrack().getCoverLink()), CurrentData.getDataInfo().actualTrack().getTrackName(), DataBase.getDataBase().getArtistName((int)CurrentData.getDataInfo().actualTrack().getArtistID()), DataBase.getDataBase().getTrackFeatNames((int)CurrentData.getDataInfo().actualTrackID()));
+                        CurrentData.getDataInfo().setIsNewTracKCover(false);
+                        Timeline changeCover2 = new Timeline(
+                                new KeyFrame(Duration.ZERO, new KeyValue(backgroundImage.opacityProperty(), backgroundImage.getOpacity())),
+                                new KeyFrame(Duration.ZERO, new KeyValue(coverIcon.opacityProperty(), coverIcon.getOpacity())),
+                                new KeyFrame(Duration.ZERO, new KeyValue(titleLabel.opacityProperty(), titleLabel.getOpacity())),
+                                new KeyFrame(Duration.ZERO, new KeyValue(artistLabel.opacityProperty(), artistLabel.getOpacity())),
+                                new KeyFrame(Duration.ZERO, new KeyValue(featLabel.opacityProperty(), featLabel.getOpacity())),
+
+                                new KeyFrame(Duration.millis(100), new KeyValue(backgroundImage.opacityProperty(), 0.7)),
+                                new KeyFrame(Duration.millis(160), new KeyValue(coverIcon.opacityProperty(), 1)),
+                                new KeyFrame(Duration.millis(180), new KeyValue(titleLabel.opacityProperty(), 1)),
+                                new KeyFrame(Duration.millis(200), new KeyValue(artistLabel.opacityProperty(), 1)),
+                                new KeyFrame(Duration.millis(220), new KeyValue(featLabel.opacityProperty(), 1))
+                        );
+                        changeCover2.play();
+                    });
+
                 }
 
             }
@@ -144,12 +180,6 @@ public class MainViewController {
             volumeEffect.setEffect(new GaussianBlur((newValue.doubleValue()/100)*15.0));
         });
 
-    }
-    private ArrayList<String> templateFeatures() {
-        ArrayList<String> features = new ArrayList<>();
-        features.add("Travis Scott");
-        features.add("Young Thug");
-        return features;
     }
     private void prepareCovers() {
         tileCover.add(homeCover);
@@ -284,16 +314,29 @@ public class MainViewController {
         Default.blurEffect(playButton, playButtonEffect);
     }
     public void setPlay() {
-            switch(buttonStatus) {
-                case PLAY -> {
-                    setOnPlay("PlayIcon");
-                    buttonStatus = Default.StatusPlay.PAUSE;
+        CurrentData.getDataInfo().isPlay().addListener(((observableValue, aBoolean, t1) -> {
+            if(t1) {
+                if(playPause == 0) {
+                    playPause = setOnPlay("PauseIcon", playPause);
                 }
-                case PAUSE -> {
-                    setOnPlay("PauseIcon");
-                    buttonStatus = Default.StatusPlay.PLAY;
+            } else {
+                if(playPause == 1) {
+                    playPause = setOnPlay("PlayIcon", playPause);
                 }
             }
+        }));
+        playButton.setOnMouseClicked(event -> {
+            if(playPause == 0) {
+                CurrentData.getDataInfo().isPlay().set(true);
+                CurrentData.getDataInfo().setActualPauseTrackID(-1);
+                CurrentData.getDataInfo().actualTrackCell().setPlay();
+            } else {
+                CurrentData.getDataInfo().isPlay().set(false);
+                CurrentData.getDataInfo().setActualPauseTrackID(CurrentData.getDataInfo().actualTrackCell().getTrack().getTrackID());
+                CurrentData.getDataInfo().actualTrackCell().setPause();
+
+            }
+        });
     }
     public void nextEffect() {
         Default.blurEffect(nextButton, nextButtonEffect);
@@ -301,7 +344,7 @@ public class MainViewController {
     public void undoEffect() {
         Default.blurEffect(undoButton, undoButtonEffect);
     }
-    private void setOnPlay(String icon) {
+    private int setOnPlay(String icon, int now) {
         playButton.setRotate(0);
         RotateTransition rotateTransition = new RotateTransition(Duration.millis(150), playButton);
         rotateTransition.setInterpolator(Interpolator.EASE_OUT);
@@ -325,6 +368,11 @@ public class MainViewController {
                     timeline2.play();
                 }
         );
+        if(now == 0) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
     public void shuffleEffect() {
         if(!isShuffle) {

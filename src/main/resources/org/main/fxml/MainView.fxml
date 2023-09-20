@@ -224,7 +224,7 @@
                                     <GaussianBlur radius="7.77" />
                                  </effect>
                               </ImageView>
-                              <ImageView fx:id="playButton" fitHeight="36.0" fitWidth="36.0" onMouseClicked="#setPlay" onMouseEntered="#playEffect" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
+                              <ImageView fx:id="playButton" fitHeight="36.0" fitWidth="36.0" onMouseEntered="#playEffect" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
                                  <image>
                                     <Image url="@../icons/PlayIcon.png" />
                                  </image>
@@ -313,7 +313,7 @@
                   <Insets right="27.0" />
                </padding>
             </HBox>
-            <StackPane>
+            <StackPane fx:id="mainPlayerInfo">
                <children>
                   <ImageView fx:id="backgroundImage" fitHeight="85.0" fitWidth="380.0" pickOnBounds="true" StackPane.alignment="CENTER_LEFT" />
                   <Rectangle arcHeight="16.0" arcWidth="16.0" fill="#2197ff00" height="85.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="coverGradient" width="450.0" StackPane.alignment="CENTER_LEFT" />

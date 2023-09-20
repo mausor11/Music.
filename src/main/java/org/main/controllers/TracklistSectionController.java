@@ -38,14 +38,11 @@ public class TracklistSectionController {
     private Image cover;
     private ArrayList<TrackCell> trackCells = new ArrayList<>();
     private TrackCell prevTrackCell = null;
-    private long trackID = -1;
-    private ArrayList<TrackCell> prevTrackCells = null;
     public static BooleanProperty isChange = new SimpleBooleanProperty(false);
     public void initialize() {
         isChange.addListener((observable, oldValue, newValue) -> {
             if(newValue) {
                 if(Default.albumID.get() != 0) {
-                    //todo: add database album type
                     try {
                         if(Default.Type == 0) {
                             initializeSection(DataBase.getDataBase().getAlbumType(Default.albumID.get()), DataBase.getDataBase().getAlbumName(Default.albumID.get()), DataBase.getDataBase().getAlbumArtistName(Default.albumID.get()), DataBase.getDataBase().getAlbumFeaturesName(Default.albumID.get()), DataBase.getDataBase().getAlbumCover(Default.albumID.get()), DataBase.getDataBase().getAlbumTracklist(Default.albumID.get()));
@@ -129,7 +126,7 @@ public class TracklistSectionController {
         int index = 1;
         for(Track track : tracklist) {
             TrackCell trackCell = new TrackCell(track, index);
-            if(trackCell.getTrack().getTrackID() == Default.actualTrackID) {
+            if(trackCell.getTrack().getTrackID() == CurrentData.getDataInfo().actualTrackID()) {
                 prevTrackCell = trackCell;
             }
             trackView.getItems().add(trackCell.getCell());
@@ -139,26 +136,45 @@ public class TracklistSectionController {
 
 
         mainGrid.getRowConstraints().get(1).setMinHeight(30*tracklist.size() + 3*(tracklist.size()+1));
+
         trackView.setOnMouseClicked(event -> {
             if(event.getClickCount() == 2) {
-                if(!trackCells.get(trackView.getSelectionModel().getSelectedIndex()).isPlay()) {
-                    if(prevTrackCell != null) {
+                switch(trackCells.get(trackView.getSelectionModel().getSelectedIndex()).getMode()) {
+                    case PLAY -> {
                         if(prevTrackCell == trackCells.get(trackView.getSelectionModel().getSelectedIndex())) {
-                            prevTrackCell.setOnStopPause();
-                        } else {
-                            prevTrackCell.setOnStopPlay();
+                            trackCells.get(trackView.getSelectionModel().getSelectedIndex()).setPause();
+                            CurrentData.getDataInfo().setActualTrackCell(trackCells.get(trackView.getSelectionModel().getSelectedIndex()));
+                            CurrentData.getDataInfo().setActualPauseTrackID(trackCells.get(trackView.getSelectionModel().getSelectedIndex()).getTrack().getTrackID());
+                            CurrentData.getDataInfo().isPlay().set(false);
                         }
                     }
-                    Default.actualTrackID = trackCells.get(trackView.getSelectionModel().getSelectedIndex()).getTrack().getTrackID();
-                    Default.actualTrack = trackCells.get(trackView.getSelectionModel().getSelectedIndex()).getTrack();
-                    Default.isNewTrackCover.set(true);
-                    trackCells.get(trackView.getSelectionModel().getSelectedIndex()).setOnPlay();
-                    prevTrackCell = trackCells.get(trackView.getSelectionModel().getSelectedIndex());
-                    Default.actualPauseTrackID = -1;
-                } else {
-                    Default.actualPauseTrackID = trackCells.get(trackView.getSelectionModel().getSelectedIndex()).getTrack().getTrackID();
-                    trackCells.get(trackView.getSelectionModel().getSelectedIndex()).setOnPause();
+                    case PAUSE -> {
+                        if(prevTrackCell == trackCells.get(trackView.getSelectionModel().getSelectedIndex())) {
+                            trackCells.get(trackView.getSelectionModel().getSelectedIndex()).setPlay();
+                            CurrentData.getDataInfo().setActualTrackCell(trackCells.get(trackView.getSelectionModel().getSelectedIndex()));
+                            CurrentData.getDataInfo().setActualPauseTrackID(-1);
+                            CurrentData.getDataInfo().isPlay().set(true);
+                        }
+                    }
+                    case OFF -> {
+                        if(prevTrackCell != null) {
+                            prevTrackCell.setOff();
+                        }
+                        trackCells.get(trackView.getSelectionModel().getSelectedIndex()).setPlay();
+                        CurrentData.getDataInfo().setActualTrackCell(trackCells.get(trackView.getSelectionModel().getSelectedIndex()));
+                        CurrentData.getDataInfo().setActualTrackID(trackCells.get(trackView.getSelectionModel().getSelectedIndex()).getTrack().getTrackID());
+                        CurrentData.getDataInfo().setActualPauseTrackID(-1);
+                        CurrentData.getDataInfo().isPlay().set(true);
+                    }
+
                 }
+                CurrentData.getDataInfo().setActualTrack(trackCells.get(trackView.getSelectionModel().getSelectedIndex()).getTrack());
+                if(prevTrackCell == trackCells.get(trackView.getSelectionModel().getSelectedIndex())) {
+                        CurrentData.getDataInfo().setIsNewTracKCover(false);
+                } else {
+                        CurrentData.getDataInfo().setIsNewTracKCover(true);
+                }
+                prevTrackCell = trackCells.get(trackView.getSelectionModel().getSelectedIndex());
 
             }
 

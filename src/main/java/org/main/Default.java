@@ -48,8 +48,6 @@ public class Default {
     public final static Color BROWN_2 = Color.web("#937272");
     public final static Color BROWN_1 = Color.web("#A77979");
     public final static Color FONT_COLOR = Color.web("#E4CFCF");
-    public static BooleanProperty isNewTrackCover = new SimpleBooleanProperty(false);
-
     public static BooleanProperty tileFocused = new SimpleBooleanProperty(true);
     public static BooleanProperty libraryFocused = new SimpleBooleanProperty(false);
     public static IntegerProperty albumID = new SimpleIntegerProperty(0);
@@ -95,10 +93,6 @@ public class Default {
         }
     }
     public static StackPane mainSpace;
-    public static long actualTrackID = -1;
-    public static long actualPauseTrackID = -1;
-    public static Track actualTrack = null;
-    public static long prevTrackID = -1;
     public static void resetMainViewScene() {
         try {
             mainViewScene = new Scene(new FXMLLoader(Default.class.getResource("fxml/MainView.fxml")).load());
