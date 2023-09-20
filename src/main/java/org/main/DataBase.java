@@ -768,7 +768,7 @@ public class DataBase {
                     for(Integer feat : features) {
                         preparedStatement1.setInt(1, feat);
                         preparedStatement1.setLong(2, trackID);
-                        preparedStatement1.executeUpdate();
+                            preparedStatement1.executeUpdate();
                     }
                 }
             }
