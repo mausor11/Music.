@@ -67,10 +67,6 @@ public class PlaylistSectionController {
     GridPane mainGrid;
     @FXML
     ScrollPane playlistScrollPane;
-    private ArrayList<PlaylistTile> covers1;
-    private ArrayList<PlaylistTile> covers2;
-    private ArrayList<PlaylistTile> covers3;
-    private ArrayList<PlaylistTile> covers4;
     private double scaleX;
     private double scaleY;
     private final BooleanProperty isShownFirst = new SimpleBooleanProperty(false);
@@ -86,13 +82,13 @@ public class PlaylistSectionController {
                 isBack.set(false);
             }
         }));
-        covers1 = makeTemplate(20);
+        ArrayList<PlaylistTile> covers1 = makeTemplate(20);
         makeDefault(gridFirst, isShownFirst, covers1);
-        covers2 = makeTemplate(4);
+        ArrayList<PlaylistTile> covers2 = makeTemplate(4);
         makeDefault(gridSecond, isShownSecond, covers2);
-        covers3 = makeTemplate(5);
+        ArrayList<PlaylistTile> covers3 = makeTemplate(5);
         makeDefault(gridThird, isShownThird, covers3);
-        covers4 = makeTemplate(1);
+        ArrayList<PlaylistTile> covers4 = makeTemplate(1);
         makeDefault(gridFourth, isShownFourth, covers4);
 
         makeEffect(showAllPane1, showAllText1, showAllText1a, showAllText1Effect, isShownFirst, gridFirst, covers1);

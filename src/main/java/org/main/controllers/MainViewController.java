@@ -107,7 +107,6 @@ public class MainViewController {
     private final ArrayList<Rectangle> tileCover = new ArrayList<>();
     private boolean isSearchOn = false;
     private boolean isShuffle = false;
-    Default.StatusPlay buttonStatus = Default.StatusPlay.PAUSE;
     Default.StatusRepeat repeatStatus = Default.StatusRepeat.NONE;
     private int playPause = 0;
     @FXML
