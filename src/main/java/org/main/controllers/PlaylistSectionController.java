@@ -13,6 +13,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
+import org.main.DataBase;
 import org.main.Main;
 import org.main.PlaylistTile;
 
@@ -108,9 +109,12 @@ public class PlaylistSectionController {
         artists1.add("Kanye West");
         artists1.add("Vory");
         ArrayList<PlaylistTile> c = new ArrayList<>();
-        for(int i=0;i<many; i++) {
-            PlaylistTile playlistTile2 = new PlaylistTile(180, 250,"Playlist 2", artists, Objects.requireNonNull(Main.class.getResource("cover-images/albums/ASTROWORLD.jpg")).toString());
-            c.add(playlistTile2);
+
+        ArrayList<Integer> IDs = DataBase.getDataBase().getAllPlaylistsID();
+
+        for(Integer ID : IDs) {
+            PlaylistTile playlistTile = new PlaylistTile(180, 250, DataBase.getDataBase().getPlaylistName(ID), DataBase.getDataBase().getAllPlaylistArtists(ID), DataBase.getDataBase().getPlaylistCoverURL(ID), ID);
+                    c.add(playlistTile);
         }
         return c;
     }

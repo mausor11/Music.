@@ -16,7 +16,11 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Objects;
+
+import static org.main.Default.mainSpace;
+import static org.main.controllers.LibraryController.setListView;
 
 public class PlaylistTile {
     private final Image coverImage;
@@ -29,12 +33,14 @@ public class PlaylistTile {
     private VBox infoBox;
     private double imgWidth;
     private double imgHeight;
-    public PlaylistTile(double width, double height, String title, ArrayList<String> artists, String coverURL) {
+    private int playlistID;
+    public PlaylistTile(double width, double height, String title, ArrayList<String> artists, String coverURL, int ID) {
         coverImage = new Image(Objects.requireNonNull(coverURL));
         this.title = title;
         this.artists = artists;
         this.imgWidth = width;
         this.imgHeight = height;
+        this.playlistID = ID;
         makeCover();
     }
     private void makeTile() {
@@ -152,6 +158,17 @@ public class PlaylistTile {
                 );
                 timeline2.play();
             });
+            coverArt.setOnMouseClicked(event3 -> {
+                Default.Type = 1;
+
+                Default.albumID.set(playlistID);
+                if(!mainSpace.getChildren().isEmpty()) {
+                    mainSpace.getChildren().clear();
+                }
+                mainSpace.getChildren().add(Default.tracklistView);
+                setListView(DataBase.getDataBase().getPlaylistCell(playlistID));
+            });
+
         });
     }
 }

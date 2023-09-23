@@ -16,6 +16,8 @@ import org.main.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static org.main.Default.mainSpace;
+
 public class TracklistSectionController {
     @FXML
     ImageView tracklistBackground;
@@ -173,6 +175,9 @@ public class TracklistSectionController {
                         CurrentData.getDataInfo().setIsNewTracKCover(false);
                 } else {
                         CurrentData.getDataInfo().setIsNewTracKCover(true);
+//                        MusicPlayer.getMusicPlayer().getMediaPlayer().pause();
+//                        MusicPlayer.getMusicPlayer().setMediaPlayer("D:/JAVA - programy/Music/src/main/resources/org/main/music/9 5 . s o u t h.mp3");
+//                        MusicPlayer.getMusicPlayer().getMediaPlayer().play();
                 }
                 prevTrackCell = trackCells.get(trackView.getSelectionModel().getSelectedIndex());
 

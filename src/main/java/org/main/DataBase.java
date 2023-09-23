@@ -3,6 +3,8 @@ package org.main;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 
 public class DataBase {
     private Connection connection;
@@ -797,7 +799,27 @@ public class DataBase {
         }
         return true;
     }
-
+    public ArrayList<String> getAllPlaylistArtists(int ID) {
+        HashSet<String> a = new LinkedHashSet<>();
+        try {
+            if(connection.isClosed()) {
+                this.connection = DriverManager.getConnection(databaseURL);
+            }
+            String sql = "SELECT a.artist_name FROM Artists a JOIN  Songs s ON (a.artist_id = s.artist_id) WHERE s.playlist_id = " + ID;
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            while(resultSet.next()) {
+                a.add(resultSet.getString("artist_name"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        ArrayList<String> artists = new ArrayList<>();
+        for(String artist : a) {
+            artists.add(artist);
+        }
+        return artists;
+    }
     public ArrayList<Integer> getAllPlaylistsID() {
         ArrayList<Integer> IDs = new ArrayList<>();
         try {
@@ -809,6 +831,25 @@ public class DataBase {
             ResultSet resultSet = statement.executeQuery(sql);
             while(resultSet.next()) {
                 IDs.add(resultSet.getInt("playlist_id"));
+            }
+            connection.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return IDs;
+    }
+    public ArrayList<Integer> getFavouriteAlbumsID() {
+        ArrayList<Integer> IDs = new ArrayList<>();
+        try {
+            if(connection.isClosed()) {
+                this.connection = DriverManager.getConnection(databaseURL);
+            }
+            String sql = "SELECT album_id FROM Albums WHERE album_favourite = true";
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            while(resultSet.next()) {
+                IDs.add(resultSet.getInt("album_id"));
             }
             connection.close();
 
@@ -857,6 +898,7 @@ public class DataBase {
 
 
     public static void main(String[] args) {
+        System.out.println(DataBase.getDataBase().getFavouriteAlbumsID());
     }
 
 }

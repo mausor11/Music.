@@ -13,12 +13,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
-import org.main.CurrentData;
-import org.main.DataBase;
-import org.main.Default;
-import org.main.Main;
+import org.main.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -111,9 +109,12 @@ public class MainViewController {
     private int playPause = 0;
     @FXML
     public Label featLabel;
+    private MusicPlayer musicPlayer;
 
     @FXML
     public void initialize() throws IOException {
+//        MusicPlayer.getMusicPlayer().setMediaPlayer("D:/JAVA - programy/Music/src/main/resources/org/main/music/HYAENA.mp3");
+
         librarySpace.getChildren().add(new FXMLLoader(Main.class.getResource("fxml/LibrarySection.fxml")).load());
         mainSpace.getChildren().add(Default.homeView);
         Default.mainSpace = mainSpace;
@@ -316,20 +317,24 @@ public class MainViewController {
         CurrentData.getDataInfo().isPlay().addListener(((observableValue, aBoolean, t1) -> {
             if(t1) {
                 if(playPause == 0) {
+//                    MusicPlayer.getMusicPlayer().getMediaPlayer().play();
                     playPause = setOnPlay("PauseIcon", playPause);
                 }
             } else {
                 if(playPause == 1) {
+//                    MusicPlayer.getMusicPlayer().getMediaPlayer().pause();
                     playPause = setOnPlay("PlayIcon", playPause);
                 }
             }
         }));
         playButton.setOnMouseClicked(event -> {
             if(playPause == 0) {
+//                MusicPlayer.getMusicPlayer().getMediaPlayer().play();
                 CurrentData.getDataInfo().isPlay().set(true);
                 CurrentData.getDataInfo().setActualPauseTrackID(-1);
                 CurrentData.getDataInfo().actualTrackCell().setPlay();
             } else {
+//                MusicPlayer.getMusicPlayer().getMediaPlayer().pause();
                 CurrentData.getDataInfo().isPlay().set(false);
                 CurrentData.getDataInfo().setActualPauseTrackID(CurrentData.getDataInfo().actualTrackCell().getTrack().getTrackID());
                 CurrentData.getDataInfo().actualTrackCell().setPause();

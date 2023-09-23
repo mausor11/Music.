@@ -14,6 +14,7 @@ import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import org.main.AlbumTile;
+import org.main.DataBase;
 import org.main.Main;
 
 import java.util.ArrayList;
@@ -83,13 +84,13 @@ public class AlbumSectionController {
         }));
 
 
-        ArrayList<AlbumTile> covers1 = makeTemplate(10);
+        ArrayList<AlbumTile> covers1 = getFavouriteAlbums();
         makeDefault(gridFirst, isShownFirst, covers1);
-        ArrayList<AlbumTile> covers2 = makeTemplate(4);
+        ArrayList<AlbumTile> covers2 = getAllAlbums();
         makeDefault(gridSecond, isShownSecond, covers2);
-        ArrayList<AlbumTile> covers3 = makeTemplate(5);
+        ArrayList<AlbumTile> covers3 = getAllAlbums();
         makeDefault(gridThird, isShownThird, covers3);
-        ArrayList<AlbumTile> covers4 = makeTemplate(1);
+        ArrayList<AlbumTile> covers4 = getAllAlbums();
         makeDefault(gridFourth, isShownFourth, covers4);
 
         makeEffect(showAllPane1, showAllText1, showAllText1a, showAllText1Effect, isShownFirst, gridFirst, covers1);
@@ -97,6 +98,24 @@ public class AlbumSectionController {
         makeEffect(showAllPane3, showAllText3, showAllText3a, showAllText3Effect, isShownThird, gridThird, covers3);
         makeEffect(showAllPane4, showAllText4, showAllText4a, showAllText4Effect, isShownFourth, gridFourth, covers4);
 
+    }
+    private ArrayList<AlbumTile> getFavouriteAlbums() {
+        ArrayList<Integer> IDs = DataBase.getDataBase().getFavouriteAlbumsID();
+        ArrayList<AlbumTile> c = new ArrayList<>();
+        for(Integer ID : IDs) {
+            AlbumTile albumTile = new AlbumTile(true,180, 250,DataBase.getDataBase().getAlbumName(ID), DataBase.getDataBase().getAlbumArtistName(ID), DataBase.getDataBase().getAlbumFeaturesName(ID), DataBase.getDataBase().getAlbumCover(ID));
+            c.add(albumTile);
+        }
+        return c;
+    }
+    private ArrayList<AlbumTile> getAllAlbums() {
+        ArrayList<Integer> IDs = DataBase.getDataBase().getAllAlbumsID();
+        ArrayList<AlbumTile> c = new ArrayList<>();
+        for(Integer ID : IDs) {
+            AlbumTile albumTile = new AlbumTile(true,180, 250,DataBase.getDataBase().getAlbumName(ID), DataBase.getDataBase().getAlbumArtistName(ID), DataBase.getDataBase().getAlbumFeaturesName(ID), DataBase.getDataBase().getAlbumCover(ID));
+            c.add(albumTile);
+        }
+        return c;
     }
     private ArrayList<AlbumTile> makeTemplate(int many) {
         ArrayList<String> artists = new ArrayList<>();
