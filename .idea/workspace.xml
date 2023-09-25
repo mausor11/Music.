@@ -4,20 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="97349954-a434-4635-b7fb-6cf34beafa5e" name="Changes" comment="album and songs">
-      <change beforePath="$PROJECT_DIR$/../Music/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/AlbumTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/AlbumTile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/DataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/DataBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/Default.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/Default.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/AlbumSectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/AlbumSectionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/LibraryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/LibraryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/MainViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/TracklistSectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/TracklistSectionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/resources/org/main/MusicDataBase.accdb" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/MusicDataBase.accdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/resources/org/main/MusicDataBase.laccdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/HomeSection.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/HomeSection.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/MainView.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="97349954-a434-4635-b7fb-6cf34beafa5e" name="Changes" comment="album and songs" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -182,7 +169,7 @@
       <workItem from="1695381525039" duration="15000" />
       <workItem from="1695416912844" duration="50000" />
       <workItem from="1695497807964" duration="10883000" />
-      <workItem from="1695586719022" duration="8002000" />
+      <workItem from="1695586719022" duration="8683000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1692904219164</created>
@@ -485,7 +472,14 @@
       <option name="project" value="LOCAL" />
       <updated>1695511450394</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="album and songs">
+      <created>1695604070189</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1695604070189</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
