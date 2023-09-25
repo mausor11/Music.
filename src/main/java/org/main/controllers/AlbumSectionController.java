@@ -103,7 +103,7 @@ public class AlbumSectionController {
         ArrayList<Integer> IDs = DataBase.getDataBase().getFavouriteAlbumsID();
         ArrayList<AlbumTile> c = new ArrayList<>();
         for(Integer ID : IDs) {
-            AlbumTile albumTile = new AlbumTile(true,180, 250,DataBase.getDataBase().getAlbumName(ID), DataBase.getDataBase().getAlbumArtistName(ID), DataBase.getDataBase().getAlbumFeaturesName(ID), DataBase.getDataBase().getAlbumCover(ID));
+            AlbumTile albumTile = new AlbumTile(ID, true,180, 250,DataBase.getDataBase().getAlbumName(ID), DataBase.getDataBase().getAlbumArtistName(ID), DataBase.getDataBase().getAlbumFeaturesName(ID), DataBase.getDataBase().getAlbumCover(ID));
             c.add(albumTile);
         }
         return c;
@@ -112,24 +112,7 @@ public class AlbumSectionController {
         ArrayList<Integer> IDs = DataBase.getDataBase().getAllAlbumsID();
         ArrayList<AlbumTile> c = new ArrayList<>();
         for(Integer ID : IDs) {
-            AlbumTile albumTile = new AlbumTile(true,180, 250,DataBase.getDataBase().getAlbumName(ID), DataBase.getDataBase().getAlbumArtistName(ID), DataBase.getDataBase().getAlbumFeaturesName(ID), DataBase.getDataBase().getAlbumCover(ID));
-            c.add(albumTile);
-        }
-        return c;
-    }
-    private ArrayList<AlbumTile> makeTemplate(int many) {
-        ArrayList<String> artists = new ArrayList<>();
-        artists.add("Kanye West");
-        artists.add("Vory");
-        artists.add("Travis Scott");
-        artists.add("Joji");
-        artists.add("Tory Lanez");
-        ArrayList<String> artists1 = new ArrayList<>();
-        artists1.add("Kanye West");
-        artists1.add("Vory");
-        ArrayList<AlbumTile> c = new ArrayList<>();
-        for(int i=0;i<many; i++) {
-            AlbumTile albumTile = new AlbumTile(true,180, 250,"ye", "Kanye West", null, Objects.requireNonNull(Main.class.getResource("cover-images/albums/ye.jpg")).toString());
+            AlbumTile albumTile = new AlbumTile(ID, true,180, 250,DataBase.getDataBase().getAlbumName(ID), DataBase.getDataBase().getAlbumArtistName(ID), DataBase.getDataBase().getAlbumFeaturesName(ID), DataBase.getDataBase().getAlbumCover(ID));
             c.add(albumTile);
         }
         return c;

@@ -14,9 +14,8 @@ import javafx.scene.layout.StackPane;
 import org.main.*;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
-
-import static org.main.Default.mainSpace;
 
 public class TracklistSectionController {
     @FXML
@@ -41,10 +40,11 @@ public class TracklistSectionController {
     private ArrayList<TrackCell> trackCells = new ArrayList<>();
     private TrackCell prevTrackCell = null;
     public static BooleanProperty isChange = new SimpleBooleanProperty(false);
+    @FXML
     public void initialize() {
         isChange.addListener((observable, oldValue, newValue) -> {
             if(newValue) {
-                if(Default.albumID.get() != 0) {
+                if(Default.albumID.get() != -1) {
                     try {
                         if(Default.Type == 0) {
                             initializeSection(DataBase.getDataBase().getAlbumType(Default.albumID.get()), DataBase.getDataBase().getAlbumName(Default.albumID.get()), DataBase.getDataBase().getAlbumArtistName(Default.albumID.get()), DataBase.getDataBase().getAlbumFeaturesName(Default.albumID.get()), DataBase.getDataBase().getAlbumCover(Default.albumID.get()), DataBase.getDataBase().getAlbumTracklist(Default.albumID.get()));
@@ -57,15 +57,28 @@ public class TracklistSectionController {
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
+                } else {
+                    try {
+                        initializeSection("admin", "Favourite tracks", DataBase.getDataBase().getFavouriteCount() + " tracks", null, Main.class.getResource("icons/FavouriteCover.png").toURI().toString(), DataBase.getDataBase().getFavouriteTracklist());
+                        isChange.set(false);
+                    } catch(IOException e) {
+                        throw new RuntimeException(e);
+                    } catch (URISyntaxException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             }
 
         });
         StageHolder.getPrimaryStage().widthProperty().addListener(((observableValue, number, t1) -> {
-            resizeBackground(t1.doubleValue() - 317, StageHolder.getPrimaryStage().getHeight() - 240);
+            if(background != null) {
+                resizeBackground(t1.doubleValue() - 320, StageHolder.getPrimaryStage().getHeight() - 240);
+            }
         }));
         StageHolder.getPrimaryStage().heightProperty().addListener(((observableValue1, number1, t11) -> {
-            resizeBackground(StageHolder.getPrimaryStage().getWidth() - 317, t11.doubleValue() - 240);
+            if(background != null) {
+                resizeBackground(StageHolder.getPrimaryStage().getWidth() - 320, t11.doubleValue() - 240);
+            }
         }));
 
     }
@@ -103,9 +116,9 @@ public class TracklistSectionController {
         cover = new Image(imgURL);
         background = new ImageView(cover);
         background.setFitHeight(StageHolder.getPrimaryStage().getHeight() - 240);
-        background.setFitWidth(StageHolder.getPrimaryStage().getWidth() - 317);
+        background.setFitWidth(StageHolder.getPrimaryStage().getWidth() - 320);
         background.setEffect(new GaussianBlur(25));
-        background.setClip(Default.clipShape(StageHolder.getPrimaryStage().getWidth() - 317, StageHolder.getPrimaryStage().getHeight() - 240, 16, 16));
+        background.setClip(Default.clipShape(StageHolder.getPrimaryStage().getWidth() - 320, StageHolder.getPrimaryStage().getHeight() - 240, 16, 16));
         background.setViewport(Default.setViewportSquare(cover, background));
         background.setOpacity(0.5);
         tracklistSection.getChildren().clear();
@@ -175,9 +188,6 @@ public class TracklistSectionController {
                         CurrentData.getDataInfo().setIsNewTracKCover(false);
                 } else {
                         CurrentData.getDataInfo().setIsNewTracKCover(true);
-//                        MusicPlayer.getMusicPlayer().getMediaPlayer().pause();
-//                        MusicPlayer.getMusicPlayer().setMediaPlayer("D:/JAVA - programy/Music/src/main/resources/org/main/music/9 5 . s o u t h.mp3");
-//                        MusicPlayer.getMusicPlayer().getMediaPlayer().play();
                 }
                 prevTrackCell = trackCells.get(trackView.getSelectionModel().getSelectedIndex());
 

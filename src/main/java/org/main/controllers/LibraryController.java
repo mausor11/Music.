@@ -10,7 +10,9 @@ import javafx.util.Duration;
 import org.main.DataBase;
 import org.main.Default;
 import org.main.ListCell;
+import org.main.Main;
 
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 public class LibraryController {
@@ -23,7 +25,7 @@ public class LibraryController {
     public static ArrayList<ListCell> listCells = new ArrayList<>();
 
     public static int prevCell = -1;
-    public void initialize() {
+    public void initialize() throws URISyntaxException {
         for(StackPane album : templateAlbums()) {
             listView.getItems().add(album);
         }

@@ -46,7 +46,9 @@ public class AlbumTile {
         this.isAlbum = isAlbum;
         makeCover();
     }
-    public AlbumTile(boolean isAlbumSection, double width, double height, String title, String artist, ArrayList<String> features, String coverURL) {
+    public AlbumTile(long albumID, boolean isAlbumSection, double width, double height, String title, String artist, ArrayList<String> features, String coverURL) {
+        this.albumID = albumID;
+        this.isAlbum = isAlbumSection;
         coverImage = new Image(Objects.requireNonNull(coverURL));
         this.title = title;
         this.artist = artist;

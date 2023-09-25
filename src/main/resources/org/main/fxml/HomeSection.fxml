@@ -12,7 +12,7 @@
 
 <StackPane fx:id="homeSection" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.main.controllers.HomeSectionController">
    <children>
-      <ScrollPane fx:id="homeScrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefWidth="1000.0" styleClass="ScrollPane" vbarPolicy="NEVER">
+      <ScrollPane fx:id="homeScrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefWidth="1020.0" styleClass="ScrollPane" vbarPolicy="NEVER">
          <content>
             <GridPane fx:id="gridPane" maxHeight="1.7976931348623157E308" vgap="10.0">
                <columnConstraints>

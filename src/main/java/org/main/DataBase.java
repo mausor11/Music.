@@ -894,7 +894,44 @@ public class DataBase {
         }
         return playlistCover;
     }
+    public ArrayList<Track> getFavouriteTracklist() {
+        ArrayList<Track> tracklist = new ArrayList<>();
+        try {
+            if(connection.isClosed()) {
+                this.connection = DriverManager.getConnection(databaseURL);
+            }
+            String sql = "SELECT song_id FROM Songs WHERE song_favourite = true";
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            while(resultSet.next()) {
+                tracklist.add(getTrack(resultSet.getInt("song_id")));
+            }
+            connection.close();
 
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return tracklist;
+    }
+    public int getFavouriteCount() {
+        int i = 0;
+        try {
+            if(connection.isClosed()) {
+                this.connection = DriverManager.getConnection(databaseURL);
+            }
+            String sql = "SELECT song_id FROM Songs WHERE song_favourite = true";
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            while(resultSet.next()) {
+                i++;
+            }
+            connection.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return i;
+    }
 
 
     public static void main(String[] args) {

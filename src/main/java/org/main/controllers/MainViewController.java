@@ -93,6 +93,8 @@ public class MainViewController {
     ImageView coverIcon;
     @FXML
     HBox artistBox;
+    @FXML
+    HBox contentBox;
 /**<p>0 - Home Tile</p>
  * <p>1 - Playlists Tile</p>
  * <p>2 - Albums Tile</p>
@@ -109,15 +111,12 @@ public class MainViewController {
     private int playPause = 0;
     @FXML
     public Label featLabel;
-    private MusicPlayer musicPlayer;
 
     @FXML
     public void initialize() throws IOException {
-//        MusicPlayer.getMusicPlayer().setMediaPlayer("D:/JAVA - programy/Music/src/main/resources/org/main/music/HYAENA.mp3");
-
+        Default.mainSpace = mainSpace;
         librarySpace.getChildren().add(new FXMLLoader(Main.class.getResource("fxml/LibrarySection.fxml")).load());
         mainSpace.getChildren().add(Default.homeView);
-        Default.mainSpace = mainSpace;
         prepareCovers();
         setUpVolumeBar();
         setNewCoverArt();
@@ -248,6 +247,14 @@ public class MainViewController {
         if(actualTile != 3) {
             actualTile = 3;
             makeTileAnimation();
+            if(!mainSpace.getChildren().isEmpty()) {
+                mainSpace.getChildren().clear();
+            }
+            AlbumSectionController.isBack.set(true);
+            Default.albumID.set(-1);
+            TracklistSectionController.isChange.set(true);
+            mainSpace.getChildren().add(Default.tracklistView);
+
             prevTile = actualTile;
             Default.libraryFocused.set(false);
             Default.tileFocused.set(true);
@@ -317,24 +324,20 @@ public class MainViewController {
         CurrentData.getDataInfo().isPlay().addListener(((observableValue, aBoolean, t1) -> {
             if(t1) {
                 if(playPause == 0) {
-//                    MusicPlayer.getMusicPlayer().getMediaPlayer().play();
                     playPause = setOnPlay("PauseIcon", playPause);
                 }
             } else {
                 if(playPause == 1) {
-//                    MusicPlayer.getMusicPlayer().getMediaPlayer().pause();
                     playPause = setOnPlay("PlayIcon", playPause);
                 }
             }
         }));
         playButton.setOnMouseClicked(event -> {
             if(playPause == 0) {
-//                MusicPlayer.getMusicPlayer().getMediaPlayer().play();
                 CurrentData.getDataInfo().isPlay().set(true);
                 CurrentData.getDataInfo().setActualPauseTrackID(-1);
                 CurrentData.getDataInfo().actualTrackCell().setPlay();
             } else {
-//                MusicPlayer.getMusicPlayer().getMediaPlayer().pause();
                 CurrentData.getDataInfo().isPlay().set(false);
                 CurrentData.getDataInfo().setActualPauseTrackID(CurrentData.getDataInfo().actualTrackCell().getTrack().getTrackID());
                 CurrentData.getDataInfo().actualTrackCell().setPause();
