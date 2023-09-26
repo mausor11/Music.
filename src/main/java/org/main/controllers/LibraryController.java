@@ -10,7 +10,6 @@ import javafx.util.Duration;
 import org.main.DataBase;
 import org.main.Default;
 import org.main.ListCell;
-import org.main.Main;
 
 import java.net.URISyntaxException;
 import java.util.ArrayList;

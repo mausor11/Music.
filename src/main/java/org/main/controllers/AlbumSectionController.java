@@ -15,10 +15,8 @@ import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import org.main.AlbumTile;
 import org.main.DataBase;
-import org.main.Main;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class AlbumSectionController {
     @FXML

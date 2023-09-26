@@ -14,11 +14,9 @@ import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import org.main.DataBase;
-import org.main.Main;
 import org.main.PlaylistTile;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 
 public class PlaylistSectionController {
