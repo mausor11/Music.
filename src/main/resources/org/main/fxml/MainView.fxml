@@ -15,340 +15,345 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" minHeight="815.0" minWidth="1320.0" spacing="10.0" styleClass="container" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.main.controllers.MainViewController">
+<StackPane fx:id="mainPane" minHeight="815.0" minWidth="1320.0" styleClass="container" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.main.controllers.MainViewController">
    <children>
-      <GridPane alignment="BOTTOM_LEFT" maxHeight="37.0" minHeight="37.0" prefHeight="37.0" VBox.vgrow="NEVER">
-        <columnConstraints>
-          <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="BOTTOM" vgrow="SOMETIMES" />
-        </rowConstraints>
+      <VBox fx:id="containerBox" alignment="CENTER" spacing="10.0" styleClass="container">
          <children>
-            <HBox alignment="BOTTOM_LEFT" maxWidth="100.0" prefWidth="200.0" spacing="3.0">
+            <GridPane alignment="BOTTOM_LEFT" maxHeight="37.0" minHeight="37.0" prefHeight="37.0" VBox.vgrow="NEVER">
+              <columnConstraints>
+                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+              </rowConstraints>
                <children>
-                  <ImageView fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="NEVER">
-                     <image>
-                        <Image url="@../icons/IconDark.png" />
-                     </image>
-                  </ImageView>
-                  <Label styleClass="logoText" text="Music." />
+                  <HBox alignment="BOTTOM_LEFT" maxWidth="100.0" prefWidth="200.0" spacing="3.0">
+                     <children>
+                        <ImageView fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="NEVER">
+                           <image>
+                              <Image url="@../icons/IconDark.png" />
+                           </image>
+                        </ImageView>
+                        <Label styleClass="logoText" text="Music." />
+                     </children>
+                  </HBox>
+               </children>
+            </GridPane>
+            <GridPane fx:id="menu" hgap="10.0" maxHeight="35.0" prefHeight="35.0" VBox.vgrow="NEVER">
+              <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="130.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="130.0" minWidth="10.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="130.0" minWidth="10.0" prefWidth="610.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="470.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="200.0" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <StackPane fx:id="homeTile" onMouseClicked="#setHomeTile" styleClass="tileMenu">
+                     <children>
+                        <Rectangle fx:id="homeCover" arcHeight="16.0" arcWidth="16.0" fill="DODGERBLUE" height="35.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="tileMenuCover" width="130.0" StackPane.alignment="CENTER_RIGHT" />
+                        <HBox alignment="CENTER" minWidth="130.0" prefHeight="100.0" prefWidth="130.0" spacing="10.0" StackPane.alignment="CENTER_RIGHT">
+                           <children>
+                              <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/IconHome.png" />
+                                 </image>
+                              </ImageView>
+                              <Label styleClass="tileMenuText" text="Home" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </StackPane>
+                  <StackPane fx:id="playlistTile" onMouseClicked="#setPlaylistsTile" styleClass="tileMenu" GridPane.columnIndex="1">
+                     <children>
+                        <Rectangle fx:id="playlistCover" arcHeight="16.0" arcWidth="16.0" fill="DODGERBLUE" height="35.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="tileMenuCover" />
+                        <HBox alignment="CENTER" minWidth="130.0" prefHeight="100.0" prefWidth="130.0" spacing="10.0" StackPane.alignment="CENTER_LEFT">
+                           <children>
+                              <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/IconPlaylist.png" />
+                                 </image>
+                              </ImageView>
+                              <Label styleClass="tileMenuText" text="Playlists" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </StackPane>
+                  <StackPane fx:id="albumTile" onMouseClicked="#setAlbumsTile" styleClass="tileMenu" GridPane.columnIndex="2">
+                     <children>
+                        <Rectangle fx:id="albumCover" arcHeight="16.0" arcWidth="16.0" fill="DODGERBLUE" height="35.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="tileMenuCover" />
+                        <HBox alignment="CENTER" minWidth="130.0" prefHeight="100.0" prefWidth="130.0" spacing="10.0" StackPane.alignment="CENTER_LEFT">
+                           <children>
+                              <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/IconAlbum.png" />
+                                 </image>
+                              </ImageView>
+                              <Label styleClass="tileMenuText" text="Albums" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </StackPane>
+                  <StackPane fx:id="favouriteTile" onMouseClicked="#setFavouriteTile" styleClass="tileMenu" GridPane.columnIndex="3">
+                     <children>
+                        <Rectangle fx:id="favouriteCover" arcHeight="16.0" arcWidth="16.0" fill="DODGERBLUE" height="35.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="tileMenuCover" StackPane.alignment="CENTER_LEFT" />
+                        <HBox alignment="CENTER" minWidth="130.0" prefHeight="100.0" prefWidth="130.0" spacing="10.0">
+                           <children>
+                              <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/IconFavourite.png" />
+                                 </image>
+                              </ImageView>
+                              <Label styleClass="tileMenuText" text="Favourite" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </StackPane>
+                  <StackPane fx:id="libraryTile" onMouseClicked="#setFavouriteTile" opacity="0.0" styleClass="tileMenu" GridPane.columnIndex="4">
+                     <children>
+                        <Rectangle fx:id="libraryCover" arcHeight="16.0" arcWidth="16.0" fill="DODGERBLUE" height="35.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="tileMenuCover" StackPane.alignment="CENTER_LEFT" />
+                        <HBox alignment="CENTER" minWidth="130.0" prefHeight="100.0" prefWidth="130.0" spacing="10.0">
+                           <children>
+                              <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/IconFavourite.png" />
+                                 </image>
+                              </ImageView>
+                              <Label styleClass="tileMenuText" text="Favourite" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </StackPane>
+                  <GridPane fx:id="searchTile" onMouseClicked="#setSearchTile" styleClass="tileMenu" GridPane.columnIndex="6">
+                    <columnConstraints>
+                      <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" />
+                      <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" maxWidth="87.0" minWidth="10.0" prefWidth="78.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <StackPane>
+                           <children>
+                              <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER_LEFT">
+                                 <image>
+                                    <Image url="@../icons/IconSearch.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <padding>
+                              <Insets left="15.0" />
+                           </padding>
+                        </StackPane>
+                        <Label styleClass="tileMenuText" text="Search" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS">
+                           <padding>
+                              <Insets right="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </children>
+            </GridPane>
+            <HBox fx:id="contentBox" prefHeight="100.0" prefWidth="200.0" spacing="10.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <StackPane fx:id="librarySpace" maxWidth="270.0" minWidth="270.0" prefHeight="200.0" prefWidth="270.0" styleClass="tile" HBox.hgrow="NEVER" />
+                  <StackPane fx:id="mainSpace" minWidth="1000.0" prefWidth="1000.0" styleClass="homeBackground" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
-         </children>
-      </GridPane>
-      <GridPane fx:id="menu" hgap="10.0" maxHeight="35.0" prefHeight="35.0" VBox.vgrow="NEVER">
-        <columnConstraints>
-          <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="130.0" />
-          <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="130.0" minWidth="10.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="130.0" minWidth="10.0" prefWidth="610.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="470.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="200.0" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <StackPane fx:id="homeTile" onMouseClicked="#setHomeTile" styleClass="tileMenu">
-               <children>
-                  <Rectangle fx:id="homeCover" arcHeight="16.0" arcWidth="16.0" fill="DODGERBLUE" height="35.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="tileMenuCover" width="130.0" StackPane.alignment="CENTER_RIGHT" />
-                  <HBox alignment="CENTER" minWidth="130.0" prefHeight="100.0" prefWidth="130.0" spacing="10.0" StackPane.alignment="CENTER_RIGHT">
-                     <children>
-                        <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../icons/IconHome.png" />
-                           </image>
-                        </ImageView>
-                        <Label styleClass="tileMenuText" text="Home" />
-                     </children>
-                  </HBox>
-               </children>
-            </StackPane>
-            <StackPane fx:id="playlistTile" onMouseClicked="#setPlaylistsTile" styleClass="tileMenu" GridPane.columnIndex="1">
-               <children>
-                  <Rectangle fx:id="playlistCover" arcHeight="16.0" arcWidth="16.0" fill="DODGERBLUE" height="35.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="tileMenuCover" />
-                  <HBox alignment="CENTER" minWidth="130.0" prefHeight="100.0" prefWidth="130.0" spacing="10.0" StackPane.alignment="CENTER_LEFT">
-                     <children>
-                        <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../icons/IconPlaylist.png" />
-                           </image>
-                        </ImageView>
-                        <Label styleClass="tileMenuText" text="Playlists" />
-                     </children>
-                  </HBox>
-               </children>
-            </StackPane>
-            <StackPane fx:id="albumTile" onMouseClicked="#setAlbumsTile" styleClass="tileMenu" GridPane.columnIndex="2">
-               <children>
-                  <Rectangle fx:id="albumCover" arcHeight="16.0" arcWidth="16.0" fill="DODGERBLUE" height="35.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="tileMenuCover" />
-                  <HBox alignment="CENTER" minWidth="130.0" prefHeight="100.0" prefWidth="130.0" spacing="10.0" StackPane.alignment="CENTER_LEFT">
-                     <children>
-                        <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../icons/IconAlbum.png" />
-                           </image>
-                        </ImageView>
-                        <Label styleClass="tileMenuText" text="Albums" />
-                     </children>
-                  </HBox>
-               </children>
-            </StackPane>
-            <StackPane fx:id="favouriteTile" onMouseClicked="#setFavouriteTile" styleClass="tileMenu" GridPane.columnIndex="3">
-               <children>
-                  <Rectangle fx:id="favouriteCover" arcHeight="16.0" arcWidth="16.0" fill="DODGERBLUE" height="35.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="tileMenuCover" StackPane.alignment="CENTER_LEFT" />
-                  <HBox alignment="CENTER" minWidth="130.0" prefHeight="100.0" prefWidth="130.0" spacing="10.0">
-                     <children>
-                        <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../icons/IconFavourite.png" />
-                           </image>
-                        </ImageView>
-                        <Label styleClass="tileMenuText" text="Favourite" />
-                     </children>
-                  </HBox>
-               </children>
-            </StackPane>
-            <StackPane fx:id="libraryTile" onMouseClicked="#setFavouriteTile" opacity="0.0" styleClass="tileMenu" GridPane.columnIndex="4">
-               <children>
-                  <Rectangle fx:id="libraryCover" arcHeight="16.0" arcWidth="16.0" fill="DODGERBLUE" height="35.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="tileMenuCover" StackPane.alignment="CENTER_LEFT" />
-                  <HBox alignment="CENTER" minWidth="130.0" prefHeight="100.0" prefWidth="130.0" spacing="10.0">
-                     <children>
-                        <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../icons/IconFavourite.png" />
-                           </image>
-                        </ImageView>
-                        <Label styleClass="tileMenuText" text="Favourite" />
-                     </children>
-                  </HBox>
-               </children>
-            </StackPane>
-            <GridPane fx:id="searchTile" onMouseClicked="#setSearchTile" styleClass="tileMenu" GridPane.columnIndex="6">
+            <GridPane minHeight="85.0" styleClass="tileBot" VBox.vgrow="NEVER">
               <columnConstraints>
-                <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" />
-                <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" maxWidth="87.0" minWidth="10.0" prefWidth="78.0" />
+                <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" prefWidth="300.0" />
+                  <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <StackPane>
+                  <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
                      <children>
-                        <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER_LEFT">
-                           <image>
-                              <Image url="@../icons/IconSearch.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                     <padding>
-                        <Insets left="15.0" />
-                     </padding>
-                  </StackPane>
-                  <Label styleClass="tileMenuText" text="Search" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS">
-                     <padding>
-                        <Insets right="10.0" />
-                     </padding>
-                  </Label>
-               </children>
-            </GridPane>
-         </children>
-      </GridPane>
-      <HBox fx:id="contentBox" prefHeight="100.0" prefWidth="200.0" spacing="10.0" VBox.vgrow="ALWAYS">
-         <children>
-            <StackPane fx:id="librarySpace" maxWidth="270.0" minWidth="270.0" prefHeight="200.0" prefWidth="270.0" styleClass="tile" HBox.hgrow="NEVER" />
-            <StackPane fx:id="mainSpace" minWidth="1000.0" prefWidth="1000.0" styleClass="homeBackground" HBox.hgrow="ALWAYS" />
-         </children>
-      </HBox>
-      <GridPane minHeight="85.0" styleClass="tileBot" VBox.vgrow="NEVER">
-        <columnConstraints>
-          <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" prefWidth="300.0" />
-            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
-               <children>
-                  <StackPane>
-                     <children>
-                        <ImageView fx:id="shuffleButtonEffect" fitHeight="17.0" fitWidth="23.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../icons/ShuffleFocusIcon.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fx:id="shuffleButton" fitHeight="17.0" fitWidth="23.0" onMouseClicked="#setShuffle" onMouseEntered="#shuffleEffect" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../icons/ShuffleIcon.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </StackPane>
-                  <StackPane>
-                     <HBox.margin>
-                        <Insets left="20.0" />
-                     </HBox.margin>
-                     <children>
-                        <ImageView fx:id="undoButtonEffect" fitHeight="17.0" fitWidth="26.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../icons/UndoNextIcon.png" />
-                           </image>
-                           <effect>
-                              <GaussianBlur radius="7.77" />
-                           </effect>
-                        </ImageView>
-                        <ImageView fx:id="undoButton" fitHeight="17.0" fitWidth="26.0" onMouseClicked="#setUndo" onMouseEntered="#undoEffect" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../icons/UndoNextIcon.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </StackPane>
-                  <StackPane>
-                     <HBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </HBox.margin>
-                     <children>
-                        <StackPane minWidth="36.0" StackPane.alignment="CENTER">
+                        <StackPane>
                            <children>
-                              <ImageView fx:id="playButtonEffect" fitHeight="36.0" fitWidth="36.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
+                              <ImageView fx:id="shuffleButtonEffect" fitHeight="17.0" fitWidth="23.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../icons/PlayIcon.png" />
+                                    <Image url="@../icons/ShuffleFocusIcon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="shuffleButton" fitHeight="17.0" fitWidth="23.0" onMouseClicked="#setShuffle" onMouseEntered="#shuffleEffect" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/ShuffleIcon.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                           <children>
+                              <ImageView fx:id="undoButtonEffect" fitHeight="17.0" fitWidth="26.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/UndoNextIcon.png" />
                                  </image>
                                  <effect>
                                     <GaussianBlur radius="7.77" />
                                  </effect>
                               </ImageView>
-                              <ImageView fx:id="playButton" fitHeight="36.0" fitWidth="36.0" onMouseEntered="#playEffect" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
+                              <ImageView fx:id="undoButton" fitHeight="17.0" fitWidth="26.0" onMouseClicked="#setUndo" onMouseEntered="#undoEffect" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../icons/PlayIcon.png" />
+                                    <Image url="@../icons/UndoNextIcon.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane>
+                           <HBox.margin>
+                              <Insets left="20.0" right="20.0" />
+                           </HBox.margin>
+                           <children>
+                              <StackPane minWidth="36.0" StackPane.alignment="CENTER">
+                                 <children>
+                                    <ImageView fx:id="playButtonEffect" fitHeight="36.0" fitWidth="36.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
+                                       <image>
+                                          <Image url="@../icons/PlayIcon.png" />
+                                       </image>
+                                       <effect>
+                                          <GaussianBlur radius="7.77" />
+                                       </effect>
+                                    </ImageView>
+                                    <ImageView fx:id="playButton" fitHeight="36.0" fitWidth="36.0" onMouseEntered="#playEffect" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
+                                       <image>
+                                          <Image url="@../icons/PlayIcon.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </StackPane>
+                        <StackPane>
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                           <children>
+                              <ImageView fx:id="nextButtonEffect" fitHeight="17.0" fitWidth="26.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                                 <image>
+                                    <Image url="@../icons/UndoNextIcon.png" />
+                                 </image>
+                                 <effect>
+                                    <GaussianBlur radius="7.77" />
+                                 </effect>
+                              </ImageView>
+                              <ImageView fx:id="nextButton" fitHeight="17.0" fitWidth="26.0" onMouseClicked="#setNext" onMouseEntered="#nextEffect" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                                 <image>
+                                    <Image url="@../icons/UndoNextIcon.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane>
+                           <children>
+                              <ImageView fx:id="repeatButtonEffect" fitHeight="17.0" fitWidth="23.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/RepeatFocusIcon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="repeatButton" fitHeight="17.0" fitWidth="23.0" onMouseClicked="#setRepeat" onMouseEntered="#repeatEffect" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/RepeatIcon.png" />
                                  </image>
                               </ImageView>
                            </children>
                         </StackPane>
                      </children>
-                  </StackPane>
-                  <StackPane>
-                     <HBox.margin>
-                        <Insets right="20.0" />
-                     </HBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" maxWidth="300.0" spacing="20.0" GridPane.columnIndex="2" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
                      <children>
-                        <ImageView fx:id="nextButtonEffect" fitHeight="17.0" fitWidth="26.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
-                           <image>
-                              <Image url="@../icons/UndoNextIcon.png" />
-                           </image>
-                           <effect>
-                              <GaussianBlur radius="7.77" />
-                           </effect>
-                        </ImageView>
-                        <ImageView fx:id="nextButton" fitHeight="17.0" fitWidth="26.0" onMouseClicked="#setNext" onMouseEntered="#nextEffect" pickOnBounds="true" preserveRatio="true" rotate="180.0">
-                           <image>
-                              <Image url="@../icons/UndoNextIcon.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </StackPane>
-                  <StackPane>
-                     <children>
-                        <ImageView fx:id="repeatButtonEffect" fitHeight="17.0" fitWidth="23.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../icons/RepeatFocusIcon.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fx:id="repeatButton" fitHeight="17.0" fitWidth="23.0" onMouseClicked="#setRepeat" onMouseEntered="#repeatEffect" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../icons/RepeatIcon.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </StackPane>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER_RIGHT" maxWidth="300.0" spacing="20.0" GridPane.columnIndex="2" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
-               <children>
-                  <StackPane alignment="CENTER_RIGHT" HBox.hgrow="NEVER">
-                     <children>
-                        <Rectangle arcHeight="13.0" arcWidth="10.0" fill="DODGERBLUE" height="6.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="volumeBackground" width="160.0" StackPane.alignment="CENTER_LEFT">
-                           <StackPane.margin>
-                              <Insets left="5.0" />
-                           </StackPane.margin>
-                        </Rectangle>
-                        <Rectangle fx:id="volumeEffect" arcHeight="13.0" arcWidth="10.0" fill="DODGERBLUE" height="6.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="volumeBarBackground" width="80.0" StackPane.alignment="CENTER_LEFT">
-                           <StackPane.margin>
-                              <Insets left="5.0" />
-                           </StackPane.margin>
-                        </Rectangle>
-                        <Rectangle fx:id="volume" arcHeight="13.0" arcWidth="10.0" fill="DODGERBLUE" height="6.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="volumeBarBackground" width="80.0" StackPane.alignment="CENTER_LEFT">
-                           <StackPane.margin>
-                              <Insets left="5.0" />
-                           </StackPane.margin>
-                        </Rectangle>
-                        <Slider fx:id="volumeBar" maxHeight="8.0" maxWidth="160.0" minHeight="8.0" minWidth="170.0" onMouseEntered="#volumeEffect" opacity="0.17" prefHeight="5.0" styleClass="volumeBar" value="50.0" StackPane.alignment="CENTER_LEFT" />
-                     </children>
-                  </StackPane>
-                  <StackPane minWidth="25.0">
-                     <children>
-                        <ImageView fx:id="maxButtonEffect" fitHeight="21.0" fitWidth="21.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../icons/MaxFocusIcon.png" />
-                           </image>
-                           <effect>
-                              <GaussianBlur radius="7.78" />
-                           </effect>
-                        </ImageView>
-                        <ImageView fx:id="maxButton" fitHeight="21.0" fitWidth="21.0" onMouseEntered="#maxEffect" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../icons/MaxIcon.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </StackPane>
-               </children>
-               <padding>
-                  <Insets right="27.0" />
-               </padding>
-            </HBox>
-            <StackPane fx:id="mainPlayerInfo">
-               <children>
-                  <ImageView fx:id="backgroundImage" fitHeight="85.0" fitWidth="380.0" pickOnBounds="true" StackPane.alignment="CENTER_LEFT" />
-                  <Rectangle arcHeight="16.0" arcWidth="16.0" fill="#2197ff00" height="85.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="coverGradient" width="450.0" StackPane.alignment="CENTER_LEFT" />
-                  <ImageView fx:id="coverIcon" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER_LEFT">
-                     <StackPane.margin>
-                        <Insets left="10.0" />
-                     </StackPane.margin>
-                  </ImageView>
-                  <VBox alignment="CENTER_LEFT" fillWidth="false" prefHeight="85.0" StackPane.alignment="CENTER_LEFT">
-                     <StackPane.margin>
-                        <Insets left="107.0" />
-                     </StackPane.margin>
-                     <children>
-                        <Label fx:id="titleLabel" alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" styleClass="titleLabel" VBox.vgrow="NEVER">
-                           <font>
-                              <Font size="27.0" />
-                           </font></Label>
-                        <HBox fx:id="artistBox">
+                        <StackPane alignment="CENTER_RIGHT" HBox.hgrow="NEVER">
                            <children>
-                              <Label fx:id="artistLabel" alignment="TOP_LEFT" styleClass="artistLabel">
+                              <Rectangle arcHeight="13.0" arcWidth="10.0" fill="DODGERBLUE" height="6.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="volumeBackground" width="160.0" StackPane.alignment="CENTER_LEFT">
+                                 <StackPane.margin>
+                                    <Insets left="5.0" />
+                                 </StackPane.margin>
+                              </Rectangle>
+                              <Rectangle fx:id="volumeEffect" arcHeight="13.0" arcWidth="10.0" fill="DODGERBLUE" height="6.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="volumeBarBackground" width="80.0" StackPane.alignment="CENTER_LEFT">
+                                 <StackPane.margin>
+                                    <Insets left="5.0" />
+                                 </StackPane.margin>
+                              </Rectangle>
+                              <Rectangle fx:id="volume" arcHeight="13.0" arcWidth="10.0" fill="DODGERBLUE" height="6.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="volumeBarBackground" width="80.0" StackPane.alignment="CENTER_LEFT">
+                                 <StackPane.margin>
+                                    <Insets left="5.0" />
+                                 </StackPane.margin>
+                              </Rectangle>
+                              <Slider fx:id="volumeBar" maxHeight="8.0" maxWidth="160.0" minHeight="8.0" minWidth="170.0" onMouseEntered="#volumeEffect" opacity="0.17" prefHeight="5.0" styleClass="volumeBar" value="50.0" StackPane.alignment="CENTER_LEFT" />
+                           </children>
+                        </StackPane>
+                        <StackPane minWidth="25.0">
+                           <children>
+                              <ImageView fx:id="maxButtonEffect" fitHeight="21.0" fitWidth="21.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/MaxFocusIcon.png" />
+                                 </image>
+                                 <effect>
+                                    <GaussianBlur radius="7.78" />
+                                 </effect>
+                              </ImageView>
+                              <ImageView fx:id="maxButton" fitHeight="21.0" fitWidth="21.0" onMouseEntered="#maxEffect" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/MaxIcon.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                     </children>
+                     <padding>
+                        <Insets right="27.0" />
+                     </padding>
+                  </HBox>
+                  <StackPane fx:id="mainPlayerInfo">
+                     <children>
+                        <ImageView fx:id="backgroundImage" fitHeight="85.0" fitWidth="380.0" pickOnBounds="true" StackPane.alignment="CENTER_LEFT" />
+                        <Rectangle arcHeight="16.0" arcWidth="16.0" fill="#2197ff00" height="85.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="coverGradient" width="450.0" StackPane.alignment="CENTER_LEFT" />
+                        <ImageView fx:id="coverIcon" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER_LEFT">
+                           <StackPane.margin>
+                              <Insets left="10.0" />
+                           </StackPane.margin>
+                        </ImageView>
+                        <VBox alignment="CENTER_LEFT" fillWidth="false" prefHeight="85.0" StackPane.alignment="CENTER_LEFT">
+                           <StackPane.margin>
+                              <Insets left="107.0" />
+                           </StackPane.margin>
+                           <children>
+                              <Label fx:id="titleLabel" alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" styleClass="titleLabel" VBox.vgrow="NEVER">
                                  <font>
-                                    <Font size="14.0" />
+                                    <Font size="27.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="featLabel" styleClass="artistLabel" />
+                              <HBox fx:id="artistBox">
+                                 <children>
+                                    <Label fx:id="artistLabel" alignment="TOP_LEFT" styleClass="artistLabel">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="featLabel" styleClass="artistLabel" />
+                                 </children>
+                              </HBox>
                            </children>
-                        </HBox>
+                        </VBox>
                      </children>
-                  </VBox>
+                  </StackPane>
                </children>
-            </StackPane>
+            </GridPane>
          </children>
-      </GridPane>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" />
+         </padding>
+      </VBox>
    </children>
-   <padding>
-      <Insets bottom="10.0" left="10.0" right="10.0" />
-   </padding>
-</VBox>
+</StackPane>

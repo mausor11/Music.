@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
@@ -52,6 +53,7 @@ public class Default {
     public static BooleanProperty tileFocused = new SimpleBooleanProperty(true);
     public static BooleanProperty libraryFocused = new SimpleBooleanProperty(false);
     public static IntegerProperty albumID = new SimpleIntegerProperty(0);
+    public static VBox containerBox = null;
     public static StackPane homeView;
     static {
         try {
@@ -93,7 +95,17 @@ public class Default {
             throw new RuntimeException(e);
         }
     }
+    public static VBox chooseWindow;
+    static {
+        try {
+            chooseWindow = new FXMLLoader(Main.class.getResource("fxml/ChooseTile.fxml")).load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
     public static StackPane mainSpace;
+    public static StackPane mainPane;
     public static void resetMainViewScene() {
         try {
             mainViewScene = new Scene(new FXMLLoader(Default.class.getResource("fxml/MainView.fxml")).load());

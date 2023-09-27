@@ -2,15 +2,21 @@ package org.main.controllers;
 
 import javafx.animation.*;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListView;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.GaussianBlur;
+import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import org.main.DataBase;
 import org.main.Default;
 import org.main.ListCell;
+import org.main.Main;
 
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 
@@ -96,12 +102,25 @@ public class LibraryController {
         rotateTransition.setAutoReverse(false);
         rotateTransition.play();
         GaussianBlur gaussianBlur = new GaussianBlur(0);
+        GaussianBlur gaussianBlur1 = new GaussianBlur(0);
+        Default.containerBox.setEffect(gaussianBlur1);
+        Default.containerBox.setDisable(true);
         plusButton.setEffect(gaussianBlur);
+
+        Default.mainPane.getChildren().add(Default.chooseWindow);
+        Default.chooseWindow.setOpacity(0);
+
         Timeline timeline1 = new Timeline(
                 new KeyFrame(Duration.ZERO, new KeyValue(gaussianBlur.radiusProperty(), 0)),
+                new KeyFrame(Duration.ZERO, new KeyValue(gaussianBlur1.radiusProperty(), 0)),
+                new KeyFrame(Duration.ZERO, new KeyValue(Default.chooseWindow.opacityProperty(), 0)),
+
                 new KeyFrame(Duration.millis(75), new KeyValue(gaussianBlur.radiusProperty(), 7.7)),
-                new KeyFrame(Duration.millis(150), new KeyValue(gaussianBlur.radiusProperty(), 0))
+                new KeyFrame(Duration.millis(150), new KeyValue(gaussianBlur.radiusProperty(), 0)),
+                new KeyFrame(Duration.millis(250), new KeyValue(gaussianBlur1.radiusProperty(), 20)),
+                new KeyFrame(Duration.millis(250), new KeyValue(Default.chooseWindow.opacityProperty(), 1))
         );
         timeline1.play();
+
     }
 }

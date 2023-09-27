@@ -4,8 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="97349954-a434-4635-b7fb-6cf34beafa5e" name="Changes" comment="choosing window icons added">
+    <list default="true" id="97349954-a434-4635-b7fb-6cf34beafa5e" name="Changes" comment="clean up">
+      <change afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/ChooseTileController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/ChooseTile.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Music/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/Default.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/Default.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/LibraryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/LibraryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/MainViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Music/src/main/resources/org/main/css/darkTheme.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/css/darkTheme.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/MainView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +26,8 @@
         <option value="AnnotationType" />
         <option value="CSS File" />
         <option value="Enum" />
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -174,6 +181,7 @@
       <workItem from="1695586719022" duration="8683000" />
       <workItem from="1695608181345" duration="21000" />
       <workItem from="1695678953676" duration="631000" />
+      <workItem from="1695763604257" duration="6401000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1692904219164</created>
@@ -490,7 +498,14 @@
       <option name="project" value="LOCAL" />
       <updated>1695608199029</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="clean up">
+      <created>1695763687164</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1695763687164</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -508,7 +523,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="listCell onMouseClicked" />
     <MESSAGE value="homeView prototype" />
     <MESSAGE value="homeView" />
     <MESSAGE value="tile animation" />
@@ -533,7 +547,8 @@
     <MESSAGE value="small" />
     <MESSAGE value="album and songs" />
     <MESSAGE value="choosing window icons added" />
-    <option name="LAST_COMMIT_MESSAGE" value="choosing window icons added" />
+    <MESSAGE value="clean up" />
+    <option name="LAST_COMMIT_MESSAGE" value="clean up" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

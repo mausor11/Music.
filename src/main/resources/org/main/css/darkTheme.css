@@ -242,4 +242,16 @@
     -fx-font-size: 12px;
     -fx-font-weight: 400;
 }
+.chooseTile {
+    -fx-background-color: #1D1919;
+    -fx-background-radius: 10;
+    -fx-opacity: 0.9;
+}
+.backText {
+    -fx-text-fill: #FF5252;
+    -fx-font-family: 'Jost', sans-serif;
+    -fx-font-size: 18px;
+    -fx-font-weight: 400;
+
+}
 

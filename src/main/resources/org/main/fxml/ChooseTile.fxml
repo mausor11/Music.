@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.GaussianBlur?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="TOP_CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="460.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.main.controllers.ChooseTileController">
+   <children>
+      <HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0" prefWidth="460.0" spacing="10.0" style="-fx-background-color: #030303; -fx-background-radius: 10;">
+         <children>
+            <StackPane fx:id="track" prefHeight="140.0" prefWidth="140.0" styleClass="chooseTile">
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" StackPane.alignment="CENTER">
+                     <children>
+                        <ImageView fitHeight="55.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/TrackIcon.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets top="26.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <ImageView fitHeight="150.0" fitWidth="112.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/Line.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets top="18.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <Label styleClass="tileMenuText" text="Track">
+                           <VBox.margin>
+                              <Insets top="7.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </StackPane>
+            <StackPane fx:id="playlist" prefHeight="140.0" prefWidth="140.0" styleClass="chooseTile">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fitHeight="61.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/PlaylistIcon.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <ImageView fitHeight="150.0" fitWidth="112.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/Line.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets top="18.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <Label styleClass="tileMenuText" text="Playlist">
+                           <VBox.margin>
+                              <Insets top="7.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                     <StackPane.margin>
+                        <Insets />
+                     </StackPane.margin>
+                  </VBox>
+               </children>
+            </StackPane>
+            <StackPane fx:id="album" prefHeight="140.0" prefWidth="140.0" styleClass="chooseTile">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/AlbumIcon.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets top="23.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <ImageView fitHeight="150.0" fitWidth="112.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/Line.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets top="21.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <Label styleClass="tileMenuText" text="Album">
+                           <VBox.margin>
+                              <Insets top="7.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </StackPane>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+      <StackPane fx:id="backPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="36.0">
+         <children>
+            <Label fx:id="backText" styleClass="backText" text="back" />
+            <Label fx:id="backTextEffect" opacity="0.0" styleClass="backText" text="back">
+               <effect>
+                  <GaussianBlur radius="7.78" />
+               </effect>
+            </Label>
+         </children>
+         <VBox.margin>
+            <Insets top="13.0" />
+         </VBox.margin>
+      </StackPane>
+   </children>
+</VBox>

@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import org.main.*;
@@ -22,6 +23,10 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class MainViewController {
+    @FXML
+    StackPane mainPane;
+    @FXML
+    VBox containerBox;
     @FXML
     StackPane mainPlayerInfo;
     @FXML
@@ -113,6 +118,8 @@ public class MainViewController {
 
     @FXML
     public void initialize() throws IOException {
+        Default.mainPane = mainPane;
+        Default.containerBox = containerBox;
         Default.mainSpace = mainSpace;
         librarySpace.getChildren().add(new FXMLLoader(Main.class.getResource("fxml/LibrarySection.fxml")).load());
         mainSpace.getChildren().add(Default.homeView);
@@ -332,16 +339,19 @@ public class MainViewController {
             }
         }));
         playButton.setOnMouseClicked(event -> {
-            if(playPause == 0) {
-                CurrentData.getDataInfo().isPlay().set(true);
-                CurrentData.getDataInfo().setActualPauseTrackID(-1);
-                CurrentData.getDataInfo().actualTrackCell().setPlay();
-            } else {
-                CurrentData.getDataInfo().isPlay().set(false);
-                CurrentData.getDataInfo().setActualPauseTrackID(CurrentData.getDataInfo().actualTrackCell().getTrack().getTrackID());
-                CurrentData.getDataInfo().actualTrackCell().setPause();
+            if(CurrentData.getDataInfo().actualTrackCell() != null) {
+                if(playPause == 0) {
+                    CurrentData.getDataInfo().isPlay().set(true);
+                    CurrentData.getDataInfo().setActualPauseTrackID(-1);
+                    CurrentData.getDataInfo().actualTrackCell().setPlay();
+                } else {
+                    CurrentData.getDataInfo().isPlay().set(false);
+                    CurrentData.getDataInfo().setActualPauseTrackID(CurrentData.getDataInfo().actualTrackCell().getTrack().getTrackID());
+                    CurrentData.getDataInfo().actualTrackCell().setPause();
 
+                }
             }
+
         });
     }
     public void nextEffect() {
