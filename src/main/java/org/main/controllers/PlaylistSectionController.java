@@ -81,13 +81,13 @@ public class PlaylistSectionController {
                 isBack.set(false);
             }
         }));
-        ArrayList<PlaylistTile> covers1 = makeTemplate(20);
+        ArrayList<PlaylistTile> covers1 = makeTemplate();
         makeDefault(gridFirst, isShownFirst, covers1);
-        ArrayList<PlaylistTile> covers2 = makeTemplate(4);
+        ArrayList<PlaylistTile> covers2 = makeTemplate();
         makeDefault(gridSecond, isShownSecond, covers2);
-        ArrayList<PlaylistTile> covers3 = makeTemplate(5);
+        ArrayList<PlaylistTile> covers3 = makeTemplate();
         makeDefault(gridThird, isShownThird, covers3);
-        ArrayList<PlaylistTile> covers4 = makeTemplate(1);
+        ArrayList<PlaylistTile> covers4 = makeTemplate();
         makeDefault(gridFourth, isShownFourth, covers4);
 
         makeEffect(showAllPane1, showAllText1, showAllText1a, showAllText1Effect, isShownFirst, gridFirst, covers1);
@@ -96,16 +96,7 @@ public class PlaylistSectionController {
         makeEffect(showAllPane4, showAllText4, showAllText4a, showAllText4Effect, isShownFourth, gridFourth, covers4);
 
     }
-    private ArrayList<PlaylistTile> makeTemplate(int many) {
-        ArrayList<String> artists = new ArrayList<>();
-        artists.add("Kanye West");
-        artists.add("Vory");
-        artists.add("Travis Scott");
-        artists.add("Joji");
-        artists.add("Tory Lanez");
-        ArrayList<String> artists1 = new ArrayList<>();
-        artists1.add("Kanye West");
-        artists1.add("Vory");
+    private ArrayList<PlaylistTile> makeTemplate() {
         ArrayList<PlaylistTile> c = new ArrayList<>();
 
         ArrayList<Integer> IDs = DataBase.getDataBase().getAllPlaylistsID();

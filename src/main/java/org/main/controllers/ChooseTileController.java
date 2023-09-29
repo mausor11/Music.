@@ -10,8 +10,6 @@ import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import org.main.Default;
 
-import java.sql.Time;
-
 public class ChooseTileController {
     @FXML
     StackPane track;

@@ -61,9 +61,7 @@ public class TracklistSectionController {
                     try {
                         initializeSection("admin", "Favourite tracks", DataBase.getDataBase().getFavouriteCount() + " tracks", null, Main.class.getResource("icons/FavouriteCover.png").toURI().toString(), DataBase.getDataBase().getFavouriteTracklist());
                         isChange.set(false);
-                    } catch(IOException e) {
-                        throw new RuntimeException(e);
-                    } catch (URISyntaxException e) {
+                    } catch(IOException | URISyntaxException e) {
                         throw new RuntimeException(e);
                     }
                 }
