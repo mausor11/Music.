@@ -105,7 +105,7 @@ public class MainViewController {
  * <p>3 - Favourite Tile</p>
  * <p>4 - Settings Tile</p>
  * <p>5 - Library Tile</p> **/
-    private int actualTile = 0;
+    public static int actualTile = 0;
     private int prevTile = 0;
     private final Rectangle searchCover = new Rectangle();
     private final ArrayList<Rectangle> tileCover = new ArrayList<>();

@@ -62,6 +62,14 @@ public class Default {
             e.printStackTrace();
         }
     }
+    public static StackPane trackTrackView;
+    static {
+        try {
+            trackTrackView = new FXMLLoader(Main.class.getResource("fxml/AddTrackSection.fxml")).load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public static StackPane playlistView;
     static {
         try {

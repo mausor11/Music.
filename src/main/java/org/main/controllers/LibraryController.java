@@ -2,21 +2,15 @@ package org.main.controllers;
 
 import javafx.animation.*;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListView;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.GaussianBlur;
-import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import org.main.DataBase;
 import org.main.Default;
 import org.main.ListCell;
-import org.main.Main;
 
-import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 
@@ -31,6 +25,7 @@ public class LibraryController {
 
     public static int prevCell = -1;
     public void initialize() throws URISyntaxException {
+        int i=0;
         for(StackPane album : templateAlbums()) {
             listView.getItems().add(album);
         }
