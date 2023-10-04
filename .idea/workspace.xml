@@ -4,15 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="97349954-a434-4635-b7fb-6cf34beafa5e" name="Changes" comment="clean up">
-      <change afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/AddTrackSectionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/AddTrackSection.fxml" afterDir="false" />
+    <list default="true" id="97349954-a434-4635-b7fb-6cf34beafa5e" name="Changes" comment="importer beginning; todo: tile animation for importer">
       <change beforePath="$PROJECT_DIR$/../Music/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/Default.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/Default.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/AddTrackSectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/AddTrackSectionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/ChooseTileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/ChooseTileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/LibraryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/LibraryController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/MainViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/resources/org/main/MusicDataBase.accdb" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/MusicDataBase.accdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Music/src/main/resources/org/main/css/darkTheme.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/css/darkTheme.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/AddTrackSection.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/AddTrackSection.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/MainView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,7 +183,9 @@
       <workItem from="1695763604257" duration="6416000" />
       <workItem from="1695980039756" duration="30000" />
       <workItem from="1695980191574" duration="227000" />
-      <workItem from="1696282461055" duration="5560000" />
+      <workItem from="1696282461055" duration="5732000" />
+      <workItem from="1696329526693" duration="958000" />
+      <workItem from="1696441003823" duration="2816000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1692904219164</created>
@@ -522,7 +523,14 @@
       <option name="project" value="LOCAL" />
       <updated>1695980412767</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="importer beginning; todo: tile animation for importer">
+      <created>1696288963845</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1696288963845</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -540,7 +548,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="homeView" />
     <MESSAGE value="tile animation" />
     <MESSAGE value="homeView section done" />
     <MESSAGE value="small changes" />
@@ -565,7 +572,8 @@
     <MESSAGE value="choosing window icons added" />
     <MESSAGE value="Choose window" />
     <MESSAGE value="clean up" />
-    <option name="LAST_COMMIT_MESSAGE" value="clean up" />
+    <MESSAGE value="importer beginning; todo: tile animation for importer" />
+    <option name="LAST_COMMIT_MESSAGE" value="importer beginning; todo: tile animation for importer" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

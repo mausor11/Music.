@@ -130,6 +130,7 @@ public class ChooseTileController {
             }
             mainSpace.getChildren().add(Default.trackTrackView);
             isChange.set(true);
+            MainViewController.isImporter.set(true);
         });
         playlist.setOnMouseClicked(playlistEvent -> {
             System.out.println("playlist");

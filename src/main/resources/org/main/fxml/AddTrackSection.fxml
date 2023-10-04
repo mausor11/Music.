@@ -10,7 +10,6 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
 <StackPane fx:id="trackImporter" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.main.controllers.AddTrackSectionController">
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0">
@@ -27,7 +26,7 @@
                 <RowConstraints valignment="CENTER" vgrow="NEVER" />
               </rowConstraints>
                <children>
-                  <Label text="Music">
+                  <Label styleClass="musicTitleText" text="Music">
                      <font>
                         <Font size="40.0" />
                      </font>
@@ -37,32 +36,32 @@
                   </Label>
                   <VBox alignment="CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <children>
-                        <Label text="Track">
+                        <Label fx:id="trackTile" styleClass="tileHomeText" text="Track">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="2.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="17.0" VBox.vgrow="NEVER" />
+                        <Rectangle fx:id="trackUnderline" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="2.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="underlineCover" width="17.0" VBox.vgrow="NEVER" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <children>
-                        <Label alignment="CENTER" text="Playlist" VBox.vgrow="NEVER">
+                        <Label fx:id="playlistTile" alignment="CENTER" styleClass="tileHomeText" text="Playlist" VBox.vgrow="NEVER">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="2.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="17.0" />
+                        <Rectangle fx:id="playlistUnderline" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="2.0" scaleX="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="underlineCover" width="17.0" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <children>
-                        <Label text="Album">
+                        <Label fx:id="albumTile" styleClass="tileHomeText" text="Album">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="2.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="17.0" />
+                        <Rectangle fx:id="albumUnderline" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="2.0" scaleX="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="underlineCover" width="17.0" />
                      </children>
                   </VBox>
                   <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="117.0" GridPane.columnIndex="4">

@@ -252,6 +252,21 @@
     -fx-font-family: 'Jost', sans-serif;
     -fx-font-size: 18px;
     -fx-font-weight: 400;
+}
+.musicTitleText {
+    -fx-text-fill: #E4CFCF;
+    -fx-font-family: 'Jost', sans-serif;
+    -fx-font-size: 40px;
+    -fx-font-weight: 600;
+}
+.tileImporterText {
+    -fx-text-fill: #E4CFCF;
+    -fx-font-family: 'Jost', sans-serif;
+    -fx-font-size: 40px;
+    -fx-font-weight: 600;
+}
+.underlineCover {
+    -fx-fill: #A77979;
 
 }
 

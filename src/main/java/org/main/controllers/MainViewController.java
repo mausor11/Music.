@@ -1,6 +1,8 @@
 package org.main.controllers;
 
 import javafx.animation.*;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -52,6 +54,8 @@ public class MainViewController {
     @FXML
     StackPane libraryTile;
     @FXML
+    StackPane importerTile;
+    @FXML
     Rectangle homeCover;
     @FXML
     Rectangle playlistCover;
@@ -61,6 +65,8 @@ public class MainViewController {
     Rectangle favouriteCover;
     @FXML
     Rectangle libraryCover;
+    @FXML
+    Rectangle importerCover;
     @FXML
     ImageView playButton;
     @FXML
@@ -104,8 +110,9 @@ public class MainViewController {
  * <p>2 - Albums Tile</p>
  * <p>3 - Favourite Tile</p>
  * <p>4 - Settings Tile</p>
- * <p>5 - Library Tile</p> **/
-    public static int actualTile = 0;
+ * <p>5 - Library Tile</p>
+ * <p>6 - Importer Tile</p>**/
+    private int actualTile = 0;
     private int prevTile = 0;
     private final Rectangle searchCover = new Rectangle();
     private final ArrayList<Rectangle> tileCover = new ArrayList<>();
@@ -113,6 +120,7 @@ public class MainViewController {
     private boolean isShuffle = false;
     Default.StatusRepeat repeatStatus = Default.StatusRepeat.NONE;
     private int playPause = 0;
+    public static BooleanProperty isImporter = new SimpleBooleanProperty(false);
     @FXML
     public Label featLabel;
 
@@ -128,7 +136,9 @@ public class MainViewController {
         setNewCoverArt();
         setPlay();
         setUpFocusedListener();
+        setImporter();
     }
+
     private void setNewCoverArt() {
         CurrentData.getDataInfo().isNewTrackCover().addListener(((observableValue, aBoolean, t1) -> {
             if(t1) {
@@ -178,6 +188,7 @@ public class MainViewController {
             }
         });
     }
+
     private void setUpVolumeBar() {
         volumeBar.valueProperty().addListener((observable, oldValue, newValue) -> {
             volume.setWidth((newValue.doubleValue()/100) * 160);
@@ -193,6 +204,7 @@ public class MainViewController {
         tileCover.add(favouriteCover);
         tileCover.add(searchCover);
         tileCover.add(libraryCover);
+        tileCover.add(importerCover);
     }
     public void setLibraryTile() {
         if(actualTile != 5) {
@@ -219,6 +231,17 @@ public class MainViewController {
             Default.libraryFocused.set(false);
             Default.tileFocused.set(true);
         }
+    }
+    private void setImporter() {
+        isImporter.addListener(((observableValue, aBoolean, t1) -> {
+            if(t1) {
+                actualTile = 6;
+                makeTileAnimation();
+                isImporter.set(false);
+                Default.libraryFocused.set(false);
+                Default.tileFocused.set(true);
+            }
+        }));
     }
     public void setPlaylistsTile() {
         if(actualTile != 1) {
