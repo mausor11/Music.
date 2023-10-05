@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="97349954-a434-4635-b7fb-6cf34beafa5e" name="Changes" comment="importer beginning; todo: tile animation for importer">
+    <list default="true" id="97349954-a434-4635-b7fb-6cf34beafa5e" name="Changes" comment="importer track">
       <change beforePath="$PROJECT_DIR$/../Music/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/AddTrackSectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/AddTrackSectionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/ChooseTileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/ChooseTileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/MainViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/resources/org/main/css/darkTheme.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/css/darkTheme.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/AddTrackSection.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/AddTrackSection.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/MainView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,14 +182,8 @@
       <workItem from="1695980191574" duration="227000" />
       <workItem from="1696282461055" duration="5732000" />
       <workItem from="1696329526693" duration="958000" />
-      <workItem from="1696441003823" duration="2816000" />
-    </task>
-    <task id="LOCAL-00001" summary="initial commit">
-      <created>1692904219164</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1692904219164</updated>
+      <workItem from="1696441003823" duration="2929000" />
+      <workItem from="1696513449817" duration="4846000" />
     </task>
     <task id="LOCAL-00002" summary="DataBase + Track class">
       <created>1692913983661</created>
@@ -530,7 +521,14 @@
       <option name="project" value="LOCAL" />
       <updated>1696288963845</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="importer track">
+      <created>1696444478330</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1696444478332</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -548,7 +546,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="tile animation" />
     <MESSAGE value="homeView section done" />
     <MESSAGE value="small changes" />
     <MESSAGE value="playlist tile done" />
@@ -573,7 +570,8 @@
     <MESSAGE value="Choose window" />
     <MESSAGE value="clean up" />
     <MESSAGE value="importer beginning; todo: tile animation for importer" />
-    <option name="LAST_COMMIT_MESSAGE" value="importer beginning; todo: tile animation for importer" />
+    <MESSAGE value="importer track" />
+    <option name="LAST_COMMIT_MESSAGE" value="importer track" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

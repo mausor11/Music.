@@ -125,6 +125,7 @@ public class ChooseTileController {
     }
     private void setImporter() {
         track.setOnMouseClicked(trackEvent -> {
+            AddTrackSectionController.actMode.set(0);
             if(!mainSpace.getChildren().isEmpty()) {
                 mainSpace.getChildren().clear();
             }
@@ -134,9 +135,11 @@ public class ChooseTileController {
         });
         playlist.setOnMouseClicked(playlistEvent -> {
             System.out.println("playlist");
+            AddTrackSectionController.actMode.set(1);
         });
         album.setOnMouseClicked(albumEvent -> {
             System.out.println("album");
+            AddTrackSectionController.actMode.set(2);
         });
     }
 }

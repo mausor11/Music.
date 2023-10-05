@@ -41,7 +41,7 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Rectangle fx:id="trackUnderline" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="2.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="underlineCover" width="17.0" VBox.vgrow="NEVER" />
+                        <Rectangle fx:id="trackUnderline" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="2.0" scaleX="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="underlineCover" width="17.0" VBox.vgrow="NEVER" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
