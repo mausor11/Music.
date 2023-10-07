@@ -47,6 +47,24 @@ public class DataBase {
         }
         return artistName;
     }
+    public long getArtistID(String name) {
+        long ID = 0;
+        try {
+            if(connection.isClosed()) {
+                this.connection = DriverManager.getConnection(databaseURL);
+            }
+            String sql = "SELECT artist_id FROM Artists WHERE artist_name = '" + name +"'";
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            while(resultSet.next()) {
+                ID = resultSet.getLong("artist_id");
+            }
+            connection.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return ID;
+    }
     public void getAllString(String table, String column) {
         try {
             if(connection.isClosed()) {

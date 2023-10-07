@@ -10,18 +10,17 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.DirectoryChooser;
 import javafx.util.Duration;
-import org.main.Default;
-import org.main.StageHolder;
-import org.main.Track;
-import org.main.TrackCell;
+import org.main.*;
 
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class AddTrackSectionController {
     @FXML
@@ -127,10 +126,13 @@ public class AddTrackSectionController {
         File directory = new File(folderURL);
         File[] files = directory.listFiles(mp3Files());
         for(File file : files) {
+            System.out.println(file.getName());
             Media song = new Media(file.toURI().toString());
-            TrackCell trackCell = new TrackCell(new Track(file.getName().replace(".mp3", ""), (int)song.getDuration().toSeconds()), 0);
-            trackListView.getItems().add(trackCell.getCell());
+            addToTrackList(song);
+//            TrackCell trackCell = new TrackCell(new Track(file.getName().replace(".mp3", ""), (int)song.getDuration().toSeconds()), 0);
+//            trackListView.getItems().add(trackCell.getCell());
         }
+
 
     }
     private FilenameFilter mp3Files() {
@@ -147,5 +149,20 @@ public class AddTrackSectionController {
             }
         };
         return filenameFilter;
+    }
+    private void addToTrackList(Media song) {
+        MediaPlayer mediaPlayer = new MediaPlayer(song);
+        mediaPlayer.setOnReady(new Runnable() {
+            @Override
+            public void run() {
+                Track track = new Track((String) song.getMetadata().get("title"),(long) song.getDuration().toSeconds());
+                try {
+                    TrackCell trackCell = new TrackCell(track, 0);
+                    trackListView.getItems().add(trackCell.getCell());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
     }
 }

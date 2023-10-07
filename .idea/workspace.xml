@@ -6,12 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="97349954-a434-4635-b7fb-6cf34beafa5e" name="Changes" comment="importer view">
       <change beforePath="$PROJECT_DIR$/../Music/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/Track.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/Track.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/TrackCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/TrackCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/DataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/DataBase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/AddTrackSectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/AddTrackSectionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/MainViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/resources/org/main/css/darkTheme.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/css/darkTheme.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/AddTrackSection.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/AddTrackSection.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +27,25 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$/../Music" source="Track_Importer_Section" />
+                <branch-info repo="$PROJECT_DIR$/../Music" source="main" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/../Music" value="Track_Importer_Section" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../Music" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -188,14 +203,8 @@
       <workItem from="1696441003823" duration="2929000" />
       <workItem from="1696513449817" duration="4846000" />
       <workItem from="1696545988203" duration="28000" />
-      <workItem from="1696704556072" duration="7511000" />
-    </task>
-    <task id="LOCAL-00003" summary="Default set-up Stage">
-      <created>1692917159562</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1692917159562</updated>
+      <workItem from="1696704556072" duration="7945000" />
+      <workItem from="1696719575303" duration="1864000" />
     </task>
     <task id="LOCAL-00004" summary="icon img + Main cleanup">
       <created>1692917212790</created>
@@ -533,7 +542,14 @@
       <option name="project" value="LOCAL" />
       <updated>1696546000472</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="importer view">
+      <created>1696719333025</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1696719333025</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -545,6 +561,21 @@
         <entry key="MAIN">
           <value>
             <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="Track_Importer_Section" />
+                </option>
+              </RecentGroup>
+            </list>
           </value>
         </entry>
       </map>
