@@ -102,6 +102,10 @@ public class Track implements Comparable<Track> {
         this.features = features;
         this.trackDuration = trackDuration;
     }
+    public Track(String name, long trackDuration) {
+        this.trackName = name;
+        this.trackDuration = trackDuration;
+    }
 
     @Override
     public String toString() {

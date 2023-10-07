@@ -99,9 +99,14 @@ public class TrackCell {
         title = new Label(track.getTrackName());
         title.setPadding(new Insets(0,0,0,20));
         title.setAlignment(Pos.CENTER_LEFT);
-
-        Label artist = new Label(DataBase.getDataBase().getArtistName((int)track.getArtistID()));
+        Label artist;
+        if(track.getArtistID() != 0) {
+            artist = new Label(DataBase.getDataBase().getArtistName((int)track.getArtistID()));
+        } else {
+            artist = new Label("Unknown artist");
+        }
         artist.getStyleClass().add("listArtistInfo");
+
 
 
         if(actualMode == Mode.PLAY) {

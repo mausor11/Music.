@@ -7,11 +7,20 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.DirectoryChooser;
 import javafx.util.Duration;
 import org.main.Default;
+import org.main.StageHolder;
+import org.main.Track;
+import org.main.TrackCell;
 
+import java.io.File;
+import java.io.FilenameFilter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class AddTrackSectionController {
@@ -29,6 +38,8 @@ public class AddTrackSectionController {
     Rectangle playlistUnderline;
     @FXML
     Rectangle albumUnderline;
+    @FXML
+    ListView<StackPane> trackListView;
     private ArrayList<Rectangle> underlines;
     private boolean isFirst = true;
     public static IntegerProperty actMode = new SimpleIntegerProperty(-1);
@@ -100,5 +111,41 @@ public class AddTrackSectionController {
                 new KeyFrame(Duration.millis(100), new KeyValue(actUnderline.scaleXProperty(), 1))
         );
         timeline.play();
+    }
+
+    public void addFolder() throws IOException {
+        DirectoryChooser fileChooser = new DirectoryChooser();
+        fileChooser.setTitle("Choose folder");
+        File file = fileChooser.showDialog(StageHolder.getPrimaryStage());
+        if(file != null) {
+            String url = file.getAbsolutePath();
+            getAllFiles(url);
+        }
+
+    }
+    private void getAllFiles(String folderURL) throws IOException {
+        File directory = new File(folderURL);
+        File[] files = directory.listFiles(mp3Files());
+        for(File file : files) {
+            Media song = new Media(file.toURI().toString());
+            TrackCell trackCell = new TrackCell(new Track(file.getName().replace(".mp3", ""), (int)song.getDuration().toSeconds()), 0);
+            trackListView.getItems().add(trackCell.getCell());
+        }
+
+    }
+    private FilenameFilter mp3Files() {
+        FilenameFilter filenameFilter = new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String name) {
+                String lowercaseName = name.toLowerCase();
+                if(lowercaseName.endsWith(".mp3")) {
+                    return true;
+                } else {
+                    return false;
+
+                }
+            }
+        };
+        return filenameFilter;
     }
 }
