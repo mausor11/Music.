@@ -291,12 +291,12 @@ public class MainViewController {
     }
     public void setSearchTile() {
         if(!isSearchOn) {
-            double change = menu.getColumnConstraints().get(6).getMaxWidth() - menu.getColumnConstraints().get(6).getPrefWidth();
+            double change = menu.getColumnConstraints().get(7).getMaxWidth() - menu.getColumnConstraints().get(7).getPrefWidth();
             Timeline timeline = new Timeline(
+                    new KeyFrame(Duration.ZERO, new KeyValue(menu.getColumnConstraints().get(7).prefWidthProperty(), menu.getColumnConstraints().get(7).getPrefWidth())),
                     new KeyFrame(Duration.ZERO, new KeyValue(menu.getColumnConstraints().get(6).prefWidthProperty(), menu.getColumnConstraints().get(6).getPrefWidth())),
-                    new KeyFrame(Duration.ZERO, new KeyValue(menu.getColumnConstraints().get(5).prefWidthProperty(), menu.getColumnConstraints().get(5).getPrefWidth())),
-                    new KeyFrame(Duration.millis(100), new KeyValue(menu.getColumnConstraints().get(6).prefWidthProperty(), 200)),
-                    new KeyFrame(Duration.millis(100), new KeyValue(menu.getColumnConstraints().get(5).prefWidthProperty(), menu.getColumnConstraints().get(5).getPrefWidth() - change))
+                    new KeyFrame(Duration.millis(100), new KeyValue(menu.getColumnConstraints().get(7).prefWidthProperty(), 200)),
+                    new KeyFrame(Duration.millis(100), new KeyValue(menu.getColumnConstraints().get(6).prefWidthProperty(), menu.getColumnConstraints().get(6).getPrefWidth() - change))
             );
             timeline.play();
             searchTile.getStyleClass().remove("tileMenu");
@@ -329,10 +329,10 @@ public class MainViewController {
                 searchTile.getStyleClass().add("tileMenu");
                 isSearchOn = false;
                 timeline.getKeyFrames().addAll(
+                        new KeyFrame(Duration.ZERO, new KeyValue(menu.getColumnConstraints().get(7).prefWidthProperty(), menu.getColumnConstraints().get(7).getPrefWidth())),
                         new KeyFrame(Duration.ZERO, new KeyValue(menu.getColumnConstraints().get(6).prefWidthProperty(), menu.getColumnConstraints().get(6).getPrefWidth())),
-                        new KeyFrame(Duration.ZERO, new KeyValue(menu.getColumnConstraints().get(5).prefWidthProperty(), menu.getColumnConstraints().get(5).getPrefWidth())),
-                        new KeyFrame(Duration.millis(100), new KeyValue(menu.getColumnConstraints().get(6).prefWidthProperty(), 100)),
-                        new KeyFrame(Duration.millis(100), new KeyValue(menu.getColumnConstraints().get(5).prefWidthProperty(), menu.getColumnConstraints().get(5).getPrefWidth() +100))
+                        new KeyFrame(Duration.millis(100), new KeyValue(menu.getColumnConstraints().get(7).prefWidthProperty(), 100)),
+                        new KeyFrame(Duration.millis(100), new KeyValue(menu.getColumnConstraints().get(6).prefWidthProperty(), menu.getColumnConstraints().get(6).getPrefWidth() +100))
                 );
             }
             timeline.play();

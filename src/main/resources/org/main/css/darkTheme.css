@@ -267,6 +267,18 @@
 }
 .underlineCover {
     -fx-fill: #A77979;
-
+}
+.info1 {
+    -fx-text-fill: #E4CFCF;
+    -fx-font-family: 'Jost', sans-serif;
+    -fx-font-size: 30px;
+    -fx-font-weight: 600;
+}
+.info2 {
+    -fx-text-fill: #E4CFCF;
+    -fx-font-family: 'Jost', sans-serif;
+    -fx-font-size: 25px;
+    -fx-font-weight: 400;
+    -fx-opacity: 0.6;
 }
 
