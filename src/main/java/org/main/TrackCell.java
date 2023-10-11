@@ -138,6 +138,76 @@ public class TrackCell {
         cell.getChildren().add(info);
         addListener();
     }
+    public void prepareCellForImporter() throws IOException {
+        cell = new StackPane();
+        cell.setPrefWidth(PREF_WIDTH);
+        cell.setPrefHeight(PREF_HEIGHT);
+        cell.setAlignment(Pos.CENTER_LEFT);
+
+        background = new StackPane();
+        background.setPrefWidth(PREF_WIDTH);
+        background.setPrefHeight(PREF_HEIGHT);
+        background.getStyleClass().add("trackCell");
+        if(CurrentData.getDataInfo().actualTrackID() == track.getTrackID()) {                                           // when track is played or is paused
+            if(CurrentData.getDataInfo().actualPauseTrackID() == track.getTrackID()) {                                  //when track is paused
+                setMode(Mode.PAUSE);
+
+            } else {                                                                                                    //when track is played
+                setMode(Mode.PLAY);
+
+            }
+        } else {                                                                                                        //when track is off
+            setMode(Mode.OFF);
+
+        }
+        info = new FXMLLoader(Main.class.getResource("fxml/TrackCellImporter.fxml")).load();
+
+        index = new Label(indexNum + " ");
+        index.setMinWidth(30);
+        index.setAlignment(Pos.CENTER_RIGHT);
+        index.getStyleClass().add("indexTrackCell");
+
+        playIcon.setFitHeight(10);
+        playIcon.setFitWidth(10);
+        StackPane.setAlignment(playIcon, Pos.CENTER_RIGHT);
+
+        indexPane = new StackPane();
+        indexPane.getChildren().addAll(index, playIcon);
+
+        title = new Label(track.getTrackName());
+        title.setPadding(new Insets(0,0,0,20));
+        title.setAlignment(Pos.CENTER_LEFT);
+        Label artist;
+        if(track.getArtistID() != 0) {
+            artist = new Label(DataBase.getDataBase().getArtistName((int)track.getArtistID()));
+        } else {
+            artist = new Label("Unknown artist");
+        }
+        artist.getStyleClass().add("listArtistInfo");
+
+        if(track.getFeatures() != null) {
+            for(Integer feat : track.getFeatures()) {
+                artist.setText(artist.getText() + Default.dot + DataBase.getDataBase().getArtistName(feat));
+            }
+        }
+        Label duration = new Label(getDurationLook((int)track.getTrackDuration()));
+        duration.getStyleClass().add("titleTrackCell");
+        duration.setPadding(new Insets(0,14,0,0));
+
+        duration.setOpacity(0.6);
+        background.setOpacity(backgroundOpacity);
+        playIcon.setOpacity(playIconOpacity);
+        index.setOpacity(indexOpacity);
+
+        info.addColumn(0, indexPane);
+        info.addColumn(1, title);
+        info.addColumn(2, artist);
+        info.addColumn(3, duration);
+        info.getColumnConstraints().get(3).setHalignment(HPos.RIGHT);
+        cell.getChildren().add(background);
+        cell.getChildren().add(info);
+        addListener();
+    }
     public StackPane getCell() {
         return cell;
     }

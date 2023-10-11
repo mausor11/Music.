@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="97349954-a434-4635-b7fb-6cf34beafa5e" name="Changes" comment="importer view">
+    <list default="true" id="97349954-a434-4635-b7fb-6cf34beafa5e" name="Changes" comment="addToTrackList">
+      <change afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/TrackCellImporter.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Music/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/DataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/DataBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/Track.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/Track.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/TrackCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/TrackCell.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/AddTrackSectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/AddTrackSectionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Music/src/main/resources/org/main/MusicDataBase.accdb" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/MusicDataBase.accdb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,8 +25,8 @@
         <option value="AnnotationType" />
         <option value="CSS File" />
         <option value="Enum" />
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -204,14 +208,11 @@
       <workItem from="1696513449817" duration="4846000" />
       <workItem from="1696545988203" duration="28000" />
       <workItem from="1696704556072" duration="7945000" />
-      <workItem from="1696719575303" duration="1864000" />
-    </task>
-    <task id="LOCAL-00004" summary="icon img + Main cleanup">
-      <created>1692917212790</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1692917212790</updated>
+      <workItem from="1696719575303" duration="2075000" />
+      <workItem from="1696804172060" duration="383000" />
+      <workItem from="1696857948234" duration="235000" />
+      <workItem from="1696877862541" duration="3314000" />
+      <workItem from="1697012454446" duration="2516000" />
     </task>
     <task id="LOCAL-00005" summary="tiles icons">
       <created>1692971361487</created>
@@ -549,7 +550,14 @@
       <option name="project" value="LOCAL" />
       <updated>1696719333025</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="addToTrackList">
+      <created>1696721649764</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1696721649764</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -582,7 +590,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="small changes" />
     <MESSAGE value="playlist tile done" />
     <MESSAGE value="playlist effect done for gridFirst" />
     <MESSAGE value="playlists section done" />
@@ -607,7 +614,8 @@
     <MESSAGE value="importer beginning; todo: tile animation for importer" />
     <MESSAGE value="importer track" />
     <MESSAGE value="importer view" />
-    <option name="LAST_COMMIT_MESSAGE" value="importer view" />
+    <MESSAGE value="addToTrackList" />
+    <option name="LAST_COMMIT_MESSAGE" value="addToTrackList" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -20,7 +20,6 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Map;
 
 public class AddTrackSectionController {
     @FXML
@@ -112,7 +111,7 @@ public class AddTrackSectionController {
         timeline.play();
     }
 
-    public void addFolder() throws IOException {
+    public void addFolder() {
         DirectoryChooser fileChooser = new DirectoryChooser();
         fileChooser.setTitle("Choose folder");
         File file = fileChooser.showDialog(StageHolder.getPrimaryStage());
@@ -122,15 +121,13 @@ public class AddTrackSectionController {
         }
 
     }
-    private void getAllFiles(String folderURL) throws IOException {
+    private void getAllFiles(String folderURL) {
         File directory = new File(folderURL);
         File[] files = directory.listFiles(mp3Files());
         for(File file : files) {
             System.out.println(file.getName());
             Media song = new Media(file.toURI().toString());
             addToTrackList(song);
-//            TrackCell trackCell = new TrackCell(new Track(file.getName().replace(".mp3", ""), (int)song.getDuration().toSeconds()), 0);
-//            trackListView.getItems().add(trackCell.getCell());
         }
 
 
@@ -155,7 +152,7 @@ public class AddTrackSectionController {
         mediaPlayer.setOnReady(new Runnable() {
             @Override
             public void run() {
-                Track track = new Track((String) song.getMetadata().get("title"),(long) song.getDuration().toSeconds());
+                Track track = new Track((String) song.getMetadata().get("title"), (String) song.getMetadata().get("title"), "Genre", (long) song.getDuration().toSeconds());
                 try {
                     TrackCell trackCell = new TrackCell(track, 0);
                     trackListView.getItems().add(trackCell.getCell());

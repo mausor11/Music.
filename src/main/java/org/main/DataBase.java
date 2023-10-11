@@ -1,5 +1,7 @@
 package org.main;
 
+import javafx.scene.chart.PieChart;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -63,7 +65,69 @@ public class DataBase {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return ID;
+        if(ID != 0 ) {
+            return ID;
+        } else {
+            return addArtist(name);
+        }
+    }
+    public long getGenreID(String name) {
+        long ID = 0;
+        try {
+            if(connection.isClosed()) {
+                this.connection = DriverManager.getConnection(databaseURL);
+            }
+            String sql = "SELECT genre_id FROM Genres WHERE genre_name = '" + name +"'";
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            while(resultSet.next()) {
+                ID = resultSet.getLong("genre_id");
+            }
+            connection.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        if(ID != 0 ) {
+            return ID;
+        } else {
+            return addGenre(name);
+        }
+    }
+    public long addArtist(String name) {
+        try {
+            if(connection.isClosed()) {
+                this.connection = DriverManager.getConnection(databaseURL);
+            }
+            if(!isArtistExists((int) getArtistID(name))) {
+
+
+                String sql = "INSERT INTO Artists(artist_name) VALUES (?)";
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setString(1, name);
+                int row = preparedStatement.executeUpdate();
+            }
+            connection.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return getArtistID(name);
+    }
+    public long addGenre(String name) {
+        try {
+            if(connection.isClosed()) {
+                this.connection = DriverManager.getConnection(databaseURL);
+            }
+                String sql = "INSERT INTO Genres(genre_name) VALUES (?)";
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setString(1, name);
+                int row = preparedStatement.executeUpdate();
+            connection.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return getGenreID(name);
     }
     public void getAllString(String table, String column) {
         try {
@@ -953,7 +1017,7 @@ public class DataBase {
 
 
     public static void main(String[] args) {
-        System.out.println(DataBase.getDataBase().getFavouriteAlbumsID());
+        System.out.println(DataBase.getDataBase().addArtist("Ken Carson. "));
     }
 
 }
