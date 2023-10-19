@@ -224,6 +224,10 @@
     -fx-background-color: #1D1919;
     -fx-background-radius: 5;
 }
+.trackCellImporter {
+    -fx-background-color: #302C2C;
+    -fx-background-radius: 5;
+}
 .titleTrackCell {
     -fx-text-fill: #E4CFCF;
     -fx-font-family: 'Jost', sans-serif;
@@ -280,5 +284,17 @@
     -fx-font-size: 25px;
     -fx-font-weight: 400;
     -fx-opacity: 0.6;
+}
+.sortBy {
+    -fx-text-fill: #E4CFCF;
+    -fx-font-family: 'Jost', sans-serif;
+    -fx-font-size: 15px;
+    -fx-font-weight: 600;
+}
+.howSort {
+    -fx-text-fill: #A77979;
+    -fx-font-family: 'Jost', sans-serif;
+    -fx-font-size: 15px;
+    -fx-font-weight: 600;
 }
 

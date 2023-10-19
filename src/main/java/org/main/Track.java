@@ -108,8 +108,8 @@ public class Track implements Comparable<Track> {
     }
     public Track(String trackName, String artistName, String genre, long trackDuration) {
         this.trackName = trackName;
-        this.artistID = DataBase.getDataBase().getArtistID(artistName);
-        this.genreID = DataBase.getDataBase().getGenreID(genre);
+        this.artistID = 0;
+        this.genreID = 0;
         this.trackDuration = trackDuration;
     }
 

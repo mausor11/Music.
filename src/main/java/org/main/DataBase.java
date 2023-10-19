@@ -98,14 +98,12 @@ public class DataBase {
             if(connection.isClosed()) {
                 this.connection = DriverManager.getConnection(databaseURL);
             }
-            if(!isArtistExists((int) getArtistID(name))) {
 
 
                 String sql = "INSERT INTO Artists(artist_name) VALUES (?)";
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 preparedStatement.setString(1, name);
                 int row = preparedStatement.executeUpdate();
-            }
             connection.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -1017,7 +1015,7 @@ public class DataBase {
 
 
     public static void main(String[] args) {
-        System.out.println(DataBase.getDataBase().addArtist("Ken Carson. "));
+        System.out.println(DataBase.getDataBase().getArtistID("Asap Rocky"));
     }
 
 }

@@ -8,6 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -68,12 +69,12 @@
                         <Rectangle fx:id="albumUnderline" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="2.0" scaleX="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="underlineCover" width="17.0" />
                      </children>
                   </VBox>
-                  <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#addFolder" prefHeight="34.0" prefWidth="117.0" styleClass="searchTileActive" GridPane.columnIndex="4">
+                  <StackPane fx:id="buttonArea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#addFolder" prefHeight="34.0" prefWidth="117.0" styleClass="searchTileActive" GridPane.columnIndex="4">
                      <GridPane.margin>
                         <Insets right="46.0" />
                      </GridPane.margin>
                      <children>
-                        <Label styleClass="playlistInfoText" text="Add folder">
+                        <Label fx:id="addFolder" styleClass="playlistInfoText" text="Add folder">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -89,7 +90,7 @@
                <content>
                   <StackPane prefHeight="150.0" prefWidth="200.0">
                      <children>
-                        <GridPane disable="true" hgap="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="160.0" prefWidth="565.0">
+                        <GridPane fx:id="addTracksInformation" disable="true" hgap="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="160.0" prefWidth="565.0">
                           <columnConstraints>
                             <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="160.0" minWidth="160.0" prefWidth="160.0" />
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -142,6 +143,30 @@
                                     <Insets left="45.0" right="23.0" />
                                  </GridPane.margin>
                               </ListView>
+                              <GridPane>
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <StackPane fx:id="sortBy" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
+                                       <children>
+                                          <HBox alignment="BOTTOM_RIGHT" spacing="5.0" StackPane.alignment="BOTTOM_RIGHT">
+                                             <children>
+                                                <Label alignment="BOTTOM_RIGHT" styleClass="sortBy" text="Sort by:" />
+                                                <Label alignment="BOTTOM_RIGHT" styleClass="howSort" text="A-Z" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                                 <GridPane.margin>
+                                    <Insets right="25.0" />
+                                 </GridPane.margin>
+                              </GridPane>
                            </children>
                            <StackPane.margin>
                               <Insets top="24.0" />

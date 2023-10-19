@@ -8,6 +8,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -19,6 +20,7 @@ import org.main.*;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.sql.Time;
 import java.util.ArrayList;
 
 public class AddTrackSectionController {
@@ -38,22 +40,45 @@ public class AddTrackSectionController {
     Rectangle albumUnderline;
     @FXML
     ListView<StackPane> trackListView;
+    @FXML
+    Label addFolder;
+    @FXML
+    StackPane buttonArea;
+    @FXML
+    StackPane sortBy;
+    @FXML
+    GridPane addTracksInformation;
     private ArrayList<Rectangle> underlines;
     private boolean isFirst = true;
+    private String actFileName = "Add folder";
     public static IntegerProperty actMode = new SimpleIntegerProperty(-1);
     public static IntegerProperty prevMode = new SimpleIntegerProperty(-1);
     @FXML
     public void initialize() {
         Default.trackTrackView = trackImporter;
+        if(trackListView.getItems().isEmpty()) {
+            addTracksInformation.setDisable(false);
+            addTracksInformation.setOpacity(1);
+        }
         setUp();
         setMode();
         setOnClick();
+        setAddFolder();
     }
     private void setUp() {
         underlines = new ArrayList<>();
         underlines.add(trackUnderline);
         underlines.add(playlistUnderline);
         underlines.add(albumUnderline);
+    }
+    private void setAddFolder() {
+        buttonArea.setOnMouseEntered(enterEvent -> {
+            addFolder.setText("Add folder");
+
+            buttonArea.setOnMouseExited(exitEvent -> {
+                addFolder.setText(actFileName);
+            });
+        });
     }
     private void setMode() {
         actMode.addListener(((observableValue, number, t1) -> {
@@ -117,17 +142,27 @@ public class AddTrackSectionController {
         File file = fileChooser.showDialog(StageHolder.getPrimaryStage());
         if(file != null) {
             String url = file.getAbsolutePath();
+            addFolder.setText(file.getName());
+            actFileName = file.getName();
+            sortByAnimation();
             getAllFiles(url);
         }
 
     }
     private void getAllFiles(String folderURL) {
+        if(!trackListView.getItems().isEmpty()) {
+            trackListView.getItems().clear();
+        }
         File directory = new File(folderURL);
         File[] files = directory.listFiles(mp3Files());
+        int index= 1;
         for(File file : files) {
             System.out.println(file.getName());
             Media song = new Media(file.toURI().toString());
-            addToTrackList(song);
+            addToTrackList(song, index);
+            addTracksInformation.setDisable(true);
+            addTracksInformation.setOpacity(0);
+            index++;
         }
 
 
@@ -147,19 +182,26 @@ public class AddTrackSectionController {
         };
         return filenameFilter;
     }
-    private void addToTrackList(Media song) {
+    private void addToTrackList(Media song, int index) {
         MediaPlayer mediaPlayer = new MediaPlayer(song);
         mediaPlayer.setOnReady(new Runnable() {
             @Override
             public void run() {
-                Track track = new Track((String) song.getMetadata().get("title"), (String) song.getMetadata().get("title"), "Genre", (long) song.getDuration().toSeconds());
+                Track track = new Track((String) song.getMetadata().get("title"), (String) song.getMetadata().get("artist"), "Genre", (long) song.getDuration().toSeconds());
                 try {
-                    TrackCell trackCell = new TrackCell(track, 0);
+                    TrackCellImporter trackCell = new TrackCellImporter(track, index);
                     trackListView.getItems().add(trackCell.getCell());
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
             }
         });
+    }
+    private void sortByAnimation() {
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.ZERO, new KeyValue(sortBy.opacityProperty(), sortBy.getOpacity())),
+                new KeyFrame(Duration.millis(150), new KeyValue(sortBy.opacityProperty(), 1))
+        );
+        timeline.play();
     }
 }
