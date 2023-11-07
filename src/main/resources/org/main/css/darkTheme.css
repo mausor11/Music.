@@ -297,4 +297,60 @@
     -fx-font-size: 15px;
     -fx-font-weight: 600;
 }
+.editTile {
+    -fx-background-color: #413C3C;
+    -fx-background-radius: 6;
+}
+.editTile:hover {
+    -fx-background-color: #4a4545;
+}
+.addTile {
+    -fx-background-color: #553939;
+    -fx-background-radius: 6;
+}
+.addTile:hover {
+    -fx-background-color: #5f4040;
+}
+.clearText {
+    -fx-text-fill: #A77979;
+    -fx-font-family: 'Jost', sans-serif;
+    -fx-font-size: 16px;
+    -fx-font-weight: 400;
+}
+.clearText:hover {
+    -fx-text-fill: #c09090;
+}
+.trackEditorPane {
+    -fx-background-color: #030303;
+    -fx-background-radius: 10;
+}
+.albumCoverPlace {
+    -fx-background-color: #1D1919;
+    -fx-background-radius: 10;
+}
+.albumCoverPlace:hover {
+    -fx-background-color: #231f1f;
+}
+.editorTextField {
+    -fx-background-color: #1D1919;
+    -fx-alignment: center;
+    -fx-text-fill: #bca3a3;
 
+}
+.editorTextField:hover {
+    -fx-background-color: #231f1f;
+}
+.saveTile {
+    -fx-background-color: #553939;
+    -fx-background-radius: 5;
+}
+.saveTile:hover {
+    -fx-background-color: #583d3d;
+}
+.cancelTile {
+    -fx-background-color:  #1D1919;
+    -fx-background-radius: 5;
+}
+.cancelTile:hover {
+    -fx-background-color: #231f1f;
+}

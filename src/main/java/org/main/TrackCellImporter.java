@@ -130,6 +130,9 @@ public class TrackCellImporter {
                 exitAnimation.play();
             });
         });
+        cell.setOnMouseClicked(clickEvent -> {
+            System.out.println(track.getTrackName());
+        });
     }
 
 }

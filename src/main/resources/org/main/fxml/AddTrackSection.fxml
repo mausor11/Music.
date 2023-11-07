@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -12,6 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
@@ -162,6 +164,50 @@
                                           </HBox>
                                        </children>
                                     </StackPane>
+                                    <GridPane hgap="10.0" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="393.0" style="-fx-background-color: #302C2C; -fx-background-radius: 5;">
+                                      <columnConstraints>
+                                        <ColumnConstraints />
+                                          <ColumnConstraints halignment="LEFT" hgrow="NEVER" minWidth="10.0" />
+                                          <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <GridPane.margin>
+                                          <Insets left="45.0" />
+                                       </GridPane.margin>
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+                                             <children>
+                                                <Label styleClass="tileMenuText" text="1 song chosen" />
+                                                <Label styleClass="clearText" text=" • clear" />
+                                             </children>
+                                          </HBox>
+                                          <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#editOnMouseClicked" prefHeight="20.0" prefWidth="47.0" styleClass="editTile" GridPane.columnIndex="4" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
+                                             <children>
+                                                <Label styleClass="tileHomeTextSmall" text="Edit" />
+                                             </children>
+                                          </StackPane>
+                                          <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="47.0" styleClass="addTile" GridPane.columnIndex="3" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
+                                             <children>
+                                                <Label styleClass="tileHomeTextSmall" text="Add" />
+                                             </children>
+                                          </StackPane>
+                                          <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#1f93ff00" height="20.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+                                       </children>
+                                       <padding>
+                                          <Insets left="10.0" right="10.0" />
+                                       </padding>
+                                       <effect>
+                                          <DropShadow blurType="GAUSSIAN" height="11.67" radius="3.8825000000000003" spread="0.33" width="5.86">
+                                             <color>
+                                                <Color opacity="0.09160305559635162" />
+                                             </color>
+                                          </DropShadow>
+                                       </effect>
+                                    </GridPane>
                                  </children>
                                  <GridPane.margin>
                                     <Insets right="25.0" />

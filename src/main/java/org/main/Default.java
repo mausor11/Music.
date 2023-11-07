@@ -112,6 +112,14 @@ public class Default {
         }
 
     }
+    public static StackPane trackEditor;
+    static {
+        try {
+                trackEditor = new FXMLLoader(Main.class.getResource("fxml/EditTrack.fxml")).load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public static StackPane mainSpace;
     public static StackPane mainPane;
     public static void resetMainViewScene() {

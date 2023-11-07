@@ -8,6 +8,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
@@ -164,8 +165,6 @@ public class AddTrackSectionController {
             addTracksInformation.setOpacity(0);
             index++;
         }
-
-
     }
     private FilenameFilter mp3Files() {
         FilenameFilter filenameFilter = new FilenameFilter() {
@@ -203,5 +202,15 @@ public class AddTrackSectionController {
                 new KeyFrame(Duration.millis(150), new KeyValue(sortBy.opacityProperty(), 1))
         );
         timeline.play();
+    }
+
+    public void editOnMouseClicked() {
+        trackImporter.getChildren().add(Default.trackEditor);
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.ZERO, new KeyValue(Default.trackEditor.opacityProperty(), 0.0)),
+                new KeyFrame(Duration.millis(250), new KeyValue(Default.trackEditor.opacityProperty(), 1.0))
+        );
+        timeline.play();
+
     }
 }
