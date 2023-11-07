@@ -36,9 +36,9 @@ Install my program by finding **.jar** file in main folder.
 
 
 ## Screenshots
-<div style="display: flex;">
-    <image width=50% src="src/main/resources/org/main/screenshots/1.png"></image>
-    <image width=50% src="src/main/resources/org/main/screenshots/3.png"></image>
+<div align =center style="display: flex;">
+    <image width=40% src="src/main/resources/org/main/screenshots/1.png"></image>
+    <image width=40% src="src/main/resources/org/main/screenshots/3.png"></image>
 </div>
 
 
