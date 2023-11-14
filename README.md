@@ -9,7 +9,7 @@
 
 It is a work in progress and currently offers features for playing music, managing playlists and favorite songs, importing music from local computer folders.
 
-
+Only for **Windows** users.
 
 
 
