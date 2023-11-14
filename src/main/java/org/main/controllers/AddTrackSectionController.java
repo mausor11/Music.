@@ -5,9 +5,11 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleLongProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
@@ -49,6 +51,12 @@ public class AddTrackSectionController {
     StackPane sortBy;
     @FXML
     GridPane addTracksInformation;
+    @FXML
+    GridPane editTrackPane;
+    @FXML
+    Label chosenText;
+    @FXML
+    StackPane editPane;
     private ArrayList<Rectangle> underlines;
     private boolean isFirst = true;
     private String actFileName = "Add folder";
@@ -57,20 +65,41 @@ public class AddTrackSectionController {
     @FXML
     public void initialize() {
         Default.trackTrackView = trackImporter;
+        Default.editTrackPane = editTrackPane;
+        Default.chosenTracks = new SimpleLongProperty(0);
         if(trackListView.getItems().isEmpty()) {
             addTracksInformation.setDisable(false);
             addTracksInformation.setOpacity(1);
         }
+
         setUp();
         setMode();
         setOnClick();
         setAddFolder();
+        setEditTrackPane();
     }
     private void setUp() {
         underlines = new ArrayList<>();
         underlines.add(trackUnderline);
         underlines.add(playlistUnderline);
         underlines.add(albumUnderline);
+    }
+    private void setEditTrackPane() {
+        Default.chosenTracks.addListener(((observableValue, number, t1) -> {
+                if(t1.intValue() > 0) {
+                    Default.editTrackPane.setOpacity(1);
+                    chosenText.setText(t1.intValue() + " song chosen");
+                    if(t1.intValue() > 1) {
+                        editPane.setOpacity(0);
+                        editPane.setDisable(true);
+                    } else {
+                        editPane.setOpacity(1);
+                        editPane.setDisable(false);
+                    }
+                } else {
+                    Default.editTrackPane.setOpacity(0);
+                }
+        }));
     }
     private void setAddFolder() {
         buttonArea.setOnMouseEntered(enterEvent -> {
@@ -148,6 +177,8 @@ public class AddTrackSectionController {
             sortByAnimation();
             getAllFiles(url);
         }
+        Default.chosenCells = new ArrayList<>();
+        Default.chosenTracks.set(0);
 
     }
     private void getAllFiles(String folderURL) {
@@ -205,12 +236,34 @@ public class AddTrackSectionController {
     }
 
     public void editOnMouseClicked() {
-        trackImporter.getChildren().add(Default.trackEditor);
+        EditTrackController.TitleT.set(null);
+        EditTrackController.ArtistT.set(null);
+        EditTrackController.AlbumT.set(null);
+        EditTrackController.GenreT.set(null);
+        Default.mainPane.getChildren().add(Default.trackEditor);
+        GaussianBlur gaussianBlur = new GaussianBlur(0);
+        Default.containerBox.setEffect(gaussianBlur);
+        Default.containerBox.setDisable(true);
+        String[] data = Default.chosenCells.get(0).getData();
+        EditTrackController.TitleT.set(data[0]);
+        EditTrackController.ArtistT.set(data[1]);
+        EditTrackController.AlbumT.set(data[2]);
+        EditTrackController.GenreT.set(data[3]);
+
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.ZERO, new KeyValue(Default.trackEditor.opacityProperty(), 0.0)),
-                new KeyFrame(Duration.millis(250), new KeyValue(Default.trackEditor.opacityProperty(), 1.0))
+                new KeyFrame(Duration.ZERO, new KeyValue(gaussianBlur.radiusProperty(), 0.0)),
+                new KeyFrame(Duration.millis(250), new KeyValue(Default.trackEditor.opacityProperty(), 1.0)),
+                new KeyFrame(Duration.millis(250), new KeyValue(gaussianBlur.radiusProperty(), 20.0))
         );
         timeline.play();
+    }
 
+    public void clearEverything() {
+        Default.chosenTracks.set(0);
+        for(TrackCellImporter cells : Default.chosenCells) {
+            cells.setIsNotChosen();
+        }
+        Default.chosenCells = new ArrayList<>();
     }
 }

@@ -30,15 +30,23 @@ public class TrackCellImporter {
     private Label artist;
     private Label album;
     private Label genre;
-
+    private boolean isChosen;
     private StackPane indexPane;
 
     public TrackCellImporter(Track track, int index) throws IOException {
         this.track = track;
         this.indexNum = index;
+        isChosen = false;
         prepareCellForImporter();
     }
     public StackPane getCell() { return cell;}
+    public void setIsNotChosen() {
+        isChosen = false;
+    }
+    public String[] getData() {
+        String[] data = {title.getText(), artist.getText(), album.getText(), genre.getText()};
+        return data;
+    }
     private void prepareCellForImporter() throws IOException {
         cell = new StackPane();
         cell.setPrefWidth(PREF_WIDTH);
@@ -131,8 +139,30 @@ public class TrackCellImporter {
             });
         });
         cell.setOnMouseClicked(clickEvent -> {
-            System.out.println(track.getTrackName());
+            if(!isChosen) {
+                Default.chosenTracks.set(Default.chosenTracks.get() + 1);
+                Default.chosenCells.add(this);
+                isChosen = true;
+            } else {
+                isChosen = false;
+                Default.chosenTracks.set(Default.chosenTracks.get() - 1);
+                Default.chosenCells.remove(this);
+            }
+//            System.out.println(track.getTrackName() + " " + Default.chosenTracks);
+
         });
+    }
+    public void setTitle(String t) {
+        title.setText(t);
+    }
+    public void setArtist(String a) {
+        artist.setText(a);
+    }
+    public void setAlbum(String A) {
+        album.setText(A);
+    }
+    public void setGenre(String g) {
+        genre.setText(g);
     }
 
 }

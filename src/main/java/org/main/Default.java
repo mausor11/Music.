@@ -3,15 +3,13 @@ package org.main;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.*;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -120,6 +118,9 @@ public class Default {
             throw new RuntimeException(e);
         }
     }
+    public static GridPane editTrackPane;
+    public static LongProperty chosenTracks;
+    public static ArrayList<TrackCellImporter> chosenCells = new ArrayList<>();
     public static StackPane mainSpace;
     public static StackPane mainPane;
     public static void resetMainViewScene() {

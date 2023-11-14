@@ -4,16 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="97349954-a434-4635-b7fb-6cf34beafa5e" name="Changes" comment="README.md">
-      <change afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/EditTrackController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/EditTrack.fxml" afterDir="false" />
+    <list default="true" id="97349954-a434-4635-b7fb-6cf34beafa5e" name="Changes" comment="edit track">
       <change beforePath="$PROJECT_DIR$/../Music/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/Default.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/Default.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/TrackCellImporter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/TrackCellImporter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/AddTrackSectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/AddTrackSectionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/EditTrackController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/EditTrackController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Music/src/main/resources/org/main/MusicDataBase.accdb" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/MusicDataBase.accdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/resources/org/main/css/darkTheme.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/css/darkTheme.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/AddTrackSection.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/AddTrackSection.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/EditTrack.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/EditTrack.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -238,14 +237,11 @@
       <workItem from="1699213546653" duration="34000" />
       <workItem from="1699359494345" duration="57000" />
       <workItem from="1699359689187" duration="34000" />
-      <workItem from="1699389245812" duration="9422000" />
-    </task>
-    <task id="LOCAL-00008" summary="tileMenu + searchTile works">
-      <created>1693162823090</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1693162823090</updated>
+      <workItem from="1699389245812" duration="9475000" />
+      <workItem from="1699481061239" duration="1845000" />
+      <workItem from="1699836597165" duration="1345000" />
+      <workItem from="1699871390407" duration="22000" />
+      <workItem from="1699919601154" duration="4883000" />
     </task>
     <task id="LOCAL-00009" summary="play button animation">
       <created>1693169814613</created>
@@ -583,7 +579,14 @@
       <option name="project" value="LOCAL" />
       <updated>1698456592211</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="edit track">
+      <created>1699399840031</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1699399840031</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -628,7 +631,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="albums section done" />
     <MESSAGE value="all section tiles done; todo: tracklist view" />
     <MESSAGE value="home section connected with database" />
     <MESSAGE value="animation" />
@@ -653,7 +655,8 @@
     <MESSAGE value="database" />
     <MESSAGE value="AddTrackSectionController.java" />
     <MESSAGE value="README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="README.md" />
+    <MESSAGE value="edit track" />
+    <option name="LAST_COMMIT_MESSAGE" value="edit track" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

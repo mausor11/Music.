@@ -92,7 +92,7 @@
                <content>
                   <StackPane prefHeight="150.0" prefWidth="200.0">
                      <children>
-                        <GridPane fx:id="addTracksInformation" disable="true" hgap="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="160.0" prefWidth="565.0">
+                        <GridPane fx:id="addTracksInformation" hgap="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="160.0" prefWidth="565.0">
                           <columnConstraints>
                             <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="160.0" minWidth="160.0" prefWidth="160.0" />
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -118,15 +118,6 @@
                                  <children>
                                     <Label styleClass="info1" text="We can't find any tracks" />
                                     <Label styleClass="info2" text="Your library is empty" GridPane.rowIndex="1" />
-                                    <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#addFolder" prefHeight="34.0" prefWidth="117.0" styleClass="searchTileActive" GridPane.rowIndex="2">
-                                       <children>
-                                          <Label styleClass="playlistInfoText" text="Add folder">
-                                             <font>
-                                                <Font size="16.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </StackPane>
                                  </children>
                               </GridPane>
                            </children>
@@ -164,7 +155,7 @@
                                           </HBox>
                                        </children>
                                     </StackPane>
-                                    <GridPane hgap="10.0" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="393.0" style="-fx-background-color: #302C2C; -fx-background-radius: 5;">
+                                    <GridPane fx:id="editTrackPane" hgap="10.0" maxWidth="-Infinity" minWidth="-Infinity" opacity="0.0" prefWidth="393.0" style="-fx-background-color: #302C2C; -fx-background-radius: 5;">
                                       <columnConstraints>
                                         <ColumnConstraints />
                                           <ColumnConstraints halignment="LEFT" hgrow="NEVER" minWidth="10.0" />
@@ -181,18 +172,18 @@
                                        <children>
                                           <HBox alignment="CENTER_LEFT" prefHeight="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
                                              <children>
-                                                <Label styleClass="tileMenuText" text="1 song chosen" />
-                                                <Label styleClass="clearText" text=" • clear" />
+                                                <Label fx:id="chosenText" styleClass="tileMenuText" text="1 song chosen" />
+                                                <Label onMouseClicked="#clearEverything" styleClass="clearText" text=" • clear" />
                                              </children>
                                           </HBox>
-                                          <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#editOnMouseClicked" prefHeight="20.0" prefWidth="47.0" styleClass="editTile" GridPane.columnIndex="4" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
-                                             <children>
-                                                <Label styleClass="tileHomeTextSmall" text="Edit" />
-                                             </children>
-                                          </StackPane>
-                                          <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="47.0" styleClass="addTile" GridPane.columnIndex="3" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
+                                          <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="47.0" styleClass="addTile" GridPane.columnIndex="4" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
                                              <children>
                                                 <Label styleClass="tileHomeTextSmall" text="Add" />
+                                             </children>
+                                          </StackPane>
+                                          <StackPane fx:id="editPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#editOnMouseClicked" prefHeight="20.0" prefWidth="47.0" styleClass="editTile" GridPane.columnIndex="3" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
+                                             <children>
+                                                <Label styleClass="tileHomeTextSmall" text="Edit" />
                                              </children>
                                           </StackPane>
                                           <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#1f93ff00" height="20.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />

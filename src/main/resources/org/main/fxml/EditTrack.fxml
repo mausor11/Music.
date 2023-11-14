@@ -38,25 +38,25 @@
                   <VBox alignment="TOP_CENTER">
                      <children>
                         <Label styleClass="tileMenuText" text="Title" />
-                        <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="165.0" styleClass="editorTextField" />
+                        <TextField fx:id="titleText" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="165.0" styleClass="editorTextField" />
                      </children>
                   </VBox>
                   <VBox alignment="TOP_CENTER" GridPane.rowIndex="1">
                      <children>
                         <Label styleClass="tileMenuText" text="Artist" />
-                        <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="165.0" styleClass="editorTextField" />
+                        <TextField fx:id="artistText" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="165.0" styleClass="editorTextField" />
                      </children>
                   </VBox>
                   <VBox alignment="TOP_CENTER" GridPane.columnIndex="1">
                      <children>
                         <Label styleClass="tileMenuText" text="Album" />
-                        <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="165.0" styleClass="editorTextField" />
+                        <TextField fx:id="albumText" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="165.0" styleClass="editorTextField" />
                      </children>
                   </VBox>
                   <VBox alignment="TOP_CENTER" GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.vgrow="NEVER">
                      <children>
                         <Label styleClass="tileMenuText" text="Features" />
-                        <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="165.0" styleClass="editorTextField" />
+                        <TextField fx:id="featText" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="165.0" styleClass="editorTextField" />
                      </children>
                   </VBox>
                </children>
@@ -67,7 +67,7 @@
             <VBox alignment="TOP_CENTER" VBox.vgrow="NEVER">
                <children>
                   <Label styleClass="tileMenuText" text="Genre" />
-                  <TextField maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="165.0" styleClass="editorTextField" />
+                  <TextField fx:id="genreText" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="165.0" styleClass="editorTextField" />
                </children>
             </VBox>
             <StackPane fx:id="imagePlace" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#imagePlaceOnMouseClicked" onMouseEntered="#imagePlaceOnMouseEntered" onMouseExited="#imagePlaceOnMouseExited" prefHeight="100.0" prefWidth="100.0" styleClass="albumCoverPlace" VBox.vgrow="NEVER">
@@ -81,7 +81,7 @@
                         <Label styleClass="tileMenuText" text="Cancel" />
                      </children>
                   </StackPane>
-                  <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="165.0" styleClass="saveTile">
+                  <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#saveTileOnMouseClicked" prefHeight="30.0" prefWidth="165.0" styleClass="saveTile">
                      <children>
                         <Label styleClass="tileMenuText" text="Save" />
                      </children>
