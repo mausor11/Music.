@@ -67,6 +67,15 @@ public class TrackCellImporter {
         String[] data = {title.getText(), artist.getText(), album.getText(), genre.getText(), formatFeatures()};
         return data;
     }
+    public long getDuration() {
+        return track.getTrackDuration();
+    }
+    public String getCover() {
+        return coverURL;
+    }
+    public ArrayList<String> getFeatures() {
+        return features;
+    }
     public String getInfo() {
         return "\n" +
                 title.getText() + "\n"

@@ -10,6 +10,7 @@ import javafx.util.Duration;
 import org.main.DataBase;
 import org.main.Default;
 import org.main.ListCell;
+import org.main.Main;
 
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class LibraryController {
 
     public static int prevCell = -1;
     public void initialize() throws URISyntaxException {
-        int i=0;
+        listView.getItems().add(favouriteTile());
         for(StackPane album : templateAlbums()) {
             listView.getItems().add(album);
         }
@@ -67,6 +68,13 @@ public class LibraryController {
     }
     public void plusEffect() {
         Default.blurEffect(plusButton,plusEffect);
+    }
+    private StackPane favouriteTile() throws URISyntaxException {
+        int id=0;
+        ListCell listCell = new ListCell(1, listView, id, Main.class.getResource("icons/FavouriteCover.png").toURI().toString(), "Added tracks", "user", null);
+        listCells.add(listCell);
+
+        return listCell.getCell();
     }
     private ArrayList<StackPane> templateAlbums() {
         ArrayList<Integer> ids = DataBase.getDataBase().getAllAlbumsID();

@@ -294,11 +294,18 @@ public class AddTrackSectionController {
         }
 
     }
-
+    private ArrayList<Integer> getFeatures(TrackCellImporter cell) {
+        ArrayList<Integer> featuresID = new ArrayList<>();
+        for(String feat : cell.getFeatures()) {
+            featuresID.add((int) DataBase.getDataBase().getArtistID(feat));
+        }
+        return featuresID;
+    }
     public void addOnMouseClicked() {
         for(TrackCellImporter cell : trackCellImporters) {
             if(cell.isChosen()) {
-                System.out.println(cell.getInfo());
+                String[] data = cell.getData();
+                DataBase.getDataBase().addTrack(data[0], cell.getDuration(), DataBase.getDataBase().getArtistID(data[1]), cell.getCover(), 0, false, DataBase.getDataBase().getGenreID(data[3]), DataBase.getDataBase().getAlbumID(data[2]), 1, getFeatures(cell) );
             }
         }
     }
