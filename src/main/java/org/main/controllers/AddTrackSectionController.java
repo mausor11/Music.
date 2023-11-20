@@ -10,6 +10,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.effect.GaussianBlur;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
@@ -23,10 +25,12 @@ import org.main.*;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
-import java.sql.Time;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 public class AddTrackSectionController {
+    @FXML
+    ImageView tickIcon;
     @FXML
     StackPane trackImporter;
     @FXML
@@ -57,9 +61,13 @@ public class AddTrackSectionController {
     Label chosenText;
     @FXML
     StackPane editPane;
+    @FXML
+    StackPane addPane;
     private ArrayList<Rectangle> underlines;
     private boolean isFirst = true;
+    private boolean isChosen = false;
     private String actFileName = "Add folder";
+    private ArrayList<TrackCellImporter> trackCellImporters;
     public static IntegerProperty actMode = new SimpleIntegerProperty(-1);
     public static IntegerProperty prevMode = new SimpleIntegerProperty(-1);
     @FXML
@@ -214,6 +222,7 @@ public class AddTrackSectionController {
     }
     private void addToTrackList(Media song, int index) {
         MediaPlayer mediaPlayer = new MediaPlayer(song);
+        trackCellImporters = new ArrayList<>();
         mediaPlayer.setOnReady(new Runnable() {
             @Override
             public void run() {
@@ -221,6 +230,8 @@ public class AddTrackSectionController {
                 try {
                     TrackCellImporter trackCell = new TrackCellImporter(track, index);
                     trackListView.getItems().add(trackCell.getCell());
+                    trackCell.setIndex(trackListView.getItems().indexOf(trackCell.getCell()) + 1);
+                    trackCellImporters.add(trackCell);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -240,6 +251,7 @@ public class AddTrackSectionController {
         EditTrackController.ArtistT.set(null);
         EditTrackController.AlbumT.set(null);
         EditTrackController.GenreT.set(null);
+        EditTrackController.FeatT.set(null);
         Default.mainPane.getChildren().add(Default.trackEditor);
         GaussianBlur gaussianBlur = new GaussianBlur(0);
         Default.containerBox.setEffect(gaussianBlur);
@@ -249,6 +261,8 @@ public class AddTrackSectionController {
         EditTrackController.ArtistT.set(data[1]);
         EditTrackController.AlbumT.set(data[2]);
         EditTrackController.GenreT.set(data[3]);
+        EditTrackController.FeatT.set(data[4]);
+
 
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.ZERO, new KeyValue(Default.trackEditor.opacityProperty(), 0.0)),
@@ -259,11 +273,33 @@ public class AddTrackSectionController {
         timeline.play();
     }
 
-    public void clearEverything() {
-        Default.chosenTracks.set(0);
-        for(TrackCellImporter cells : Default.chosenCells) {
-            cells.setIsNotChosen();
+    public void clearEverything() throws URISyntaxException {
+        isChosen = true;
+        tickOnMouseClicked();
+    }
+
+    public void tickOnMouseClicked() throws URISyntaxException {
+        if(!isChosen) {
+            isChosen = true;
+            tickIcon.setImage(new Image(Main.class.getResource("icons/TickAccIcon.png").toURI().toString()));
+            for(TrackCellImporter track : trackCellImporters) {
+                track.setChosen();
+            }
+        } else {
+            isChosen = false;
+            tickIcon.setImage(new Image(Main.class.getResource("icons/TickIcon.png").toURI().toString()));
+            for(TrackCellImporter track : trackCellImporters) {
+                track.setNotChosen();
+            }
         }
-        Default.chosenCells = new ArrayList<>();
+
+    }
+
+    public void addOnMouseClicked() {
+        for(TrackCellImporter cell : trackCellImporters) {
+            if(cell.isChosen()) {
+                System.out.println(cell.getInfo());
+            }
+        }
     }
 }

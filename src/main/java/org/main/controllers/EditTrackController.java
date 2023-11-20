@@ -133,6 +133,11 @@ public class EditTrackController {
         Default.chosenCells.get(0).setArtist(artistText.getText());
         Default.chosenCells.get(0).setAlbum(albumText.getText());
         Default.chosenCells.get(0).setGenre(genreText.getText());
+        Default.chosenCells.get(0).setFeatures(featText.getText());
+        if(isCover) {
+            Default.chosenCells.get(0).setCover(coverImg.getImage().getUrl().toString());
+        }
+
 
         Default.containerBox.setDisable(false);
         GaussianBlur gaussianBlur = new GaussianBlur(7.7);

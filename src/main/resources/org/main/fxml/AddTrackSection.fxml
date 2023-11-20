@@ -145,16 +145,6 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <StackPane fx:id="sortBy" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
-                                       <children>
-                                          <HBox alignment="BOTTOM_RIGHT" spacing="5.0" StackPane.alignment="BOTTOM_RIGHT">
-                                             <children>
-                                                <Label alignment="BOTTOM_RIGHT" styleClass="sortBy" text="Sort by:" />
-                                                <Label alignment="BOTTOM_RIGHT" styleClass="howSort" text="A-Z" />
-                                             </children>
-                                          </HBox>
-                                       </children>
-                                    </StackPane>
                                     <GridPane fx:id="editTrackPane" hgap="10.0" maxWidth="-Infinity" minWidth="-Infinity" opacity="0.0" prefWidth="393.0" style="-fx-background-color: #302C2C; -fx-background-radius: 5;">
                                       <columnConstraints>
                                         <ColumnConstraints />
@@ -176,7 +166,7 @@
                                                 <Label onMouseClicked="#clearEverything" styleClass="clearText" text=" • clear" />
                                              </children>
                                           </HBox>
-                                          <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="47.0" styleClass="addTile" GridPane.columnIndex="4" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
+                                          <StackPane fx:id="addPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#addOnMouseClicked" prefHeight="20.0" prefWidth="47.0" styleClass="addTile" GridPane.columnIndex="4" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
                                              <children>
                                                 <Label styleClass="tileHomeTextSmall" text="Add" />
                                              </children>
@@ -186,7 +176,15 @@
                                                 <Label styleClass="tileHomeTextSmall" text="Edit" />
                                              </children>
                                           </StackPane>
-                                          <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#1f93ff00" height="20.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+                                          <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0">
+                                             <children>
+                                                <ImageView fx:id="tickIcon" fitHeight="20.0" fitWidth="20.0" onMouseClicked="#tickOnMouseClicked" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../icons/TickIcon.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </StackPane>
                                        </children>
                                        <padding>
                                           <Insets left="10.0" right="10.0" />
@@ -199,6 +197,16 @@
                                           </DropShadow>
                                        </effect>
                                     </GridPane>
+                                    <StackPane fx:id="sortBy" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
+                                       <children>
+                                          <HBox alignment="BOTTOM_RIGHT" spacing="5.0" StackPane.alignment="BOTTOM_RIGHT">
+                                             <children>
+                                                <Label alignment="BOTTOM_RIGHT" styleClass="sortBy" text="Sort by:" />
+                                                <Label alignment="BOTTOM_RIGHT" styleClass="howSort" text="A-Z" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </StackPane>
                                  </children>
                                  <GridPane.margin>
                                     <Insets right="25.0" />

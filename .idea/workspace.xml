@@ -6,13 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="97349954-a434-4635-b7fb-6cf34beafa5e" name="Changes" comment="edit track">
       <change beforePath="$PROJECT_DIR$/../Music/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/Default.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/Default.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/TrackCellImporter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/TrackCellImporter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/AddTrackSectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/AddTrackSectionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/EditTrackController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/EditTrackController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/resources/org/main/MusicDataBase.accdb" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/MusicDataBase.accdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/AddTrackSection.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/AddTrackSection.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/EditTrack.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/fxml/EditTrack.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -241,14 +238,9 @@
       <workItem from="1699481061239" duration="1845000" />
       <workItem from="1699836597165" duration="1345000" />
       <workItem from="1699871390407" duration="22000" />
-      <workItem from="1699919601154" duration="4883000" />
-    </task>
-    <task id="LOCAL-00009" summary="play button animation">
-      <created>1693169814613</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1693169814613</updated>
+      <workItem from="1699919601154" duration="5292000" />
+      <workItem from="1699945097617" duration="4000" />
+      <workItem from="1700434109629" duration="6267000" />
     </task>
     <task id="LOCAL-00010" summary="play controlls animations">
       <created>1693175563858</created>
@@ -586,7 +578,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699399840031</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="edit track">
+      <created>1699924495333</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1699924495333</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
