@@ -25,7 +25,11 @@ Only for **Windows** users.
 
 ## Installation
 
-In the process of creating a **jar file**.
+To compile **jar** go to main folder *Music.*.
+Then compile *jar file* with command below:
+```
+java -jar .\Application\Music..jar
+```
 ## Tech Stack
 
 **Programming languages:** Java, CSS, FXML
