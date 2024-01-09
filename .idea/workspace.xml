@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Music.:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="97349954-a434-4635-b7fb-6cf34beafa5e" name="Changes" comment="edit track">
-      <change beforePath="$PROJECT_DIR$/../Music/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/TrackCellImporter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/TrackCellImporter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/AddTrackSectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/AddTrackSectionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/LibraryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/java/org/main/controllers/LibraryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Music/src/main/resources/org/main/MusicDataBase.accdb" beforeDir="false" afterPath="$PROJECT_DIR$/../Music/src/main/resources/org/main/MusicDataBase.accdb" afterDir="false" />
-    </list>
+    <list default="true" id="97349954-a434-4635-b7fb-6cf34beafa5e" name="Changes" comment="add track" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,13 +56,10 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="workspaceImportEnabled" value="true" />
-      </MavenImportingSettings>
-    </option>
-  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2URYdhTloaCm8Ug9aTE1k8AI80P" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -72,32 +68,51 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/JAVA - programy/Music/src/main/resources/org/main/fxml&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;AtomConfig&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.Main.executor": "Run",
+    "Application.MainJar.executor": "Run",
+    "Maven.Music. [clean,compile,package,verify...].executor": "Run",
+    "Maven.Music. [clean,compile,package].executor": "Run",
+    "Maven.Music. [clean,compile].executor": "Run",
+    "Maven.Music. [clean,package,verify,install].executor": "Run",
+    "Maven.Music. [clean,package].executor": "Run",
+    "Maven.Music. [clean,verify].executor": "Run",
+    "Maven.Music. [clean].executor": "Run",
+    "Maven.Music. [compile,package,install].executor": "Run",
+    "Maven.Music. [compile].executor": "Run",
+    "Maven.Music. [install].executor": "Run",
+    "Maven.Music. [org.apache.maven.plugins:maven-jar-plugin:3.3.0:help].executor": "Run",
+    "Maven.Music. [org.apache.maven.plugins:maven-jar-plugin:3.3.0:jar].executor": "Run",
+    "Maven.Music. [package].executor": "Run",
+    "Maven.Music. [test].executor": "Run",
+    "Maven.Music. [validate].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/JAVA - programy/Music/src/main/resources/org/main/fxml",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "AtomConfig",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;azure&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "azure"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\JAVA - programy\Music\src\main\resources\org\main\fxml" />
@@ -109,7 +124,7 @@
       <recent name="org.main" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.MainJar">
     <configuration name="DataBase" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.main.DataBase" />
       <module name="Music." />
@@ -130,13 +145,34 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MainJar" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.main.MainJar" />
+      <module name="Music." />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MainJar" />
         <item itemvalue="Application.DataBase" />
         <item itemvalue="Application.DataBase" />
         <item itemvalue="Application.DataBase" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-19.0.2-corretto-19.0.2-3183f394aec4-f0552fc0" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -242,14 +278,22 @@
       <workItem from="1699945097617" duration="4000" />
       <workItem from="1700434109629" duration="6281000" />
       <workItem from="1700493476499" duration="21000" />
-      <workItem from="1700510861266" duration="4854000" />
-    </task>
-    <task id="LOCAL-00011" summary="volume bar + maximize icon">
-      <created>1693180912030</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1693180912030</updated>
+      <workItem from="1700510861266" duration="4868000" />
+      <workItem from="1700552417997" duration="127000" />
+      <workItem from="1700553268857" duration="728000" />
+      <workItem from="1702133904638" duration="280000" />
+      <workItem from="1702138614495" duration="1318000" />
+      <workItem from="1702647945749" duration="81000" />
+      <workItem from="1703689547324" duration="164000" />
+      <workItem from="1703848422705" duration="593000" />
+      <workItem from="1703851255325" duration="4000" />
+      <workItem from="1704719317515" duration="443000" />
+      <workItem from="1704719788122" duration="1771000" />
+      <workItem from="1704728346999" duration="17000" />
+      <workItem from="1704752992338" duration="579000" />
+      <workItem from="1704753651551" duration="1219000" />
+      <workItem from="1704809758720" duration="6000" />
+      <workItem from="1704816834024" duration="2864000" />
     </task>
     <task id="LOCAL-00012" summary="player section done + template album covers">
       <created>1693333370278</created>
@@ -587,13 +631,35 @@
       <option name="project" value="LOCAL" />
       <updated>1700443004427</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="add track">
+      <created>1700522210350</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1700522210350</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="Track_Importer_Section" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
@@ -615,24 +681,8 @@
         </entry>
       </map>
     </option>
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list>
-              <RecentGroup>
-                <option name="FILTER_VALUES">
-                  <option value="Track_Importer_Section" />
-                </option>
-              </RecentGroup>
-            </list>
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="all section tiles done; todo: tracklist view" />
     <MESSAGE value="home section connected with database" />
     <MESSAGE value="animation" />
     <MESSAGE value="tracklist view" />
@@ -657,7 +707,8 @@
     <MESSAGE value="AddTrackSectionController.java" />
     <MESSAGE value="README.md" />
     <MESSAGE value="edit track" />
-    <option name="LAST_COMMIT_MESSAGE" value="edit track" />
+    <MESSAGE value="add track" />
+    <option name="LAST_COMMIT_MESSAGE" value="add track" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
