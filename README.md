@@ -25,7 +25,7 @@ Only for **Windows** users.
 
 ## Installation
 
-Install my program by finding **.jar** file in main folder.
+In the process of creating a **jar file**.
 ## Tech Stack
 
 **Programming languages:** Java, CSS, FXML
