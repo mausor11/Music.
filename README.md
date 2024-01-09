@@ -9,7 +9,7 @@
 
 It is a work in progress and currently offers features for playing music, managing playlists and favorite songs, importing music from local computer folders.
 
-
+Only for **Windows** users.
 
 
 
@@ -25,7 +25,7 @@ It is a work in progress and currently offers features for playing music, managi
 
 ## Installation
 
-Install my program by finding **.jar** file in main folder.
+In the process of creating a **jar file**.
 ## Tech Stack
 
 **Programming languages:** Java, CSS, FXML
